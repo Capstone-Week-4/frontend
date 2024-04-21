@@ -23,7 +23,7 @@ function LoadingPage() {
   
   const goingpage = () => {
     setTimeout(() => {
-      navigate("/GoingPage");
+      navigate("/going");
     }, 1800);
   }
   
