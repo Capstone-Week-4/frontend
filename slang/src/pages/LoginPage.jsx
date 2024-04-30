@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import '../App.css';
 import { ScrollControls, Scroll ,Environment, Float, Sparkles, PositionalAudio} from '@react-three/drei';
 import Row from 'react-bootstrap/Row';
@@ -15,14 +16,102 @@ import { useNavigate } from 'react-router-dom';
 import '../static/login.css'
 function LoginPage() {
 
-
+    const [userId, setUserId] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
   const navigate = useNavigate();
   
-//   const goingpage = () => {
-//     setTimeout(() => {
-//       navigate("/going");
-//     }, 1800);
-//   }
+  async function sendLoginInfo(userId, password) {
+    const url = '/api/login'; // Replace with your backend URL
+    const data = {
+      id: userId,
+      password: password
+    };
+  
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const responseData = await response.json();
+      console.log('Server response:', responseData);
+      return responseData;
+    } catch (error) {
+      console.error('There was a problem with the fetch operation:', error);
+      throw error;
+    }
+  }
+  
+  async function sendSignupInfo(userId, username, password) {
+    const url = '/api/register'; // Replace with your backend URL
+    const data = {
+        id: userId,
+        password: password,
+        name: username,
+
+    };
+  
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const responseData = await response.json();
+      console.log('Server response:', responseData);
+      return responseData;
+    } catch (error) {
+      console.error('There was a problem with the fetch operation:', error);
+      throw error;
+    }
+  }
+  
+  
+const handleLogin = (e) => {
+    e.preventDefault()
+    sendLoginInfo(userId, username, password)
+      .then(response => {
+        // Handle successful login response
+        console.log('Login successful:', response);
+        // Redirect to another page or update UI accordingly
+      })
+      .catch(error => {
+        // Handle login error
+        console.error('Login failed:', error);
+        // Update UI to show login error message
+      });
+      navigate('/');
+
+  };
+  const handleSignup = (e) => {
+    e.preventDefault()
+    sendSignupInfo(userId, username, password)
+      .then(response => {
+        // Handle successful login response
+        console.log('Sign up successful:', response);
+        // Redirect to another page or update UI accordingly
+      })
+      .catch(error => {
+        // Handle login error
+        console.error('Sign up failed:', error);
+        // Update UI to show login error message
+      });
+  };
   
   return (
 <>
@@ -144,18 +233,25 @@ function LoginPage() {
     <input type='checkbox' id='chk' aria-hidden="true" />
     <div className='signup'>
       <form>
-        <label htmlFor="chk" aria-hidden="true">Sign Up</label>
-        <input type='text' name='txt' placeholder="Username" required="" />
-        <input type='password' name='pswd' placeholder='Password' required="" />
-        <button>Sign up</button>
+        <label htmlFor="chk" aria-hidden="true">회원가입</label>
+        <input type='text' name='txt' placeholder="아이디" required=""
+         value={userId}
+         onChange={e => setUserId(e.target.value)}/>
+        <input type='text' name='txt' placeholder="이름" required="" 
+         value={username}
+         onChange={e => setUsername(e.target.value)}/>
+        <input type='password' name='pswd' placeholder='비밀번호' required=""
+         value={password}
+         onChange={e => setPassword(e.target.value)} />
+        <button onClick={(e) => handleSignup(e)}>회원가입</button>
       </form>
     </div>
     <div className="login">
 				<form>
-					<label for="chk" aria-hidden="true">Login</label>
-					<input type="email" name="email" placeholder="Email" required="" />
-					<input type="password" name="pswd" placeholder="Password" required="" />
-					<button>Login</button>
+					<label for="chk" aria-hidden="true">로그인</label>
+                    <input type='text' name='txt' placeholder="아이디" required="" />
+					<input type="password" name="pswd" placeholder="비밀번호" required="" />
+					<button onClick={(e) => handleLogin(e)}>로그인</button>
 				</form>
 			</div>
   </div>
