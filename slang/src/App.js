@@ -1,8 +1,10 @@
 import LoadingPage from "./pages/LoadingPage";
 import GoingPage from "./pages/GoingPage";
 import MainPage from "./pages/MainPage";
+import CameraPage from "./pages/CameraPage";
 import { Routes, Route, BrowserRouter} from "react-router-dom";
 import React, { useState } from 'react';
+import LoginPage from "./pages/LoginPage";
 
 // login 페이지 라우팅 추가하기 
 
@@ -19,10 +21,10 @@ return (
     <LoadingPage/>
     } />
   <Route path="/going" element={<GoingPage isSwitching={isSwitching} setIsSwitching={setIsSwitching} />} />
-
   <Route path="/main" element={<MainPage/>} />
+  <Route path="/camera" element={<CameraPage isSwitching={isSwitching} setIsSwitching={setIsSwitching} />} />
+  <Route path="/login" element={<LoginPage isSwitching={isSwitching} setIsSwitching={setIsSwitching} />} />
 
-  
   </Routes>
   
   </BrowserRouter>
