@@ -2,10 +2,10 @@ import React, {useMemo} from 'react';
 import {useFrame} from '@react-three/fiber';
 import * as THREE from 'three';
 
-const SPACE_WARP_LINES_NUM = 1300;  
-const SPACE_WARP_LINE_LENGTH = 18000; 
+const SPACE_WARP_LINES_NUM = 1500;  
+const SPACE_WARP_LINE_LENGTH = 20000; 
 
-const SPACE_WARP_Y_MAX = 100000; 
+const SPACE_WARP_Y_MAX = 200000; 
 const SPACE_WARP_Y_MIN = 0; 
 const SPACE_WARP_XZ_MAX = 10000; 
 const SPACE_WARP_XZ_MIN = -10000; 

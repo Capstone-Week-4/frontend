@@ -5,7 +5,7 @@ import {useState} from 'react';
 import styled, {keyframes} from 'styled-components';
 import BrightSphere from '../models/BrightShpere';
 import SpaceWarp from '../models/SpaceWarp';
-
+import {Navigate} from 'react-router-dom';
 
 
 
@@ -39,7 +39,7 @@ function GoingPage( {isSwitching , setIsSwitching }) {
     
 
     const camera = {
-        position: [0,100000,0],//xyz y축 10000만큼 올라와있는위치에 있따. 카메라 위에서부터 아래로 가기 위해서
+        position: [0,200000,0],//xyz y축 10000만큼 올라와있는위치에 있따. 카메라 위에서부터 아래로 가기 위해서
         up: [0,0,1],// 카메라 상단이 z축 향하고 있다. 
         far: 100000, // 100000만큼 먼것까지 볼수 o
     };
@@ -54,9 +54,13 @@ function GoingPage( {isSwitching , setIsSwitching }) {
     };
 
     
-if (isSwitching === 'end') return null // 이건 차후에 main page로 넘어가야함
+if (isSwitching === 'end') {
 
-if(isSwitching === 'fade') return <FadeoutScreen onAnimationEnd={() => setIsSwitching('end')} />;
+    return <Navigate to= "/main" />;}
+
+if(isSwitching === 'fade') {
+
+    return setIsSwitching('end');}
 
 
 return(

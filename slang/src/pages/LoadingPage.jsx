@@ -155,7 +155,7 @@ function LoadingPage() {
           </Row>
           </Container>
           <Container style={{position: 'relative'}}>
-          <Row className ='text-center align-items-center justify-content-center' style = {{color:'#fff', position:'absolute', width:'115vw', height:'130vh',padding:'0px 10px 0px', top: '115vh'}}>
+          <Row className ='text-center align-items-center justify-content-center' style = {{color:'#fff', position:'absolute', width:'115vw', height:'130vh',padding:'0px 10px 0px', top: '75vh'}}>
             <Col xs={10}>
               <div>
                 <h1 style={{marginBottom: '0px'}}> 수화 </h1>
@@ -165,7 +165,7 @@ function LoadingPage() {
         </Container>
 
         <Container style={{position: 'relative'}}>
-        <Row className ='text-center align-items-center justify-content-center' style = {{color:'#fff', position:'absolute', width:'50vw', height:'385vh',padding:'0px 30px 0px', top: '85vh'}}>
+        <Row className ='text-center align-items-center justify-content-center' style = {{color:'#fff', position:'absolute', width:'70vw', height:'385vh',padding:'0px 30px 0px', top: '85vh'}}>
         <Col xs={10}>
         <div class = "button-container">
           <span class="mas">SLANG으로 이동하기</span>
