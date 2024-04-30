@@ -45,7 +45,7 @@ function LoadingPage() {
     </EffectComposer>
 
 
-    <ScrollControls pages = {6} damping={0.25}>
+    <ScrollControls pages = {6} damping={0.2}>
       <group position = {[0,0,0]}>
           <PositionalAudio autoplay loop url={sound_1} distance = {1.2} />
               
@@ -128,9 +128,9 @@ function LoadingPage() {
           
           <Scroll>
   
-          <Butterfly scale = {0.01}  rotation-x={Math.PI*0.3} rotation-y={Math.PI*0.21} position = {[-4.9,-18.3,-1]}/>
-          <Butterfly scale = {0.018}  rotation-x={Math.PI*0.2} rotation-y={Math.PI*0.21} position = {[-3.9,-16.3,-1]}/>
-          <Butterfly scale = {0.015}  rotation-x={Math.PI*0.12}  rotation-y={Math.PI*0.13} rotation-z={Math.PI*0.14} position = {[5.9,-10.2,-2]}/>
+          <Butterfly scale = {0.01}  rotation-x={Math.PI*0.3} rotation-y={Math.PI*0.21} position = {[-3,-13.8,-1]}/>
+          <Butterfly scale = {0.018}  rotation-x={Math.PI*0.2} rotation-y={Math.PI*0.21} position = {[-3.8,-12.9,-1]}/>
+          <Butterfly scale = {0.015}  rotation-x={Math.PI*0.12}  rotation-y={Math.PI*0.13} rotation-z={Math.PI*0.14} position = {[6.8,-9.8,-2]}/>
           <Butterfly scale = {0.009} rotation-z={Math.PI*0.9178} rotation-y={Math.PI*2.8} rotation-x={Math.PI*3.374} position = {[6.823,1.66313,-2]}/>
           <Butterfly scale = {0.022} rotation-z={Math.PI*0.9278} rotation-y={Math.PI*2.8} rotation-x={Math.PI*3.344} position = {[5.3,1.8,-2]}/>
 
@@ -165,7 +165,7 @@ function LoadingPage() {
         </Container>
 
         <Container style={{position: 'relative'}}>
-        <Row className ='text-center align-items-center justify-content-center' style = {{color:'#fff', position:'absolute', width:'70vw', height:'385vh',padding:'0px 30px 0px', top: '85vh'}}>
+        <Row className ='text-center align-items-center justify-content-center' style = {{color:'#fff', position:'absolute', width:'70vw', height:'385vh',padding:'0px 30px 0px', top: '40vh'}}>
         <Col xs={10}>
         <div class = "button-container">
           <span class="mas">SLANG으로 이동하기</span>

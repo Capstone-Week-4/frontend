@@ -57,6 +57,7 @@ function GoingPage( {isSwitching , setIsSwitching }) {
 if (isSwitching === 'end') {
 
     return <Navigate to= "/main" />;}
+    
 
 if(isSwitching === 'fade') {
 
