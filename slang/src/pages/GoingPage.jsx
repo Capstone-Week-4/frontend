@@ -56,7 +56,7 @@ function GoingPage( {isSwitching , setIsSwitching }) {
     
 if (isSwitching === 'end') {
 
-    return <Navigate to= "/main" />;}
+    return <Navigate to= "/camera" />;}
     
 
 if(isSwitching === 'fade') {

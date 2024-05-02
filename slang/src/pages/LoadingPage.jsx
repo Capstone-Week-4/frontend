@@ -38,14 +38,13 @@ function LoadingPage() {
     
     
     <EffectComposer>
-      <Bloom intensity={0.7} luminanceThreshold={0.2} luminanceSmoothing={0.9} height={1000}/> 
+      <Bloom intensity={0.7} luminanceThreshold={0.2} luminanceSmoothing={0.9} height={1000}/>
       <DepthOfField focusDistance={0} focalLength={0.02} bokeScale={5} height = {480} />
       <Vignette eskil={false} offset={.1} darkness={0.8}/>
-    
     </EffectComposer>
 
 
-    <ScrollControls pages = {6} damping={0.2}>
+    <ScrollControls pages = {3} damping={0.2}>
       <group position = {[0,0,0]}>
           <PositionalAudio autoplay loop url={sound_1} distance = {1.2} />
               
@@ -165,10 +164,9 @@ function LoadingPage() {
         </Container>
 
         <Container style={{position: 'relative'}}>
-        <Row className ='text-center align-items-center justify-content-center' style = {{color:'#fff', position:'absolute', width:'70vw', height:'385vh',padding:'0px 30px 0px', top: '40vh'}}>
+        <Row className ='text-center align-items-center justify-content-center' style = {{color:'#fff', position:'absolute', width:'70vw', height:'385vh', top: '40vh'}}>
         <Col xs={10}>
         <div class = "button-container">
-          <span class="mas">SLANG으로 이동하기</span>
         <button id='work' type="button" name="Hover" onClick={goingpage}>SLANG으로 이동하기</button>
       </div>   
       </Col>

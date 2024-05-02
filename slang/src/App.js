@@ -16,22 +16,16 @@ return (
 
   <BrowserRouter>
   <Routes>
-    <Route path = "/" element = {
-      
-    <LoadingPage/>
-    } />
+    <Route path = "/" element = { <LoadingPage/>} />
   <Route path="/going" element={<GoingPage isSwitching={isSwitching} setIsSwitching={setIsSwitching} />} />
   <Route path="/main" element={<MainPage/>} />
-  <Route path="/camera" element={<CameraPage isSwitching={isSwitching} setIsSwitching={setIsSwitching} />} />
-  <Route path="/login" element={<LoginPage isSwitching={isSwitching} setIsSwitching={setIsSwitching} />} />
+  <Route path="/camera" element={<CameraPage />} />
+  <Route path="/login" element={<LoginPage />} />
 
   </Routes>
   
   </BrowserRouter>
 )
-
-
 }
-
 
 export default App;
