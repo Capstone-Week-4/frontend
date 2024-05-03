@@ -5,8 +5,9 @@ import CameraPage from "./pages/CameraPage";
 import { Routes, Route, BrowserRouter} from "react-router-dom";
 import React, { useState } from 'react';
 import LoginPage from "./pages/LoginPage";
-
-// login 페이지 라우팅 추가하기 
+import Sports from "./pages/Sports";
+import Animals from "./pages/Animals";// login 페이지 라우팅 추가하기 
+import Food from "./pages/Food";
 
 function App() {
 
@@ -16,11 +17,14 @@ return (
 
   <BrowserRouter>
   <Routes>
-    <Route path = "/" element = { <LoadingPage/>} />
+    <Route path = "/landing" element = { <LoadingPage/>} />
   <Route path="/going" element={<GoingPage isSwitching={isSwitching} setIsSwitching={setIsSwitching} />} />
   <Route path="/main" element={<MainPage/>} />
   <Route path="/camera" element={<CameraPage />} />
-  <Route path="/login" element={<LoginPage />} />
+  <Route path="/" element={<LoginPage />} />
+  <Route path="/sports" element={<Sports />} />
+  <Route path="/animals" element={<Animals />} />
+  <Route path="/food" element={<Food />} />
 
   </Routes>
   

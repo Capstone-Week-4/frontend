@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import '../static/style.css'
-import { useNavigate } from 'react-router-dom';
-const CameraPage = () => {
+const Food = () => {
   const [prediction, setPrediction] = useState('');
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPrediction = async () => {
       try {
-        const response = await fetch('http://localhost:5000/prediction_korean');
+        const response = await fetch('http://localhost:5000/prediction_food');
         const data = await response.text();
         setPrediction(data);
       } catch (error) {
@@ -23,38 +21,21 @@ const CameraPage = () => {
     };
   }, []);
 
-  const handleSports = () => {
-    navigate('/sports');
-
-  }
-  const handleAnimals = () => {
-    navigate('/animals');
-
-  }
-  const handleFood = () => {
-    navigate('/food');
-
-  }
-
   return (
     <div style={{ overflowY: 'auto', maxHeight: '100vh' }}>
-      <h1 id="title">Mediapipe를 활용한 수화 인식 demo</h1>
+      <h1 id="title">음식 수화 인식 demo</h1>
       <p style={{position: 'relative', marginTop: '50px',color:'black', textAlign: 'center' }}>오른손을 들어 손으로 숫자를 표현해주세요.</p>
       <div id="container">
         <div>
-          <img src="http://localhost:5000/video_korean" alt="Video Feed" style={{ width: '100%' }} />
+          <img src="http://localhost:5000/video_food" alt="Video Feed" style={{ width: '100%' }} />
         </div>
         <div id="answer_div">
           <p id="answer_p" style={{color: 'black'}}>Result: <span id="answer_span" style={{color: 'black'}}>{prediction}</span></p>
         </div>
       </div>
-      <button onClick={handleSports}>To Sports</button>
-      <button onClick={handleAnimals}>To Animals</button>
-      <button onClick={handleFood}>To Food</button>
-
     </div>
   );
   
 };
 
-export default CameraPage;
+export default Food;

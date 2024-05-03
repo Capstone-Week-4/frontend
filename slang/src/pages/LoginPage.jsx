@@ -84,18 +84,18 @@ function LoginPage() {
   
 const handleLogin = (e) => {
     e.preventDefault()
-    sendLoginInfo(userId, username, password)
-      .then(response => {
-        // Handle successful login response
-        console.log('Login successful:', response);
-        // Redirect to another page or update UI accordingly
-      })
-      .catch(error => {
-        // Handle login error
-        console.error('Login failed:', error);
-        // Update UI to show login error message
-      });
-      navigate('/');
+    // sendLoginInfo(userId, username, password)
+    //   .then(response => {
+    //     // Handle successful login response
+    //     console.log('Login successful:', response);
+    //     // Redirect to another page or update UI accordingly
+    //   })
+    //   .catch(error => {
+    //     // Handle login error
+    //     console.error('Login failed:', error);
+    //     // Update UI to show login error message
+    //   });
+      navigate('/landing');
 
   };
   const handleSignup = (e) => {
