@@ -7,8 +7,7 @@
 
 #container {
   width: 100%; /* Adjust width as needed */
-  max-width: 700px; /* Added to limit the container width */
-  margin: 0 auto; /* Center the container */
+  /* margin: 0 auto; Center the container */
 }
 
 #answer_div {

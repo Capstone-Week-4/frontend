@@ -58,11 +58,11 @@ body,
 h1,h2,h3,h4,h5 {
   font-family: 'Italiana', serif;
   color: #fff;
-  margin-bottom: 32px !important;
+  margin-bottom: 0px !important;
 }
 
 h1 {
-  font-size: 80px !important;
+  font-size: 76px !important;
   color: #fff;
 }
 

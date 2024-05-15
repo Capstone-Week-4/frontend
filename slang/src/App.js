@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage";
 import Sports from "./pages/Sports";
 import Animals from "./pages/Animals";// login 페이지 라우팅 추가하기 
 import Food from "./pages/Food";
+import Result from './pages/Result'
 
 function App() {
 
@@ -25,6 +26,7 @@ return (
   <Route path="/sports" element={<Sports />} />
   <Route path="/animals" element={<Animals />} />
   <Route path="/food" element={<Food />} />
+  <Route path="/result" element={<Result />} />
 
   </Routes>
   
