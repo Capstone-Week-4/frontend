@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../static/style.css'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import { styled } from '@mui/material/styles';
 import ApexCharts from 'apexcharts';
@@ -25,9 +26,10 @@ const CameraPage = () => {
   const [progressValue, setProgressValue] = useState(0);
   const [confirmButtonColor, setConfirmButtonColor] = useState('#3c403c');
   const [currentImageFilename, setCurrentImageFilename] = useState()
-
+  const [correctAnswer, setCorrectAnswer] = useState(0);
 
   const imageUrls = ['ㄱ.jpg', 'ㄴ.jpg', 'ㄷ.jpg', 'ㄹ.jpg','ㅁ.jpg','ㅂ.jpg','ㅅ.jpg','ㅇ.jpg','ㅈ.jpg','ㅊ.jpg','ㅋ.jpg','ㅌ.jpg','ㅍ.jpg','ㅎ.jpg'];
+
 
 
   useEffect(() => {
@@ -64,12 +66,15 @@ const CameraPage = () => {
   const handleSports = () => {
     // navigate('/sports');
     if(currentImageIndex == imageUrls.length - 1){
-          navigate('/result');
+      navigate('/result', { state: { correctAnswer } });
     }
     else {
       setCurrentImageIndex((currentImageIndex + 1));
       setProgressValue(progressValue + 7.14);
       setConfirmButtonColor('#3c403c');
+        console.log("Correct answer: " + correctAnswer)
+        setCorrectAnswer(correctAnswer + 1);
+
   
       const imageContainerElement = document.getElementById('image-container');
       if (imageContainerElement) {
@@ -81,7 +86,7 @@ const CameraPage = () => {
   const handleAnimals = () => {
     // navigate('/animals');
     if(currentImageIndex == imageUrls.length - 1){
-      navigate('/sports');
+      navigate('/result', { state: { correctAnswer } });
     }
     else {
       setCurrentImageIndex((currentImageIndex + 1) % imageUrls.length);

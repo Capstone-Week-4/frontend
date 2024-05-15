@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import '../static/style.css'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import { styled } from '@mui/material/styles';
 import ApexCharts from 'apexcharts';
+import Dashboard from './Dashboard';
 
 
 
@@ -12,71 +13,110 @@ const Result = () => {
   const handleSpanClick = (id) => {
     setActiveSpan(id);
   };
-  const [chartOptions, setChartOptions] = useState({
-    chart: {
-      height: 280,
-      type: "radialBar",
-    },
-    series: [67],
-    colors: ["#20E647"],
-    plotOptions: {
-      radialBar: {
-        hollow: {
-          margin: 0,
-          size: "70%",
-          background: "#293450"
-        },
-        track: {
-          dropShadow: {
-            enabled: true,
-            top: 2,
-            left: 0,
-            blur: 4,
-            opacity: 0.15
-          }
-        },
-        dataLabels: {
-          name: {
-            offsetY: -10,
-            color: "#fff",
-            fontSize: "13px"
-          },
-          value: {
-            color: "#fff",
-            fontSize: "30px",
-            show: true
-          }
-        }
-      }
-    },
-    fill: {
-      type: "gradient",
-      gradient: {
-        shade: "dark",
-        type: "vertical",
-        gradientToColors: ["#87D4F9"],
-        stops: [0, 100]
-      }
-    },
-    stroke: {
-      lineCap: "round"
-    },
-    labels: ["Progress"]
-  });
+  const navigate = useNavigate();
+  const [confirmButtonColor, setConfirmButtonColor] = useState('#00cc00');
+  const location = useLocation();
+  // const { correctAnswer } = location.state;
+  // console.log("Correct AnsweR: " + correctAnswer)
+
+  const chartRef = useRef(null);
 
   useEffect(() => {
-    const chartElement = document.getElementById('chart');
-    const chart = new ApexCharts(chartElement, chartOptions);
+    const options = {
+      series: [75],
+      chart: {
+        height: 350,
+        type: 'radialBar',
+        toolbar: {
+          show: true,
+        },
+      },
+      plotOptions: {
+        radialBar: {
+          startAngle: -135,
+          endAngle: 225,
+          hollow: {
+            margin: 0,
+            size: '70%',
+            background: '#fff',
+            image: undefined,
+            imageOffsetX: 0,
+            imageOffsetY: 0,
+            position: 'front',
+            dropShadow: {
+              enabled: true,
+              top: 3,
+              left: 0,
+              blur: 4,
+              opacity: 0.24,
+            },
+          },
+          track: {
+            background: '#fff',
+            strokeWidth: '67%',
+            margin: 0,
+            dropShadow: {
+              enabled: true,
+              top: -3,
+              left: 0,
+              blur: 4,
+              opacity: 0.35,
+            },
+          },
+          dataLabels: {
+            show: true,
+            name: {
+              offsetY: -10,
+              show: true,
+              color: '#888',
+              fontSize: '17px',
+            },
+            value: {
+              formatter: function (val) {
+                return parseInt(val);
+              },
+              color: '#111',
+              fontSize: '36px',
+              show: true,
+            },
+          },
+        },
+      },
+      fill: {
+        type: 'gradient',
+        gradient: {
+          shade: 'dark',
+          type: 'horizontal',
+          shadeIntensity: 0.5,
+          gradientToColors: ['#ABE5A1'],
+          inverseColors: true,
+          opacityFrom: 1,
+          opacityTo: 1,
+          stops: [0, 100],
+        },
+      },
+      stroke: {
+        lineCap: 'round',
+      },
+      labels: ['Percent'],
+    };
+
+    const chart = new ApexCharts(chartRef.current, options);
     chart.render();
 
     return () => {
       chart.destroy();
     };
-  }, [chartOptions]);
+  }, []);
 
+  const handleSports = () => {
+    navigate('/camera');
+
+   
+  }
 
   return (
-    <div style={{display: 'grid', gridTemplateColumns: '12% 88%', height: '100vh', color: 'black'}}>
+    <div style={{display: 'grid', gridTemplateColumns: '10% 90%', height: '100vh', color: 'black'}}>
       <div>
         <ul >
         <span style={{marginTop: '30px', display: 'flex', alignItems: 'center'}}><a class="active" href="#home" style={{color: 'black', textDecoration: 'none'}}>LOGO</a></span>
@@ -131,19 +171,8 @@ const Result = () => {
       </div>
 
   <div style={{marginLeft: '100px', padding: '1px', height: '100vh', border: '1px solid gray'}}>
-    <div style={{ overflowY: 'auto', maxHeight: '100vh' }}>
-
-          {/* <p style={{position: 'relative', marginTop: '50px',color:'black', textAlign: 'center' }}>손으로 해당 이미지를 따라해주세요.</p> */}
-          <div id="container" style={{display: 'grid', gridTemplateColumns: '8fr 2fr', gridTemplateRows: 'repeat(3, 1fr)', height: '100%', width: '1300px', columnGap: '100px', marginLeft: '100px'}}>
-            
-          <div id="chart"></div>
-
-          </div>
-
-        </div>
-
   </div>
-    
+    <h1>TEST</h1>
     </div>
   );
   
