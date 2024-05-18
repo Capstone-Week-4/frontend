@@ -203,14 +203,14 @@ const Result = () => {
     <div style={{ overflowY: 'auto', maxHeight: '100vh' }}>
 
           {/* <p style={{position: 'relative', marginTop: '50px',color:'black', textAlign: 'center' }}>손으로 해당 이미지를 따라해주세요.</p> */}
-          <div id="container" style={{ display: 'grid', gridTemplateColumns: '6fr 4fr', gridTemplateRows: 'repeat(3, 1fr)', height: '90vh', width: '1500px', columnGap: '100px', marginLeft: '100px', marginTop: '3%', rowGap: '40px'}}>
+          <div id="container" style={{ display: 'grid', gridTemplateColumns: '5fr 5fr', gridTemplateRows: 'repeat(3, 1fr)', height: '100vh', width: '80%', columnGap: '100px', marginLeft: '100px', marginTop: '3%', rowGap: '40px'}}>
           <div style={{gridColumn: '1 / span 2', }}>
           <b style={{marginLeft: '10%', paddingBottom: '20px', color: '#ec9a00', fontWeight: 'bold'}}>GOLD 111</b>
           <BorderLinearProgress variant="determinate" value={progressValue} style={{ boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',marginTop: '80px', width: '80%', margin: 'auto', height:' 40px'}}/>
 
           </div>
 
-            <div style={{backgroundColor:'white', display: 'flex', flexDirection: 'column', marginTop: '5%', border: '1px solid black', borderRadius: '12px', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',padding: '30px'}}>
+            <div style={{backgroundColor:'white', display: 'flex', flexDirection: 'column', marginTop: '5%', border: '1px solid black', borderRadius: '12px', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',padding: '30px', height: '90%'}}>
               <h2 style={{margin:'auto'}}>퀴즈 결과</h2>
               <div id="chart"></div>
               <button style={{boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',width: '100px', backgroundColor: `${confirmButtonColor}`
@@ -218,7 +218,7 @@ const Result = () => {
             }} onClick={handleSports}>확인</button>
 
             </div>
-              <div style={{backgroundColor:'white', display: 'flex', flexDirection: 'column', marginTop: '5%', border: '1px solid black', borderRadius: '12px', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',padding: '30px'}}>
+              <div style={{backgroundColor:'white', display: 'flex', flexDirection: 'column', marginTop: '5%', border: '1px solid black', borderRadius: '12px', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',padding: '30px', height: '90%'}}>
                   <h2 style={{margin:'auto'}}>이번 주 학습</h2>
                   <div id="week"></div>
 
