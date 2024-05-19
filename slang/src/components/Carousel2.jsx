@@ -24,36 +24,43 @@ const SPOTLIGHT_SPEED = 4;
 
 export const Carousel2 = (props) => {
 
-  const { carouselRotation, currentStep } = useSpring({
+  const {carouselRotation, currentStep} = useSpring({
     from: {
-      carouselRotation: -2.5* Math.PI,
+      carouselRotation: 0,
       currentStep: 0,
-    }, to: [{
-      carouselRotation: -1.4 * Math.PI,
+
+    }, to : [{
+      carouselRotation: -Math.PI/2,
       delay: STEP_DURATION,
       currentStep: 1,
+
     }, {
-      carouselRotation: - Math.PI,
+      carouselRotation: -Math.PI,
       delay: STEP_DURATION,
       currentStep: 2,
+
     }, {
-      carouselRotation: - Math.PI/4,
+      carouselRotation: -1.5 * Math.PI,
       delay: STEP_DURATION,
       currentStep: 3,
+
+    
     }, {
-      carouselRotation: 0,
+      carouselRotation: -2*Math.PI,
       delay: STEP_DURATION,
       currentStep: 0,
-    }],
+
+    },],
     config: {
       mass: 5,
       tension: 400,
       friction: 50,
     },
     loop: true,
-    immediate: true,
+    immediate: true, 
   });
 
+  
   const spotLightRef = useRef();
 
   useFrame((_state, delta) => {
@@ -98,10 +105,10 @@ export const Carousel2 = (props) => {
       {/* PARK */}
       <>
       <Podium position={[3, 4, 10]} rotation-y={Math.PI / 2} />
-        <FerrisWheel position={[-28, -2, -33]} scale={[3, 3, 3]} />
+        <FerrisWheel position={[7, 3, 2]} scale={[3, 3, 3]} />
         <Float speed={1} floatIntensity={0.3}>
           <ShipLight
-            position={[-30, 0.34, -29]}
+            position={[5, 5.34, 6]}
             scale={[0.5, 0.5, 0.5]}
             rotation-x={-Math.PI / 16}
             rotation-y={-Math.PI}
@@ -110,21 +117,21 @@ export const Carousel2 = (props) => {
       </>
       {/* FOOD */}
       <>
-        <Burger position={[-32,2, -45]} scale={[3, 3, 3]} />
-        <Burger position={[-32, 2, -38]} scale={[3, 3, 3]} />
-        <Burger position={[-25, 2, -38]} scale={[3, 3, 3]} />
+        <Burger position={[3,7, -10]} scale={[3, 3, 3]} />
+        <Burger position={[3, 7, -3]} scale={[3, 3, 3]} />
+        <Burger position={[10, 7, -3]} scale={[3, 3, 3]} />
         <Cannon
-          position={[-26, -2, -37.5]}
+          position={[9, 3, -3.5]}
           scale={[2, 2, 2]}
           rotation-y={Math.PI / 2}
         />
         <TargetStand
-          position={[-33, -2, -38]}
+          position={[2, 3, -3]}
           scale={[1, 1, 1]}
           rotation-y={Math.PI / 2}
         />
         <HotDog
-          position={[-30, 0, -42]}
+          position={[5, 5, -7]}
           scale={[4, 4, 4]}
           rotation-y={-Math.PI / 8}
         />
@@ -132,17 +139,17 @@ export const Carousel2 = (props) => {
       {/* HAUNTED */}
       <>
         <Witch
-          position={[-40, -1, -40]}
+          position={[-5, 4, -5]}
           scale={[1.6, 1.6, 1.6]}
           rotation-y={Math.PI * 1.25}
         />
         <BookCase
-          position={[-43, 3, -36.5]}
+          position={[-8, 8, -1.5]}
           scale={[2, 2, 2]}
           rotation-y={Math.PI}
         />
         <Fence
-          position={[-42.5, -3, -42.5]}
+          position={[-7.5, 2, -7.5]}
           scale={[1.6, 1.6, 1.6]}
           rotation-y={Math.PI / 4}
         />
@@ -150,14 +157,14 @@ export const Carousel2 = (props) => {
       </>
       {/* BEACH */}
       <>
-        <Palm scale={[3, 3, 3]} position={[-36.5, -3, -34]} />
+        <Palm scale={[3, 3, 3]} position={[-1.5, 2, 1]} />
         <Palm
           scale={[2.8, 2.6, 2.6]}
-          position={[-42.5, -3, -35]}
+          position={[-7.5, 2, 0]}
           rotation-y={Math.PI / 6}
         />
         <VolleyBall
-          position={[-34, -2, -35]}
+          position={[1, 3, 1]}
 
         />
       </>
