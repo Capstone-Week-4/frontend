@@ -22,7 +22,7 @@ function LoginPage() {
   const navigate = useNavigate();
   
   async function sendLoginInfo(userId, password) {
-    const url = '/api/login'; // Replace with your backend URL
+    const url = '/login'; // Replace with your backend URL
     const data = {
       id: userId,
       password: password
@@ -51,7 +51,7 @@ function LoginPage() {
   }
   
   async function sendSignupInfo(userId, username, password) {
-    const url = '/api/register'; // Replace with your backend URL
+    const url = '/register'; // Replace with your backend URL
     const data = {
         id: userId,
         password: password,
@@ -84,17 +84,18 @@ function LoginPage() {
   
 const handleLogin = (e) => {
     e.preventDefault()
-    // sendLoginInfo(userId, username, password)
-    //   .then(response => {
-    //     // Handle successful login response
-    //     console.log('Login successful:', response);
-    //     // Redirect to another page or update UI accordingly
-    //   })
-    //   .catch(error => {
-    //     // Handle login error
-    //     console.error('Login failed:', error);
-    //     // Update UI to show login error message
-    //   });
+    sendLoginInfo(userId, username, password)
+      .then(response => {
+        // Handle successful login response
+        console.log('Login successful:', response);
+        localStorage.setItem('accessToken', response.token.accessToken)
+        // Redirect to another page or update UI accordingly
+      })
+      .catch(error => {
+        // Handle login error
+        console.error('Login failed:', error);
+        // Update UI to show login error message
+      });
       navigate('/landing');
 
   };

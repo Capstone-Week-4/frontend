@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import { styled } from '@mui/material/styles';
 import ApexCharts from 'apexcharts';
+import axios from 'axios'
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
@@ -18,7 +19,17 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   },
 }));
 
+function getDate() {
+  const today = new Date();
+  const month = today.getMonth() + 1;
+  const year = today.getFullYear();
+  const date = today.getDate();
+  return `${month}/${date}/${year}`;
+}
+
 const Result = () => {
+
+
   const [activeSpan, setActiveSpan] = useState(null);
   const handleSpanClick = (id) => {
     setActiveSpan(id);
@@ -141,9 +152,35 @@ const Result = () => {
   }, []); // Empty dependency array to ensure useEffect runs only once after mount
 
   const handleSports = () => {
-     navigate('/camera');
+    const currentDate = getDate();
+    console.log(currentDate);
+  
+    const data = {
+      correctAnswer: correctAnswer,
+      date: currentDate,
+    };
+  
+    const accessToken = localStorage.getItem('accessToken');
+  
+    const headers = {
+      'Authorization': `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    };
+  
+    axios.post('/result', data, { headers })
+      .then(response => {
+        console.log('Result submitted successfully:', response.data);
+        navigate('/camera');
+      })
+      .catch(error => {
+        console.error('Error submitting result:', error);
+        if (error.response && error.response.status === 401) {
+          navigate('/result');
+        }
+      });
+  };
 
-  }
+
   return (
     <div style={{display: 'grid', gridTemplateColumns: '12% 88%', height: '100vh', color: 'black'}}>
       <div>
