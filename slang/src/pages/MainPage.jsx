@@ -1,10 +1,11 @@
+import { Experience } from '../components/Experience'
 import { Canvas } from '@react-three/fiber'
-import { SceneContainer } from '../models/SceneContainer'
 
 export default function MainPage() {
-
-
-    return <Canvas>
-        <SceneContainer/>
-    </Canvas>
+    return ( 
+    
+    <Canvas camera = {{fov:95, position: [20,30,50]}} > 
+        <Experience/>
+   </Canvas>
+ )
 };
