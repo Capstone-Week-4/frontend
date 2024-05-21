@@ -1,0 +1,11 @@
+Model Information:
+* title:	Cute Character
+* source:	https://sketchfab.com/3d-models/cute-character-b0889531adc346e19b0bc075cfe58457
+* author:	Starkosha (https://sketchfab.com/Starkosha)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Cute Character" (https://sketchfab.com/3d-models/cute-character-b0889531adc346e19b0bc075cfe58457) by Starkosha (https://sketchfab.com/Starkosha) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

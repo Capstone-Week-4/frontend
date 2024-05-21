@@ -1,0 +1,11 @@
+Model Information:
+* title:	Korean Gate , Jardin d'Acclimatation, Paris
+* source:	https://sketchfab.com/3d-models/korean-gate-jardin-dacclimatation-paris-d46dbd1b79b142a6a8a499d629c43f1d
+* author:	HoangHiepVu (https://sketchfab.com/HoangHiepVu)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Korean Gate , Jardin d'Acclimatation, Paris" (https://sketchfab.com/3d-models/korean-gate-jardin-dacclimatation-paris-d46dbd1b79b142a6a8a499d629c43f1d) by HoangHiepVu (https://sketchfab.com/HoangHiepVu) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

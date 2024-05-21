@@ -1,8 +1,10 @@
 import { ContactShadows, OrbitControls, Sparkles } from "@react-three/drei";
 import  React, { useRef, useState} from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import { Carousel } from "./Carousel";
-import { Carousel2 } from "./Carousel2";
+import { Carousel } from "./Carousel/Carousel";
+import { Carousel2 } from "./Carousel/Carousel2";
+import { Carousel3 } from "./Carousel/Carousel3";
+
 import { Depth, LayerMaterial , Noise} from "lamina";
 import * as THREE from "three";
 import {CameraControls} from './Camera'
@@ -52,11 +54,22 @@ const Background = () => {
 export const Experience = () => {
   const [position, setPosition] = useState({x:18,y:10,z:10}) //  0,-2,0 -45,-20,25 camera =         //camera = {{fov:95, position: [0,10,20]}}
 
-  const [target, setTarget] = useState({x:18,y:5,z:15})
+  const [target, setTarget] = useState({x:18, y:10, z:10})
 
-  const handleOnclick=() => {
-    setPosition({ x:0, y:8, z:-77})  
+  const handleOnclick_1=() => {
+    setPosition({ x:18, y:10, z:10})  
   }
+
+  const handleOnclick_2=() => {
+    setPosition({ x:2, y:5, z:-75})  
+  }
+// -33, 8, -33
+// <group position={[40, -15, -10]}>
+
+  const handleOnclick_3=() => {
+    setPosition({ x:-70, y:1, z:40})  
+  }
+
 
   return (
     <>
@@ -66,10 +79,12 @@ export const Experience = () => {
     />
 
     
-          <Sparkles noise = {0} count={1000} speed={0.7} size = {3} color = {"#5DEBD7"} opacity={7} scale={[-300,-500,300]}></Sparkles>
-          <Sparkles noise = {0} count = {1000} speed={1} size = {1.8} color = {"#E2F4C5"} opacity={6} scale = {[-300,-500,300]} ></Sparkles> 
-          <Sparkles noise = {0} count={800} speed = {1} size ={2} color = {"#59D5E0"} opacity = {6} scale = {[-300,-500,300]}></Sparkles>
+          <Sparkles noise = {0} count={1200} speed={0.5} size = {2.2} color = {"#5DEBD7"} opacity={7} scale={[-300,-500,300]}></Sparkles>
+          <Sparkles noise = {0} count = {1000} speed={0.6} size = {1.8} color = {"#E2F4C5"} opacity={6} scale = {[-300,-500,300]} ></Sparkles> 
+          <Sparkles noise = {0} count={800} speed = {0.65} size ={2} color = {"#59D5E0"} opacity = {6} scale = {[-300,-500,300]}></Sparkles>
           <Sparkles noise = {0} count={800} speed = {0.5} size ={2.4} color = {"#F8E1F4"} opacity = {6} scale = {[-300,-500,300]}></Sparkles>
+          <Sparkles noise = {0} count={500} speed = {0.7} size ={3.2} color = {"#A3FFD6"} opacity = {6} scale = {[-300,-500,300]}></Sparkles>
+          <Sparkles noise = {0} count={500} speed = {0.8} size ={2.7} color = {"#B6FFFA"} opacity = {6} scale = {[-400,-200,200]}></Sparkles>
 
 
 
@@ -84,14 +99,21 @@ export const Experience = () => {
         <Vignette eskil={false} offset={.1} darkness={0.8} />
       </EffectComposer>
 
+      <CameraControls position={position} target={target} />
 
-
+      <group rotation-y={-Math.PI / 4} onClick={handleOnclick_1}>   
         <Carousel />
+        </group>
+
    
-        <CameraControls position={position} target={target} />
         
-        <group rotation-y={-Math.PI / 4} onClick={handleOnclick}>   
+        <group rotation-y={-Math.PI / 4} onClick={handleOnclick_2}>   
         <Carousel2 />
+        </group>
+
+        <group rotation-y={-Math.PI / 4} onClick={handleOnclick_3}>   
+
+        <Carousel3 />
         </group>
      
         <ContactShadows scale={30} opacity={0.3} />

@@ -1,0 +1,11 @@
+Model Information:
+* title:	KCDF-Window Blind_Hangul_01
+* source:	https://sketchfab.com/3d-models/kcdf-window-blind-hangul-01-d4389811ba09400096518a4b7bb228e7
+* author:	Korea Craft & Design Foundation (https://sketchfab.com/KCDF)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "KCDF-Window Blind_Hangul_01" (https://sketchfab.com/3d-models/kcdf-window-blind-hangul-01-d4389811ba09400096518a4b7bb228e7) by Korea Craft & Design Foundation (https://sketchfab.com/KCDF) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
