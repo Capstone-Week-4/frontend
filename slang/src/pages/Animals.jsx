@@ -171,19 +171,19 @@ const CameraPage = () => {
         </ul>
       </div>
 
-  <div style={{marginLeft: '10px', padding: '1px', height: '100vh', border: '1px solid gray'}}>
+  <div style={{marginLeft: '10px', padding: '1px', height: '100vh', border: '1px solid #ddd'}}>
     <div style={{ overflowY: 'auto', maxHeight: '100vh' }}>
         <BorderLinearProgress variant="determinate" value={progressValue} style={{boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',marginTop: '3%', width: '50%', marginLeft: '25%'}}/>
         <h1 style={{position: 'relative',color:'black', textAlign: 'center', }}>{countdown}</h1>
 
           <p style={{position: 'relative', marginTop: '0px',color:'black', textAlign: 'center' }}>손으로 해당 이미지를 따라해주세요.</p>
           <div id="container" style={{display: 'grid', gridTemplateColumns: '7fr 3fr', gridTemplateRows: 'repeat(3, 1fr)', height: '100vh', width: '80%', columnGap: '50px', marginLeft: '100px'}}>
-              <div style={{gridRow: '1 ',  border: '1px solid gray', borderRadius: '12px', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px'}}>
+              <div style={{gridRow: '1 ',  border: '1px solid #ddd', borderRadius: '12px', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px'}}>
                 <img src="http://localhost:5000/video_animals" alt="Video Feed" style={{ width: '100%', height: '60vh' }} />
               </div>
               <div style={{display: 'flex', flexDirection: 'column', gridRow: '1', gridColumn: '2',  }}>
-                <div style={{backgroundColor: 'white' , boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', backgroundImage: `url(${imageUrls[currentImageIndex]})`, backgroundSize: 'cover',backgroundRepeat: 'no-repeat', backgroundPosition: 'center', width: '100%', height: '60%',border: '1px solid gray', borderRadius: '12px'}}></div>
-                <div id="answer_div" style={{backgroundColor: 'white' ,boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',border: '1px solid gray', borderRadius: '12px', width: '100%', height: '20%'}}>
+                <div style={{backgroundColor: 'white' , boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', backgroundImage: `url(${imageUrls[currentImageIndex]})`, backgroundSize: 'cover',backgroundRepeat: 'no-repeat', backgroundPosition: 'center', width: '100%', height: '60%',border: '1px solid #ddd', borderRadius: '12px'}}></div>
+                <div id="answer_div" style={{backgroundColor: 'white' ,boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',border: '1px solid #ddd', borderRadius: '12px', width: '100%', height: '20%'}}>
                   <p id="answer_p" style={{color: 'black', marginTop: '0px'}}>결과: <span id="answer_span" style={{color: 'black'}}>    {confirmButtonColor  == '#00cc00' ? currentImageFilename : prediction}</span></p>
                 </div>
               </div>
