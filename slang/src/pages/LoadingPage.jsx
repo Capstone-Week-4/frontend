@@ -36,7 +36,6 @@ function LoadingPage() {
     <spotLight position = {[0,25,0]} angle={1.3} penumbra={1} castShadow intensity={2} shadow-bias={-0.0001}/>
     <Environment preset='warehouse'/>
     
-    
     <EffectComposer>
       <Bloom intensity={0.7} luminanceThreshold={0.2} luminanceSmoothing={0.9} height={1000}/>
       <DepthOfField focusDistance={0} focalLength={0.02} bokeScale={5} height = {480} />
@@ -164,7 +163,7 @@ function LoadingPage() {
         </Container>
 
         <Container style={{position: 'relative'}}>
-        <Row className ='text-center align-items-center justify-content-center' style = {{color:'#fff', position:'absolute', width:'70vw', height:'385vh', top: '40vh'}}>
+        <Row className ='text-center align-items-center justify-content-center' style = {{color:'#fff', position:'absolute', width:'100%', height:'385vh', top: '40vh'}}>
         <Col xs={10}>
         <div class = "button-container">
         <button id='work' type="button" name="Hover" onClick={goingpage}>SLANG으로 이동하기</button>
