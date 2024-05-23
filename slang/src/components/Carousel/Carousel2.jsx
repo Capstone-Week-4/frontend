@@ -19,7 +19,7 @@ import { useRef } from 'react';
 import { useFrame } from "@react-three/fiber";
 import { Vector3 } from "three";
 import { Korean } from "../korean/Korean";
-import { Hanguel } from "../Hanguel/Hanguel";
+import { Hanguel2 } from "../Hanguel/Hanguel2";
 import { Haetae } from "../Haetae/Haetae";
 
 
@@ -149,17 +149,9 @@ export const Carousel2 = (props) => {
               rotation-y={Math.PI * 1.22}
             />
             
-            <Float speed={1.7} floatIntensity={0.02}>
-            <Hanguel
-             position={[7, -7, -16.8]}
-              scale={[2.2, 2.2, 2.2]}
-              rotation-y={Math.PI *1.22}
-              rotation-z={-Math.PI *0.02}
+          
 
-        />
-    </Float>
-
-    <Haetae
+            <Haetae
               position={[-9.1, 1.84, -1.7]}
               scale={[0.165, 0.165, 0.165]}     
               rotation-y={Math.PI * 1.07}

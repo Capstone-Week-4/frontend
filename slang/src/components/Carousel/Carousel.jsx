@@ -28,6 +28,8 @@ const SPOTLIGHT_SPEED = 4;
 
 export const Carousel = (props) => {
 
+
+  
   const {carouselRotation, currentStep} = useSpring({
     from: {
       carouselRotation: 0,
@@ -64,7 +66,6 @@ export const Carousel = (props) => {
     immediate: true, 
 
   });
-
 
   const spotLightRef = useRef();
 
@@ -119,6 +120,11 @@ export const Carousel = (props) => {
 
             </Float>
           </>
+
+
+
+
+
           {/* FOOD */}
           <>
             <Burger position={[3, 4, -10]} scale={[3, 3, 3]} />
@@ -142,6 +148,10 @@ export const Carousel = (props) => {
           </>
 
 
+
+
+
+
           {/* HAUNTED */}
           <>
             <Korean
@@ -149,17 +159,18 @@ export const Carousel = (props) => {
               scale={[0.15, 0.15, 0.15]}
               rotation-y={Math.PI * 1.22}
             />
-             <Float speed={1.7} floatIntensity={0.2}>
+
+
+          <Float speed={1.7} floatIntensity={0.02}>
 
             <Hanguel
-             position={[7, -7.8, -16.8]}
-              scale={[2, 2, 2]}
-              rotation-y={Math.PI *1.22}
-              rotation-z={-Math.PI *0.02}
+             position={[-14, -10.1, 5.7]}
+              scale={[2.2, 2.2, 2.2]}
+              rotation-y={Math.PI * 0.27}
+            />
 
-        />
+            </Float>
               
-              </Float>
             <Haetae
               position={[-9.1, -0.2, -2.5]}
               scale={[0.165, 0.165, 0.165]}     
@@ -168,6 +179,11 @@ export const Carousel = (props) => {
 
 
           </>
+
+
+
+
+
 
 
           {/* BEACH */}
