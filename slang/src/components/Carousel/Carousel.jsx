@@ -5,22 +5,26 @@ import Burger from "../Food/Burger";
 import Cannon from "../Food/Cannon";
 import { HotDog } from "../Food/HotDog";
 import { TargetStand } from "../Food/TargetStand";
-import { BookCase } from "../Haunted/BookCase";
-import { Cauldron } from "../Haunted/Cauldron";
-import { Fence } from "../Haunted/Fence";
-import { Witch } from "../Haunted/Witch";
 import { FerrisWheel } from "../Park/FerrisWheel";
 import { Podium } from "../Park/Podium";
 import { ShipLight } from "../Park/ShipLight";
-import { Box, Cylinder,Float } from '@react-three/drei';
+import { Html, Float } from '@react-three/drei';
 import {useSpring, animated} from "@react-spring/three";
 import { CarouselModel } from "./CarouselModel";
 import { Korean } from "../korean/Korean";
 import { Hanguel } from "../Hanguel/Hanguel";
 import { Haetae } from "../Haetae/Haetae";
-import {useRef} from 'react';
+import React, {useState, useRef} from 'react';
 import { useFrame } from "@react-three/fiber";
 import { Vector3 } from "three";
+import { Zone1_L } from "../../popup/Zone1_L";
+import { Zone2_L } from "../../popup/Zone2_L";
+import { Zone3_L } from "../../popup/Zone3_L";
+import { Zone4_L } from "../../popup/Zone4_L";
+import "./styles.css";
+
+
+// Learning 페이지를 라우팅 하기 위한 회전목마 컴포넌트 
 
 
 const STEP_DURATION = 2000;
@@ -28,8 +32,17 @@ const SPOTLIGHT_SPEED = 4;
 
 export const Carousel = (props) => {
 
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   
+  const handleZoneClick = () => {
+    setIsPopupOpen(true);
+  }
+
+  const closePopup=() => {
+    setIsPopupOpen(false);
+  };
+
   const {carouselRotation, currentStep} = useSpring({
     from: {
       carouselRotation: 0,
@@ -93,8 +106,8 @@ export const Carousel = (props) => {
   
   return (
     <>
-
-      <spotLight 
+    
+       <spotLight 
         ref = {spotLightRef}
         penumbra={0.4}
         intensity={10}
@@ -106,7 +119,12 @@ export const Carousel = (props) => {
         <animated.group rotation-y={carouselRotation}> 
         <CarouselModel position ={[0,-2,0]}/>
  
-          {/* PARK */}
+
+        <group onClick={()=> handleZoneClick()} >
+          <Html>
+          {isPopupOpen && <Zone1_L onClose={closePopup} />}
+          </Html>
+       {/* PARK */}
           <>
             <Podium position={[1, 0, 10]} rotation-y={Math.PI / 2} />
             <FerrisWheel position={[6, 0, 2]} scale={[3, 3, 3]} />
@@ -120,12 +138,15 @@ export const Carousel = (props) => {
 
             </Float>
           </>
+        </group>
 
 
-
-
-
-          {/* FOOD */}
+        <group onClick={()=> handleZoneClick()} >
+        <Html>
+          {isPopupOpen && <Zone2_L onClose={closePopup} />}
+        </Html>
+       {/* FOOD */}
+    
           <>
             <Burger position={[3, 4, -10]} scale={[3, 3, 3]} />
             <Burger position={[3, 4, -3]} scale={[3, 3, 3]} />
@@ -146,13 +167,17 @@ export const Carousel = (props) => {
               rotation-y={-Math.PI / 8}
             />
           </>
+          </group>
 
 
 
 
-
-
+          <group onClick={()=> handleZoneClick()}>
+          <Html>
+          {isPopupOpen && <Zone3_L onClose={closePopup} />}
+        </Html>
           {/* HAUNTED */}
+    
           <>
             <Korean
               position={[-3.9, 1, -3.8]}
@@ -177,15 +202,15 @@ export const Carousel = (props) => {
               rotation-y={Math.PI * 1.02}
               />
 
-
           </>
+          </group>
 
 
 
-
-
-
-
+          <group onClick={()=> handleZoneClick()}>
+          <Html>
+          {isPopupOpen && <Zone4_L onClose={closePopup} />}
+        </Html>
           {/* BEACH */}
           <>
             <Palm scale={[3, 3, 3]} position={[-1, 0, 1]} />
@@ -195,8 +220,8 @@ export const Carousel = (props) => {
               rotation-y={Math.PI / 6}
             />
             <VolleyBall />
-         
           </>
+          </group>
         </animated.group >
       </group>
     </>

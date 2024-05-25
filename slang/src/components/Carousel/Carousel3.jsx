@@ -1,4 +1,3 @@
-import { IceCream } from "../Beach/IceCream";
 import { Palm } from "../Beach/Palm";
 import { VolleyBall } from "../Beach/VolleyBall";
 import Burger from "../Food/Burger";
@@ -6,7 +5,6 @@ import Cannon from "../Food/Cannon";
 import { HotDog } from "../Food/HotDog";
 import { TargetStand } from "../Food/TargetStand";
 import { BookCase } from "../Haunted/BookCase";
-import { Cauldron } from "../Haunted/Cauldron";
 import { Fence } from "../Haunted/Fence";
 import { Witch } from "../Haunted/Witch";
 import { FerrisWheel } from "../Park/FerrisWheel";

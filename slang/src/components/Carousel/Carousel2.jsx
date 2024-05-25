@@ -5,28 +5,42 @@ import Burger from "../Food/Burger";
 import Cannon from "../Food/Cannon";
 import { HotDog } from "../Food/HotDog";
 import { TargetStand } from "../Food/TargetStand";
-import { BookCase } from "../Haunted/BookCase";
-import { Cauldron } from "../Haunted/Cauldron";
-import { Fence } from "../Haunted/Fence";
-import { Witch } from "../Haunted/Witch";
 import { FerrisWheel } from "../Park/FerrisWheel";
 import { Podium } from "../Park/Podium";
 import { ShipLight } from "../Park/ShipLight";
-import { Box, Cylinder, Float } from '@react-three/drei';
+import { Html, Float } from '@react-three/drei';
 import { useSpring, animated } from "@react-spring/three";
 import { CarouselModel2 } from "./CarouselModel2";
-import { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useFrame } from "@react-three/fiber";
 import { Vector3 } from "three";
 import { Korean } from "../korean/Korean";
-import { Hanguel2 } from "../Hanguel/Hanguel2";
 import { Haetae } from "../Haetae/Haetae";
+import { Zone1_T } from "../../popup/Zone1_T";
+import { Zone2_T } from "../../popup/Zone2_T";
+import { Zone3_T } from "../../popup/Zone3_T";
+import { Zone4_T } from "../../popup/Zone4_T";
 
+// test 페이지를 라우팅 하기 위한 회전목마 컴포넌트 
 
 const STEP_DURATION = 2000;
 const SPOTLIGHT_SPEED = 4;
 
 export const Carousel2 = (props) => {
+
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [popupContent, setPopupContent] = useState(``);
+
+  const handleZoneClick = (content) => {
+    setPopupContent(content);
+    setIsPopupOpen(true);
+  }
+
+  const closePopup= () => {
+    setIsPopupOpen(false);
+
+  }
+
 
   const {carouselRotation, currentStep} = useSpring({
     from: {
@@ -106,6 +120,12 @@ export const Carousel2 = (props) => {
    <animated.group rotation-y={carouselRotation}> 
 
    <CarouselModel2 />
+
+
+   <group onClick={()=> handleZoneClick('Zone1: podium, ferriswheel, shipLight')} >
+    <Html>
+      {isPopupOpen && <Zone1_T content = {popupContent} onClose={closePopup} />} 
+    </Html>
       {/* PARK */}
       <>
       <Podium position={[3, 4, 10]} rotation-y={Math.PI / 2} />
@@ -119,6 +139,14 @@ export const Carousel2 = (props) => {
           />
         </Float>
       </>
+      </group>
+
+
+    <group onClick={()=>handleZoneClick('Zone2: bureger, targetStnad')}>
+      <Html>
+        {isPopupOpen && <Zone2_T content = {popupContent} onClose={closePopup} />}
+      </Html>
+
       {/* FOOD */}
       <>
         <Burger position={[3,7, -10]} scale={[3, 3, 3]} />
@@ -140,6 +168,13 @@ export const Carousel2 = (props) => {
           rotation-y={-Math.PI / 8}
         />
       </>
+      </group>
+
+
+      <group onClick = {() => handleZoneClick('Zone3: korean, haetae')} >
+        <Html>
+          {isPopupOpen&& <Zone3_T content = {popupContent} onClose={closePopup}/>}
+        </Html>
       {/* HAUNTED */}
       <>
     
@@ -158,6 +193,13 @@ export const Carousel2 = (props) => {
               />
 
       </>
+      </group>
+
+
+      <group onClick = {()=> handleZoneClick('Zone4: palm, volleyball')} >
+        <Html>
+          {isPopupOpen && <Zone4_T content = {popupContent} onClose={closePopup} />}
+        </Html>
       {/* BEACH */}
       <>
         <Palm scale={[3, 3, 3]} position={[-1.5, 2, 1]} />
@@ -171,10 +213,13 @@ export const Carousel2 = (props) => {
 
         />
       </>
+      </group>
       </animated.group >
       </group>
 
     </>
+
+    
     
   );
 };

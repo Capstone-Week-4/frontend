@@ -6,12 +6,43 @@ Source: https://sketchfab.com/3d-models/cute-character-b0889531adc346e19b0bc075c
 Title: Cute Character
 */
 
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import React, { useRef, useState} from 'react';
+import { useGLTF, Html} from '@react-three/drei';
+import { User_Zone } from '../popup/User_Zone';
 
 export function User(props) {
   const { nodes, materials } = useGLTF('./models/user/scene.gltf')
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isCameraMoved, setIsCameraMoved] = useState(false);
+  const [position, setPosition] = useState(); //  0,-2,0 -45,-20,25 camera =         //camera = {{fov:95, position: [0,10,20]}}
+
+  const handleUserClick = () => {
+
+    if (!isCameraMoved) 
+      {
+        setIsCameraMoved(true);
+        setPosition({ x:-78, y: 20, z:-42}) ;
+      }
+
+      else{
+      
+        setIsPopupOpen(true);
+        setIsCameraMoved(false);
+
+      }
+  }
+  
+  const closePopup=()=> {
+    setIsPopupOpen(false);
+
+  }
+  
   return (
+    <group onClick={() => handleUserClick()} >
+      <Html>
+        {isPopupOpen && <User_Zone onClose={closePopup} />}
+        </Html>
+
     <group {...props} dispose={null}>
       <group scale={0.01}>
         <mesh
@@ -91,6 +122,8 @@ export function User(props) {
         />
       </group>
     </group>
+    </group>
+
   )
 }
 
