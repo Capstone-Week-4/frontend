@@ -2,13 +2,10 @@
 
 import React, {useState} from 'react';
 import { AiOutlineClose} from "react-icons/ai";
-
-
+import "../App.css";
 
 export const User_Zone = ({onClose}) => {
     return (
-
-
 
 <div 
         style = {{
@@ -31,8 +28,8 @@ export const User_Zone = ({onClose}) => {
       position: "relative",
       background: "#E0FBE2", // 팝업창 자체의 색상 
       borderRadius: "165px",
-      padding: "200px 180px",
-      animation: "dropTop 0.4s linear",
+      padding: "210px 180px",
+      animation: "dropTop 0.8s linear",
       display: "flex",
       flexDirection: "column"
     }}
@@ -104,11 +101,39 @@ export const User_Zone = ({onClose}) => {
 
           </div>
 
-          <div style={{ marginTop: "-45px", marginLeft: "165px" }}>
-                    <h2>닉네임 - 정지연</h2> 
-                    <h3>@username</h3>
-                    <p style ={{color: "#000", marginTop: "5px"}}>Joined June 2023</p>
-                    <p style = {{color: "#000", }}> 13 Following 4 Followers</p>
+          <div style={{ marginTop: "-50px", marginLeft: "165px" }}>
+
+                    {/* 동적으로 user nick name 띄우기 */}
+                    <h3 style={{fontFamily:'neurimboGothicRegular', fontSize: "33px"}}>닉네임-정지연</h3> 
+
+                  <div style={{display:"flex", alignItems: "center", marginTop: "10px"}}>
+                  <p style = {{ color: "#000", fontFamily:'establishRetrosansOTF'}}>@</p> 
+                    
+                  {/* 동적으로 user id 띄우기 */}
+                  <p style = {{marginLeft:"2px", color: "#000", fontFamily:'establishRetrosansOTF' }}>userid</p> 
+                  </div>
+
+                  <div style={{display:"flex"}}>
+                    <p style ={{color: "#000"}}>Joined </p>
+                    <p style = {{color:"#000", marginLeft: "7px", fontWeight:600}}> June 2023</p>
+                    </div>
+
+                  <div style={{display: "flex", alignItems: "center"}}>
+
+                  <div style = {{display:"flex",  marginLeft:"-20px", marginTop: "10px", justifyContent: "center" , alignContent: "center", padding:"10px", width: "215px", height: "65px", border: "3px solid #EEF7FF", borderRadius: "100px", background: "#F1E5D1",  boxShadow: "0 3px 6px rgba(0,0,0,0.4)"}}>
+
+                    {/*  동적으로 팔로잉 할당 */}
+                    <p style={{color:"#000", fontWeight: 600, fontFamily:"neurimboGothicRegular", fontSize: "20px"}}> 13 </p>
+                    <p style={{marginLeft:"10px", color:"#000", fontFamily:"neurimboGothicRegular",  fontSize: "20px"}}> Following </p>
+                  </div>
+
+                  <div style={{display:"flex", marginLeft: "30px ",  marginTop: "10px", justifyContent: "center", alignContent: "center", padding:"10px", width: "215px", height: "65px", border: "3px solid #EEF7FF", borderRadius: "100px", background: "#F1E5D1",  boxShadow: "0 3px 6px rgba(0,0,0,0.4)"}}>
+                    {/*  동적으로 팔로워 할당  */}
+                    <p style={{color: "#000", fontWeight: 600, fontFamily:"neurimboGothicRegular",  fontSize: "20px"}} >4 </p>
+                    <p style={{marginLeft: "10px", color:"#000",fontFamily:"neurimboGothicRegular" ,  fontSize: "20px"}}> Followers</p>
+                  </div>
+                  </div>
+                
                 </div>
 
 

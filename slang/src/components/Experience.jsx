@@ -113,7 +113,7 @@ export const Experience = () => {
 
       <group onClick={handleOnclick_4}>
 
-      <Float speed={1} floatIntensity={0.5}>
+      <Float speed={0.7} floatIntensity={0.3}>
         <User 
         scale={[4.5, 3.8, 4.5]}
         position={[-51.5, 11.5, -26.5]}
