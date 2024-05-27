@@ -28,10 +28,12 @@ export const User_Zone = ({onClose}) => {
       position: "relative",
       background: "#E0FBE2", // 팝업창 자체의 색상 
       borderRadius: "165px",
-      padding: "210px 180px",
+      padding: "120px 170px",
       animation: "dropTop 0.8s linear",
       display: "flex",
       flexDirection: "column"
+
+    
     }}
     >
       {/* Header
@@ -47,7 +49,7 @@ export const User_Zone = ({onClose}) => {
 
       <div style = {{ 
         width: "1500px",
-        height: "600px",
+        height: "580px",
         border: "4px solid #CDE8E5",
         borderRadius: "50px",
         background: "#E9EDC9", // 프로필 카드 색상 
@@ -135,9 +137,102 @@ export const User_Zone = ({onClose}) => {
                   </div>
                 
                 </div>
-
-
       </div>
+
+    <div style={{display:"flex",width: "100%", marginTop: "20px"}}>
+
+      <div style={{ flex: 1, // 부모 요소의 너비를 1/3으로 사용
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center", display:"flex", marginLeft: "30px ",  marginTop: "20px", justifyContent: "center", alignContent: "center", padding:"10px", width: "90%", height: "65px", border: "3px solid #EEF7FF", borderRadius: "100px", background: "#F1E5D1",  boxShadow: "0 3px 6px rgba(0,0,0,0.4)"}}>
+        <h3 style={{color:"#000", fontFamily: "establishRetrosansOTF", fontSize: "23px", marginTop: "7px"}}> 맞은 문제 </h3>
+      </div>
+      
+      <div style={{ flex: 1, // 부모 요소의 너비를 1/3으로 사용
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center", 
+                        display:"flex", marginLeft: "30px ",  marginTop: "20px", justifyContent: "center", alignContent: "center", padding:"10px", width: "90%", height: "65px", border: "3px solid #EEF7FF", borderRadius: "100px", background: "#F1E5D1",  boxShadow: "0 3px 6px rgba(0,0,0,0.4)"}}>
+        <h3 style={{color:"#000", fontFamily: "establishRetrosansOTF", fontSize: "23px", marginTop: "7px"}}> 틀린 문제 </h3>
+      </div>
+      
+      <div style={{ flex: 1, // 부모 요소의 너비를 1/3으로 사용
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center", 
+                        display:"flex", marginLeft: "30px ",  marginTop: "20px", justifyContent: "center", alignContent: "center", padding:"10px", width: "90%", height: "65px", border: "3px solid #EEF7FF", borderRadius: "100px", background: "#F1E5D1",  boxShadow: "0 3px 6px rgba(0,0,0,0.4)"}}>
+        <h3 style={{color:"#000", fontFamily: "establishRetrosansOTF", fontSize: "23px",  marginTop: "7px"}}> 사용자 랭킹 </h3>
+      </div>
+    </div>
+
+
+    <div style={{display: "flex", marginTop: "10px", width: "100%"}}>
+    <div 
+            style={{
+              flex: 1,
+              display: "flex",
+              marginLeft: "30px",
+              padding: "20px",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "90%",
+              height: "200px",
+              border: "3px solid #EEF7FF",
+              borderRadius: "50px",
+              background: "#E9EDC9",
+              boxShadow: "0 3px 6px rgba(0,0,0,0.6)",
+              overflowY: "auto"
+            }}
+          >
+                            {/* 동적으로 맞은 문제 할당 */}
+              <h5 style={{ color: "#217346", fontWeight: 700}}> 동물-토끼 </h5>
+            
+              </div>
+              
+              <div 
+            style={{
+              flex: 1,
+              display: "flex",
+              marginLeft: "30px",
+              padding: "20px",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "90%",
+              height: "200px",
+              border: "3px solid #EEF7FF",
+              borderRadius: "50px",
+              background: "#E9EDC9",
+              boxShadow: "0 3px 6px rgba(0,0,0,0.6)",
+              overflowY: "auto"
+            }}
+          >                 {/* 동적으로 틀린 문제 할당 */}
+
+            <h5 style={{ color: "#CD201F", fontWeight: 700}}> 스포츠-야구 </h5>
+            
+              </div>
+              <div 
+            style={{
+              flex: 1,
+              display: "flex",
+              marginLeft: "30px",
+              padding: "20px",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "90%",
+              height: "200px",
+              border: "3px solid #EEF7FF",
+              borderRadius: "50px",
+              background: "#E9EDC9",
+              boxShadow: "0 3px 6px rgba(0,0,0,0.6)",
+              overflowY: "auto"
+            }}
+          >                {/* 동적으로 사용자별 랭킹 조정 */}
+          <h5 style={{ color: "#000", fontWeight: 700}}> 13 </h5>
+          </div>
+    </div>
+
+      
+
       </div>
     </div>
 

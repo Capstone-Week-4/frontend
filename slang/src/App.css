@@ -55,7 +55,7 @@ body,
   pointer-events: none;
 }
 
-h1,h2,h3,h4,h5 {
+h1,h2,h3,h4{
   font-family: 'Italiana', serif;
   color: #fff;
   margin-bottom: 0px !important;
@@ -132,6 +132,11 @@ h3{
   font-family: 'WandohopeR' ,serif; 
   color: #fff;
   font-size: 85px;
+}
+
+h5 {
+  font-family: 'EF_watermelonSalad', serif;
+  font-size: 70px;
 }
 
 
@@ -359,3 +364,17 @@ h3{
   font-weight: 400;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'EF_watermelonSalad';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_watermelonSalad.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: '양진체';
+  src: url('https://fastly.jsdelivr.net/gh/supernovice-lab/font@0.9/yangjin.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
