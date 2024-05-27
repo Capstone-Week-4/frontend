@@ -105,10 +105,16 @@ export const User_Zone = ({onClose}) => {
 
           <div style={{ marginTop: "-50px", marginLeft: "165px" }}>
 
+
+                    < div style={{display: "flex"}}>
                     {/* 동적으로 user nick name 띄우기 */}
                     <h3 style={{fontFamily:'neurimboGothicRegular', fontSize: "33px"}}>닉네임-정지연</h3> 
+                    <div style={{display:"flex", marginLeft: "880px ",  marginTop: "10px", justifyContent: "center", alignContent: "center", padding:"10px", width: "215px", height: "65px", border: "3px solid #EEF7FF", borderRadius: "100px", background: "#757575",  boxShadow: "0 3px 6px rgba(0,0,0,0.4)"}}>
+                    <p style={{marginLeft: "10px", color:"#fff",fontFamily:"neurimboGothicRegular" ,  fontSize: "20px"}}> Edit Profile</p>
+                    </div>
+                    </div>
 
-                  <div style={{display:"flex", alignItems: "center", marginTop: "10px"}}>
+                  <div style={{display:"flex", alignItems: "center", marginTop: "-20px"}}>
                   <p style = {{ color: "#000", fontFamily:'establishRetrosansOTF'}}>@</p> 
                     
                   {/* 동적으로 user id 띄우기 */}
