@@ -22,9 +22,9 @@ function LoginPage() {
   const navigate = useNavigate();
   
   async function sendLoginInfo(userId, password) {
-    const url = '/login'; // Replace with your backend URL
+    const url = 'http://116.121.105.235:8080/login'; // Replace with your backend URL
     const data = {
-      id: userId,
+      userId: userId,
       password: password
     };
   
@@ -51,9 +51,9 @@ function LoginPage() {
   }
   
   async function sendSignupInfo(userId, username, password) {
-    const url = '/register'; // Replace with your backend URL
+    const url = 'http://43.203.98.168:8080/register'; // Replace with your backend URL
     const data = {
-        id: userId,
+        userId: userId,
         password: password,
         name: username,
 
@@ -96,7 +96,7 @@ const handleLogin = (e) => {
         console.error('Login failed:', error);
         // Update UI to show login error message
       });
-      navigate('/landing');
+      // navigate('/landing');
 
   };
   const handleSignup = (e) => {

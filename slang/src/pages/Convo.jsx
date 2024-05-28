@@ -85,6 +85,24 @@ const ConvoPage = () => {
       }
     };
   }, []);
+  const handleSpanClick = (id) => {
+    setActiveSpan(id);
+    switch (id) {
+      case 1:
+        navigate('/camera');
+        break;
+      case 2:
+        navigate('/animals');
+        break;
+      case 3:
+        navigate('/convo');
+        break;
+      case 4:
+        navigate('/convo');
+      default:
+        break;
+    }
+  };
   // useEffect(() => {
   //   // Check if the prediction matches the current image filename (excluding the file extension)
   //   setCurrentImageFilename(imageUrls[currentImageIndex].split('.')[0])
@@ -154,9 +172,7 @@ const ConvoPage = () => {
     navigate('/food');
 
   }
-  const handleSpanClick = (id) => {
-    setActiveSpan(id);
-  };
+
 
   return (
     <div style={{display: 'grid', gridTemplateColumns: '10% 90%', height: '100vh', color: 'black'}}>
