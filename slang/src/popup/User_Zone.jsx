@@ -156,8 +156,6 @@ const EditPopup = ({onClose}) => {
 
 return (
 
-
-
   <div
   style ={{position: "fixed", top: 0 , left: 0, right: 0, bottom: 0,
   padding: "30px", display: "flex", alignItems: "center", justifyContent: "center", width: "900px",
@@ -205,7 +203,7 @@ return (
         </div>
         <h3 style={{textAlign: "center", fontSize:"45px", fontFamily: "neurimboGothicRegular",
           marginTop: "10px", marginBottom: "100px", padding: "30px"
-        }}>친구가 될 수 있는 사용자</h3>
+        }}>사용자 검색</h3>
 
         <hr style={{border: "3px solid #666666", width: "100%", marginBottom: "20px"}}></hr>
    
@@ -244,12 +242,80 @@ return (
 );
 };
 
+
+
+const RankingPopup = ({onClose}) => {
+  return (
+    <div
+    style ={{position: "fixed", top: 0 , left: 0, right: 0, bottom: 0,
+    padding: "30px", display: "flex", alignItems: "center", justifyContent: "right",
+     zIndex: 800}}>
+  
+      <div style = {{
+        position: "relative", background: "#96B6C5", padding: "40px 120px",  marginBottom: "5px", marginRight: "10px",
+        animation: "dropTop 0.5s linear",
+        width: "800px", height: "980px", overflowT: "scroll", borderRadius: "50px"}}>
+  
+        <div style= {{position: "absolute", top: 35, right: 35}}>
+          <AiOutlineClose onClick={onClose} size ={25}/>
+  
+          {/* 내가 아직 친구가 아닌 사용자들 추천 */}
+          </div>
+          <h3 style={{textAlign: "center", fontSize:"45px", fontFamily: "neurimboGothicRegular",
+            marginTop: "10px", marginBottom: "100px", padding: "30px"
+          }}>전체 사용자 랭킹</h3>
+  
+          <hr style={{border: "3px solid #666666", width: "100%", marginBottom: "20px"}}></hr>
+     
+       <div style={{alignItems: "center", alignContent: "center"}}>
+  
+            <div style = {{borderRadius: "30px", background: "#AC7D88",
+             padding: "10px", width: "550px", height: "100px", marginTop: "20px",
+              border: "3px solid #EEF7FF", display: "flex", alignItems: "center"}}>
+              <div style = {{width: "55px", height: "55px", border: "3px solid #fff", borderRadius: "50px", marginLeft: "20px", display:"flex", justifyContent: "center", alignItems: "center"}}>
+                <h5 style ={{display:"flex", fontSize: "25px",fontWeight: 700, justifyContent: "center", alignItems: "center", marginTop: "5px"}}>1</h5>
+              </div>
+              <h5 style ={{color:"#EDE4E0", fontSize: "23px", marginLeft: "50px"}}> 에스파 </h5>
+
+            </div>
+  
+            <div style = {{borderRadius: "30px", background: "#AC7D88",
+             padding: "10px", width: "550px", height: "100px", marginTop: "20px",
+              border: "3px solid #EEF7FF", display: "flex", alignItems: "center"}}>
+              <div style = {{width: "55px", height: "55px", border: "3px solid #fff", borderRadius: "50px", marginLeft: "20px", display:"flex", justifyContent: "center", alignItems: "center"}}>
+                <h5 style ={{display:"flex", fontSize: "25px",fontWeight: 700, justifyContent: "center", alignItems: "center", marginTop: "5px"}}>2</h5>
+              </div>
+              <h5 style ={{color:"#EDE4E0", fontSize: "23px", marginLeft: "50px"}}> 뉴진스 </h5>
+
+            </div>
+  
+        
+          
+            <div style = {{borderRadius: "30px", background: "#AC7D88",
+             padding: "10px", width: "550px", height: "100px", marginTop: "20px",
+              border: "3px solid #EEF7FF", display: "flex", alignItems: "center"}}>
+              <div style = {{width: "55px", height: "55px", border: "3px solid #fff", borderRadius: "50px", marginLeft: "20px", display:"flex", justifyContent: "center", alignItems: "center"}}>
+                <h5 style ={{display:"flex", fontSize: "25px",fontWeight: 700, justifyContent: "center", alignItems: "center", marginTop: "5px"}}>3</h5>
+              </div>
+              <h5 style ={{color:"#EDE4E0", fontSize: "23px", marginLeft: "50px"}}> 르세라핌 </h5>
+
+            </div>
+  
+            </div>
+  
+            </div>
+          
+      </div>
+
+  );
+  };
+
 export const User_Zone = ({onClose}) => {
 
   const [isFriendPopupOpen, setIsFriendPopupOpen] = useState(false);
   const [isRequestPopupOpen, setIsRequestPopupOpen] = useState(false);
   const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
-
+  const [isRankingPopupOpen, setIsRankingPopupOpen] = useState(false);
 
   const handleFriendClick = () => {
       setIsFriendPopupOpen(true);
@@ -275,10 +341,19 @@ export const User_Zone = ({onClose}) => {
     setIsEditPopupOpen(false);
   } 
 
+  const handleRankingClick = () => {
+    setIsRankingPopupOpen(true);
+  }
+  const handleRankingPopupClose= () => {
+    setIsRankingPopupOpen(false);
+  } 
+
+
+
 
     return (
 
-<div 
+  <div 
         style = {{
           position: "fixed",
           top:0,
@@ -297,6 +372,7 @@ export const User_Zone = ({onClose}) => {
 {isFriendPopupOpen && <FriendPopup onClose={handleFriendPopupClose} />}
 {isRequestPopupOpen && <RequestPopup onClose={handleRequestPopupClose} />}
 {isEditPopupOpen && <EditPopup onClose={handleEditPopupClose}></EditPopup>}
+{isRankingPopupOpen && <RankingPopup onClose={handleRankingPopupClose}></RankingPopup>}
 
   <div 
     style = {{
@@ -304,11 +380,9 @@ export const User_Zone = ({onClose}) => {
       background: "#E0FBE2", // 팝업창 자체의 색상 
       borderRadius: "165px",
       padding: "120px 170px",
-      animation: "dropTop 0.8s linear",
+      animation: "dropTop 0.3s linear",
       display: "flex",
       flexDirection: "column"
-
-    
     }}
     >
       {/* Header
@@ -508,7 +582,7 @@ export const User_Zone = ({onClose}) => {
           <hr style ={{width: "100%", border: "2px solid #666666", marginTop: "25px"}}></hr>
           <div style = {{display: "flex", justifyContent: "center", alignItems: "center", marginTop: "28px"}}> 
           <h5 style = {{fontSize: "20px", fontWeight: 700}} > 전체 랭킹 확인하러 가기</h5>
-          <SlArrowRightCircle size="25px" style = {{marginLeft: "10px", marginBottom: "7px"}}/>
+          <SlArrowRightCircle size="25px" style = {{marginLeft: "10px", marginBottom: "7px"}} onClick={handleRankingClick}/>
           </div>
 
           </div>
