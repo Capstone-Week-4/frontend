@@ -55,7 +55,7 @@ body,
   pointer-events: none;
 }
 
-h1,h2,h3,h4,h5 {
+h1,h2,h3,h4{
   font-family: 'Italiana', serif;
   color: #fff;
   margin-bottom: 0px !important;
@@ -122,30 +122,21 @@ h1 {
   font-size: 95px;
 }
 
-
-
-@font-face {
-  font-family: 'WandohopeR';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/WandohopeR.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,300,700,500,400italic,500italic,700italic,300italic');
-
-
-@font-face {
-  font-family: 'SangSangRock';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/SangSangRockOTF.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+h2{
+  font-family: 'SangSangRock', serif;
+  color:#fff;
+  font-size:90px;
 }
 
+h3{
+  font-family: 'WandohopeR' ,serif; 
+  color: #fff;
+  font-size: 85px;
+}
 
-@font-face {
-  font-family: 'Manse';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Manse.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+h5 {
+  font-family: 'EF_watermelonSalad', serif;
+  font-size: 70px;
 }
 
 
@@ -236,5 +227,154 @@ h1 {
   to {
     mask-position: 0 0;
   }
+}
+
+
+
+/* Antiman */
+.button--antiman {
+  background: none;
+  border: none;
+  height: 60px;
+}
+
+.button--antiman.button--inverted,
+.button--antiman.button--inverted-alt {
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+  -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+  transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+.button--antiman > span {
+  padding-left: 0.35em;
+}
+.button--antiman::before,
+.button--antiman::after {
+  content: '';
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0px;
+  height: 0px;
+  -webkit-backface-visibility: hidden;
+  -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
+  -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+  transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+.button--antiman::before {
+  border: 2px solid #37474f;
+  opacity: 0;
+  -webkit-transform: scale3d(1.2, 1.2, 1);
+  transform: scale3d(1.2, 1.2, 1);
+}
+
+.button--antiman.button--border-medium::before {
+  border-width: 6px;
+}
+
+.button--antiman.button--inverted::before {
+  border-color: #fff;
+}
+.button--antiman.button--inverted-alt::before {
+  border-color: #fff;
+}
+.button--antiman::after {
+  background: #5C8374;
+}
+
+.button--round-l {
+  border-radius: 40px;
+}
+
+
+
+.button--antiman:hover::before {
+  opacity: 1;
+  -webkit-transform: scale3d(1, 1, 1);
+  transform: scale3d(1, 1, 1);
+}
+.button--antiman:hover::after {
+  opacity: 0;
+  -webkit-transform: scale3d(0.8, 0.8, 1);
+  transform: scale3d(0.8, 0.8, 1);
+}
+
+
+/* 폰트 모음 */
+
+@font-face {
+  font-family: 'WandohopeR';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/WandohopeR.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,300,700,500,400italic,500italic,700italic,300italic');
+
+
+@font-face {
+  font-family: 'SangSangRock';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/SangSangRockOTF.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Manse';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Manse.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TTHakgyoansimMulgyeolB';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2402_keris@1.0/TTHakgyoansimMulgyeolB.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'neurimboGothicRegular';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/neurimboGothicRegular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GrandifloraOne-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_JAMO@1.0/GrandifloraOne-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'establishRetrosansOTF';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/establishRetrosansOTF.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.italiana-regular {
+  font-family: "Italiana", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'EF_watermelonSalad';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_watermelonSalad.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: '양진체';
+  src: url('https://fastly.jsdelivr.net/gh/supernovice-lab/font@0.9/yangjin.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 

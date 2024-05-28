@@ -1,0 +1,139 @@
+body {
+    /* background: #343e59; */
+    color: #777;
+    font-family: Montserrat, Arial, sans-serif;
+  }
+  
+  .body-bg {
+    background: #f3f4fa !important;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  strong {
+    font-weight: 600;
+  }
+  
+  body {
+    /* background: linear-gradient(45deg,#3a3a60,#5f5f8e); */
+    min-height: 100vh;
+  }
+  
+  .content-area {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  
+  .box {
+    /* background-color: #2b2d3e; */
+    padding: 25px 20px;
+  }
+  
+  .shadow {
+    box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.08);
+  }
+  
+  .sparkboxes .box {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-shadow: 0 1px 1px 1px #666;
+    box-shadow: 0px 1px 15px 1px rgba(69, 65, 78, 0.08);
+    position: relative;
+    border-radius: 5px;
+  }
+  
+  .sparkboxes .box .details {
+    position: absolute;
+    color: #fff;
+    transform: scale(0.7) translate(-22px, 20px);
+  }
+  
+  .sparkboxes strong {
+    position: relative;
+    z-index: 3;
+    top: -8px;
+    color: #fff;
+  }
+  
+  .sparkboxes .box1 {
+    background-image: linear-gradient(135deg, #abdcff 10%, #0396ff 100%);
+  }
+  
+  .sparkboxes .box2 {
+    background-image: linear-gradient(135deg, #2afadf 10%, #4c83ff 100%);
+  }
+  
+  .sparkboxes .box3 {
+    background-image: linear-gradient(135deg, #ffd3a5 10%, #fd6585 100%);
+  }
+  
+  .sparkboxes .box4 {
+    background-image: linear-gradient(135deg, #ee9ae5 10%, #5961f9 100%);
+  }
+  
+  .d-fixed {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 999;
+  }
+  
+  .btn-outline-warning {
+    color: #ffc107;
+    border-color: #ffc107;
+  }
+  
+  .btn-outline-warning:hover {
+    color: #343e59;
+    background-color: #ffc107;
+    border-color: #ffc107;
+  }
+  
+  .btn-text {
+    font-size: 12px;
+    font-weight: 600;
+  }
+  
+  .box.columnbox,
+  .box.radialbox {
+    height: 350px;
+  }
+  
+  .box.columnbox #columnchart,
+  .box.radialbox #circlechart {
+    height: 100%;
+  }
+  
+  .box.mt-4 {
+    height: 380px;
+  }
+  
+  .box.mt-4 #line-adwords,
+  .box.mt-4 #barchart,
+  .box.mt-4 #areachart {
+    height: 100%;
+  }
+  
+  .box.mt-4 #progress1,
+  .box.mt-4 #progress2,
+  .box.mt-4 #progress3 {
+    height: 50px;
+  }
+  
+  .float-right.edit-on-codepen {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .float-right.edit-on-codepen a {
+    display: block;
+  }
+  
+  .float-right.edit-on-codepen img {
+    max-width: 30px;
+  }
