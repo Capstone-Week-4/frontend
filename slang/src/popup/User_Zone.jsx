@@ -7,6 +7,9 @@ import { BsPatchPlus } from "react-icons/bs";
 import { BiMessageSquareCheck } from "react-icons/bi";
 import { BiMessageSquareX } from "react-icons/bi";
 import { BiUserPlus } from "react-icons/bi";
+import { AiTwotonePlusSquare } from "react-icons/ai";
+import { SlArrowRightCircle } from "react-icons/sl";
+
 
 
 import "../App.css";
@@ -85,7 +88,7 @@ const RequestPopup = ({onClose}) => {
         
         <div style = {{
           position: "relative", background: "#DBB5B5", padding: "40px 50px",  marginBottom: "5px", 
-          animation: "dropTop 0.4s linear",
+          animation: "dropTop 0.2s linear",
           width: "700px", height: "980px", overflowT: "scroll", borderRadius: "50px"}}>
 
           <div style= {{position: "absolute", top: 35, right: 35}}>
@@ -192,7 +195,7 @@ return (
 
     <div style = {{
       position: "relative", background: "#96B6C5", padding: "40px 50px",  marginBottom: "5px", marginRight: "120px",
-      animation: "dropTop 0.8s linear",
+      animation: "dropTop 0.5s linear",
       width: "800px", height: "980px", overflowT: "scroll", borderRadius: "50px"}}>
 
       <div style= {{position: "absolute", top: 35, right: 35}}>
@@ -210,21 +213,26 @@ return (
 
           <div style = {{borderRadius: "30px", background: "#AC7D88",
            padding: "10px", width: "550px", height: "100px", marginTop: "20px",
-            border: "3px solid #EEF7FF", display: "flex", justifyContent: "center", alignItems: "center"}}>
+            border: "3px solid #EEF7FF", display: "flex", justifyContent: "space-between", alignItems: "center"}}>
 
-            <h5 style ={{color:"#EDE4E0", fontSize: "23px"}}> 뉴진스 </h5>
+            <h5 style ={{color:"#EDE4E0", fontSize: "23px", marginLeft: "100px"}}> 뉴진스 </h5>
+            <AiTwotonePlusSquare size = {30} style ={{marginRight: "25px"}} />
           </div>
 
           <div style = {{borderRadius: "30px", background: "#AC7D88", 
           padding: "10px", width: "550px", height: "100px", marginTop: "20px", 
-          border: "3px solid #EEF7FF", display: "flex", justifyContent: "center", alignItems: "center" }}>
-            <h5 style={{color: "#EDE4E0",  fontSize: "23px"}}> 에스파 </h5>
+          border: "3px solid #EEF7FF", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <h5 style={{color: "#EDE4E0",  fontSize: "23px", marginLeft: "100px"}}> 에스파 </h5>
+            <AiTwotonePlusSquare size = {30} style ={{marginRight: "25px"}} />
+
           </div>
 
           <div style = {{borderRadius: "30px", background: "#AC7D88", padding: "10px",
            width: "550px", height: "100px", marginTop: "20px", border: "3px solid #EEF7FF", 
-           display: "flex", justifyContent: "center", alignItems: "center"}}>
-            <h5 style={{color: "#EDE4E0",  fontSize: "23px"}}> 르세라핌 </h5>
+           display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+            <h5 style={{color: "#EDE4E0",  fontSize: "23px", marginLeft: "100px"}}> 르세라핌 </h5>
+            <AiTwotonePlusSquare size = {30} style ={{marginRight: "25px"}} />
+
           </div>
 
           </div>
@@ -440,9 +448,10 @@ export const User_Zone = ({onClose}) => {
             style={{
               flex: 1,
               marginLeft: "30px",
-              padding: "20px",
+              
+              padding: "40px",
               width: "90%",
-              height: "200px",
+              height: "250px",
               border: "3px solid #EEF7FF",
               borderRadius: "50px",
               background: "#E9EDC9",
@@ -457,10 +466,10 @@ export const User_Zone = ({onClose}) => {
               <h5 style={{  marginRight: "80px", fontWeight: 700, display: "flex", fontSize: "22px"}}> 음식 </h5>
               </div>
               
-              <hr style={{width: "100%", border: "3px solid #666666", marginTop: "10px"}}></hr>
+              <hr style={{width: "100%", border: "3px solid #666666", marginTop: "20px"}}></hr>
       
 
-              <div style={{display:"flex", marginTop:"20px", width: "100%", justifyContent:"space-between"}}>
+              <div style={{display:"flex", marginTop:"30px", width: "100%", justifyContent:"space-between"}}>
 
                 <div style={{padding:"10px", width: "30%", height: "100%", border: "3px solid #EEF7FF", borderRadius: "50px", background: "#CDE8E5",boxShadow: "0 3px 6px rgba(0,0,0,0.6)", display: "flex", justifyContent: "center" }}>
                   <h3> 13</h3>
@@ -479,13 +488,10 @@ export const User_Zone = ({onClose}) => {
               
             style={{
               flex: 1,
-              display: "flex",
               marginLeft: "30px",
-              padding: "20px",
-              justifyContent: "center",
-              alignItems: "center",
+              padding: "40px",
               width: "90%",
-              height: "200px",
+              height: "250px",
               border: "3px solid #EEF7FF",
               borderRadius: "50px",
               background: "#E9EDC9",
@@ -493,11 +499,20 @@ export const User_Zone = ({onClose}) => {
               overflowY: "auto"
             }}
           >                {/* 동적으로 사용자별 랭킹 조정 */}
-          <h5 style={{ color: "#217346", fontWeight: 800, fontSize: "25px"}}> 13 </h5>
+         
+          <div style = {{display: "flex",  marginLeft: "300px", marginTop: "-5px", justifyContent: 'center',
+           alignItems: 'center', width: "78px", height: "78px", border: "8px solid #4D869C", borderRadius: "50px" }}>
+          <h5 style={{ color: "#217346", fontWeight: 800, fontSize: "25px", marginTop: "6px", marginRight: "3px"}}> 13 </h5>
+          </div>
+
+          <hr style ={{width: "100%", border: "2px solid #666666", marginTop: "25px"}}></hr>
+          <div style = {{display: "flex", justifyContent: "center", alignItems: "center", marginTop: "28px"}}> 
+          <h5 style = {{fontSize: "20px", fontWeight: 700}} > 전체 랭킹 확인하러 가기</h5>
+          <SlArrowRightCircle size="25px" style = {{marginLeft: "10px", marginBottom: "7px"}}/>
+          </div>
+
           </div>
     </div>
-
-      
 
       </div>
     </div>
