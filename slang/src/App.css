@@ -378,3 +378,44 @@ h5 {
   font-style: normal;
 }
 
+.searchInput{
+  width: 600px;
+  height: 65px;
+  border-radius: 30px;
+  border: 3px solid #fff;
+}
+.searchInput{
+  font-size: 23px;
+  font-weight: 100;
+  padding: 8px;
+  margin-top: 5px;
+  text-align: center;
+  font-family: "establishRetrosansOTF";
+}
+.searchInput:focus{
+  outline: 1.5px solid #ADC4CE;
+}
+.searchInput:focus::placeholder {
+  color: transparent;
+}
+.searchBox{
+  position: relative;
+  width: 550px;
+  display: flex;
+  margin: 0 auto;
+  margin-top: 20px;
+
+}
+.search-Img{
+  height: 30px;
+}
+.search-Img:hover{
+  filter: invert(62%) sepia(87%) saturate(275%) hue-rotate(344deg) brightness(102%) contrast(98%);
+}
+#search-Btn{
+  border: none;
+  position: absolute;
+  right: 15px;
+  top: 7px;
+  cursor: pointer;
+}

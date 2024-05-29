@@ -1,6 +1,6 @@
 // zone 1의 팝업 => 동물 
 
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import { AiOutlineClose} from "react-icons/ai";
 import { BsPatchPlusFill } from "react-icons/bs";
 import { BsPatchPlus } from "react-icons/bs";
@@ -9,7 +9,9 @@ import { BiMessageSquareX } from "react-icons/bi";
 import { BiUserPlus } from "react-icons/bi";
 import { AiTwotonePlusSquare } from "react-icons/ai";
 import { SlArrowRightCircle } from "react-icons/sl";
-
+import axios from 'axios'; // axios 임포트
+import { SlMagnifierAdd } from "react-icons/sl";
+import { SlActionRedo } from "react-icons/sl";
 
 
 import "../App.css";
@@ -184,6 +186,36 @@ return (
 };
 
 const FollowPopup= ({onClose})=> {
+
+  const inputRef = useRef();
+
+  const onSearch = () => {
+    const  searchUser = inputRef.current.value;
+     // ref를 이용해 검색어를 가져온다
+    if(searchUser){
+        axios.get(`http://localhost:3000/main?query=${searchUser}`)
+            .then((response) => {
+                // 검색 결과에 따라 페이지를 전환합니다.
+                if (response.data.length > 0) {
+                    // 검색 결과가 있으면 검색 결과 페이지로 이동합니다.
+                    //window.location.href = `/search?query=${searchUser}`;
+                    alert(`${searchUser}가 검색되었습니다.`);
+                } else {
+                    // 검색 결과가 없으면 검색 결과가 없는 페이지로 이동합니다.
+                    //window.location.href = '/no-result';
+                    alert('검색결과가 없습니다');
+                }
+            })
+            .catch((e) => {
+                // 오류가 발생한 경우에는 오류 페이지로 이동합니다.
+               alert('페이지 오류');
+            });
+    }
+    inputRef.current.value = ''; 
+  //검색 완료 후엔 다시 value값을 공백으로 설정. 
+  };
+  
+  
 return (
 
   <div
@@ -207,8 +239,23 @@ return (
 
         <hr style={{border: "3px solid #666666", width: "100%", marginBottom: "20px"}}></hr>
    
-     <div style={{alignItems: "center", alignContent: "center"}}>
+       <div style={{alignItems: "center", alignContent: "center"}}>
 
+            <div className='searchBox'>
+
+            <input type="text"
+              placeholder='사용자를 검색해보세요'
+              ref={inputRef}
+              className='searchInput'
+        />
+
+
+<SlActionRedo onClick={onSearch} id='search-Btn'
+ size={30} style={{marginTop: "15px"}}/>
+
+        </div>
+
+         
           <div style = {{borderRadius: "30px", background: "#AC7D88",
            padding: "10px", width: "550px", height: "100px", marginTop: "20px",
             border: "3px solid #EEF7FF", display: "flex", justifyContent: "space-between", alignItems: "center"}}>
