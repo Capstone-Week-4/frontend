@@ -10,12 +10,17 @@ import Animals from "./pages/Animals";// login 페이지 라우팅 추가하기
 import Food from "./pages/Food";
 import Result from './pages/Result'
 import ConvoPage from "./pages/Convo";
+import UserContext from './UserContext'; // Import the UserContext
+
+
 
 function App() {
 
   const [isSwitching, setIsSwitching] = useState('warp'); // default state
+  const [Id, setId] = useState(null); // Add userId state
 
 return (
+  <UserContext.Provider value={{ Id, setId }}> {/* Wrap routes with UserContext.Provider */}
 
   <BrowserRouter>
   <Routes>
@@ -30,9 +35,13 @@ return (
   <Route path="/convo" element={<ConvoPage />} />
   <Route path="/result" element={<Result />} />
 
+
+
   </Routes>
   
   </BrowserRouter>
+  </UserContext.Provider>
+
 )
 }
 

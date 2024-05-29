@@ -76,7 +76,7 @@ return(
             />
         </EffectComposer>
         <BrightSphere/>
-        <SpaceWarp setIsSwitching={setIsSwitching} />  // Corrected prop name
+        <SpaceWarp setIsSwitching={setIsSwitching} /> 
         <ambientLight intensity = {15} />
 
 

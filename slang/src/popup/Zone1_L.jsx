@@ -3,9 +3,16 @@
 import React, {useState} from 'react';
 import { AiOutlineClose} from "react-icons/ai";
 
+import { useNavigate } from 'react-router-dom';
 
 
 export const Zone1_L = ({onClose}) => {
+  // const navigate = useNavigate();
+  // const handleNavigate = () => {
+  //   setTimeout(() => {
+  //     navigate("/animals");
+  //   }, 1800);
+  // };
     return (
 
 <div 
@@ -71,8 +78,9 @@ export const Zone1_L = ({onClose}) => {
         justifyContent: "center",
         alignItems: "center"
        }}>
-        <h3> 포유류 </h3>
-        <h3> 양서류 </h3>
+ <a href="/animals" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <h3 style={{ cursor: 'pointer' }}>포유류</h3>
+          </a>        <h3> 양서류 </h3>
       </div>
       {/*footer*/}
 

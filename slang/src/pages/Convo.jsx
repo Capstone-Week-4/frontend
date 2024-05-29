@@ -136,7 +136,7 @@ const ConvoPage = () => {
     console.log("Prediction List: ", predictionsList);
     
     // Define the URL to your backend endpoint
-    const url = 'http://116.121.105.235:8080/gpt/chat'; // Replace with your backend URL
+    const url = 'http://43.203.98.168:8080/gpt/chat'; // Replace with your backend URL
     const data = {
       // id: userId,
       words: predictionsList

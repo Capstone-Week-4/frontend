@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import '../static/style.css'
 import { useNavigate, useLocation } from 'react-router-dom';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
@@ -19,16 +19,16 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   },
 }));
 
-function getDate() {
-  const today = new Date();
-  const month = today.getMonth() + 1;
-  const year = today.getFullYear();
-  const date = today.getDate();
-  return `${month}/${date}/${year}`;
-}
-
 const Result = () => {
 
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    const storedUserId = localStorage.getItem('userId');
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+  }, []);
 
   const [activeSpan, setActiveSpan] = useState(null);
 
@@ -168,13 +168,12 @@ const Result = () => {
   }, []); // Empty dependency array to ensure useEffect runs only once after mount
 
   const handleSports = () => {
-    const currentDate = getDate();
-    console.log(currentDate);
     const data = {
-      userId: "aa",
+      userId: userId,
       point: correctAnswer,
       category: "sports",
     };
+    console.log("userID: " + userId)
     const accessToken = localStorage.getItem('accessToken');
     const headers = {
       // 'Authorization': `Bearer ${accessToken}`,
@@ -183,7 +182,7 @@ const Result = () => {
     axios.post('http://43.203.98.168:8080/updatePoint', data, { headers })
       .then(response => {
         console.log('Result submitted successfully:', response.data);
-        navigate('/camera');
+        navigate('/main');
       })
       .catch(error => {
         console.error('Error submitting result:', error);

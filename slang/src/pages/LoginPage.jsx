@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useContext} from 'react';
 import '../App.css';
 import { ScrollControls, Scroll ,Environment, Float, Sparkles, PositionalAudio} from '@react-three/drei';
 import Row from 'react-bootstrap/Row';
@@ -14,13 +14,44 @@ import { Bloom, DepthOfField, EffectComposer,Vignette } from '@react-three/postp
 import logo from '../flower_logo4.png'
 import { useNavigate } from 'react-router-dom';
 import '../static/login.css'
+import { jwtDecode } from 'jwt-decode';
+import UserContext from '../UserContext';
+
 function LoginPage() {
 
     const [userId, setUserId] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  
+  const { setId } = useContext(UserContext);
+
+  const handleLogin = (e) => {
+    e.preventDefault()
+    sendLoginInfo(userId, password)
+      .then(response => {
+        // Handle successful login response
+        console.log('Login successful:', response);
+        // const token = response.token.accessToken;
+        localStorage.setItem('userId', response.user.userId);
+        
+        // // Decode the token to get the userId
+        // const decodedToken = jwtDecode(token);
+        // const extractedUserId = decodedToken.userId;
+        // console.log('Decoded userId:', extractedUserId);
+        // setId(response.user.userId);
+
+        // Store the userId in session storage
+        // sessionStorage.setItem('userId', extractedUserId);
+        // Redirect to another page or update UI accordingly
+          navigate("/landing");
+      })
+      .catch(error => {
+        // Handle login error
+        console.error('Login failed:', error);
+        // Update UI to show login error message
+      });
+
+  };
   async function sendLoginInfo(userId, password) {
     const url = 'http://43.203.98.168:8080/login'; // Replace with your backend URL
     const data = {
@@ -83,23 +114,7 @@ function LoginPage() {
   }
   
   
-const handleLogin = (e) => {
-    e.preventDefault()
-    sendLoginInfo(userId, username, password)
-      .then(response => {
-        // Handle successful login response
-        console.log('Login successful:', response);
-        localStorage.setItem('accessToken', response.token.accessToken)
-        // Redirect to another page or update UI accordingly
-      })
-      .catch(error => {
-        // Handle login error
-        console.error('Login failed:', error);
-        // Update UI to show login error message
-      });
-      // navigate('/landing');
 
-  };
   const handleSignup = (e) => {
     e.preventDefault()
     sendSignupInfo(userId, username, password)
@@ -249,12 +264,18 @@ const handleLogin = (e) => {
       </form>
     </div>
     <div className="login">
-				<form>
-					<label for="chk" aria-hidden="true">로그인</label>
-                    <input type='text' name='txt' placeholder="아이디" required="" />
-					<input type="password" name="pswd" placeholder="비밀번호" required="" />
-					<button onClick={(e) => handleLogin(e)}>로그인</button>
-				</form>
+        <form>
+        <label htmlFor="chk" aria-hidden="true">로그인</label>
+        <input type='text' name='txt' placeholder="아이디" required=""
+          value={userId}
+          onChange={e => setUserId(e.target.value)}
+        />
+        <input type="password" name="pswd" placeholder="비밀번호" required=""
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+        />
+        <button onClick={(e) => handleLogin(e)}>로그인</button>
+      </form>
 			</div>
   </div>
 </body>

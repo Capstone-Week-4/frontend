@@ -52,9 +52,9 @@ const CameraPage = () => {
   useEffect(() => {
     const fetchPrediction = async () => {
       try {
-        // const response = await fetch('http://localhost:5000/prediction_korean');
+        const response = await fetch('http://localhost:5000/prediction_korean');
         // const response = await fetch('http://43.203.98.168:5000/prediction_korean');
-        const response = await fetch('http://116.121.105.235:8080/flask/prediction_korean');
+        // const response = await fetch('http://116.121.105.235:8080/flask/prediction_korean');
 
         const data = await response.text();
         setPrediction(data);
@@ -199,7 +199,7 @@ const CameraPage = () => {
           <p style={{ position: 'relative', marginTop: '50px', color: 'black', textAlign: 'center' }}>손으로 해당 이미지를 따라해주세요.</p>
           <div id="container" style={{ display: 'grid', gridTemplateColumns: '8fr 2fr', gridTemplateRows: 'repeat(3, 1fr)', height: '100vh', width: '80%', columnGap: '100px', marginLeft: '100px' }}>
             <div style={{ backgroundColor: 'white', gridRow: '1', border: '1px solid #ddd', borderRadius: '12px', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}>
-              <img src="http://116.121.105.235:8080/flask/video_korean" alt="Video Feed" style={{ width: '100%', height: '60vh' }} />
+              <img src="http://localhost:5000/video_korean" alt="Video Feed" style={{ width: '100%', height: '60vh' }} />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gridRow: '1', gridColumn: '2' }}>
               <div style={{ backgroundColor: 'white', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', backgroundImage: `url(${imageUrls[currentImageIndex]})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', width: '100%', height: '60%', border: '1px solid #ddd', borderRadius: '12px' }}></div>

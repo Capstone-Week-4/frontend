@@ -101,7 +101,7 @@ const CameraPage = () => {
     }
     else {
       setCurrentImageIndex((currentImageIndex + 1));
-      setProgressValue(progressValue + 7.14);
+      setProgressValue(progressValue + (100 / (imageUrls.length - 1)));
       setConfirmButtonColor('#3c403c');
       if(confirmButtonColor == '#00cc00'){
         setCorrectAnswer(correctAnswer + 1);
@@ -124,7 +124,7 @@ const CameraPage = () => {
     else {
       setCountdown(5)
       setCurrentImageIndex((currentImageIndex + 1) % imageUrls.length);
-      setProgressValue(progressValue + 5.55);
+      setProgressValue(progressValue + (100 / (imageUrls.length - 1)));
       setConfirmButtonColor('#3c403c');
     }
 
