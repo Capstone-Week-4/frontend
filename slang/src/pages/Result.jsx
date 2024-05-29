@@ -180,7 +180,7 @@ const Result = () => {
       // 'Authorization': `Bearer ${accessToken}`,
       'Content-Type': 'application/json',
     };
-    axios.post('/updatePoint', data, { headers })
+    axios.post('http://43.203.98.168:8080/updatePoint', data, { headers })
       .then(response => {
         console.log('Result submitted successfully:', response.data);
         navigate('/camera');

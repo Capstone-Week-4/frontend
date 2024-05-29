@@ -7,6 +7,7 @@ import ApexCharts from 'apexcharts';
 import AddIcon from '@mui/icons-material/Add';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import BackspaceIcon from '@mui/icons-material/Backspace';
+import Typewriter from 'typewriter-effect';
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
@@ -23,6 +24,8 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 const ConvoPage = () => {
   const [prediction, setPrediction] = useState('');
   const [predictionsList, setPredictionsList] = useState([]);
+  const [responseData, setResponseData] = useState('');
+
 
   const navigate = useNavigate();
   const [activeSpan, setActiveSpan] = useState(null);
@@ -133,11 +136,12 @@ const ConvoPage = () => {
     console.log("Prediction List: ", predictionsList);
     
     // Define the URL to your backend endpoint
-    const url = '/translate'; // Replace with your backend URL
+    const url = 'http://116.121.105.235:8080/gpt/chat'; // Replace with your backend URL
     const data = {
       // id: userId,
-      wordlist: predictionsList
+      words: predictionsList
     };
+    console.log(JSON.stringify(data))
     // Set up the request options
     const requestOptions = {
       method: 'POST',
@@ -152,7 +156,9 @@ const ConvoPage = () => {
       const data = await response.json();
       
       // Handle the response data
-      console.log('Response from backend:', data);
+      setResponseData(data.choices[0].message.content);
+
+      console.log('Response from backend:', data.choices[0].message.content);
       
       // Optionally, handle navigation or further processing here
       
@@ -320,7 +326,15 @@ const ConvoPage = () => {
                 >번역</button>
               </div>
             </div>
-              <div id="answer_div2" style={{boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', gridRow: '1 / span 2', gridColumn: '2', border: '1px solid #ddd', borderRadius: '12px', width: '100%', height: '76%', position: 'relative', marginTop: '5%'}}></div>
+              <div id="answer_div2" style={{boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', gridRow: '1 / span 2', gridColumn: '2', border: '1px solid #ddd', borderRadius: '12px', width: '100%', height: '76%', position: 'relative', marginTop: '5%'}}>
+        <Typewriter
+          options={{
+            strings: [responseData],
+            autoStart: true,
+            loop: true,
+          }}
+        />
+              </div>
             </div>
               {/* <button style={{boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', width: '100px',  backgroundColor: '#3c403c'}} onClick={handleAnimals}>건너뛰기</button> */}
 

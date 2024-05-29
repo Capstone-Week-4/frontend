@@ -22,7 +22,7 @@ function LoginPage() {
   const navigate = useNavigate();
   
   async function sendLoginInfo(userId, password) {
-    const url = 'http://116.121.105.235:8080/login'; // Replace with your backend URL
+    const url = 'http://43.203.98.168:8080/login'; // Replace with your backend URL
     const data = {
       userId: userId,
       password: password
@@ -38,6 +38,7 @@ function LoginPage() {
       });
   
       if (!response.ok) {
+        console.log("Print error!")
         throw new Error('Network response was not ok');
       }
   
