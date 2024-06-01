@@ -80,13 +80,13 @@ export const Zone3_L = ({onClose}) => {
         <div style = {{marginLeft: "120px", height: "100px", width: "200px", border: "4px solid #EEF5FF", borderRadius: "30px", display: "flex", justifyContent: "center",
         alignItems: "center", background: "#AAD7D9", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
         }}> 
-        <h3 style={{fontSize: "35px"}}> 포유류 </h3>
+        <h3 style={{fontSize: "35px"}}> 모음 </h3>
         </div>
 
         <div style = {{marginRight: "120px", height: "100px", width: "200px", border: "4px solid #EEF5FF", borderRadius: "30px",
           display: "flex", justifyContent: "center", alignItems: "center", background: "#AAD7D9", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
         }}> 
-        <h3 style={{fontSize: "35px"}}> 양서류 </h3>
+        <h3 style={{fontSize: "35px"}}> 자음 </h3>
         </div>
 
       </div>

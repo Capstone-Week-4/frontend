@@ -53,7 +53,7 @@ export const Zone1_L = ({onClose}) => {
       <div style = {{
         borderBottom: "2px solid gray",
         diplay: "flex",
-        width: "800px",
+        width: "1000px",
         height: "150px",
         display: "flex",
         justifyContent: "center",
@@ -75,16 +75,25 @@ export const Zone1_L = ({onClose}) => {
         alignItems: "center"
        }}>
 
-        <div style = {{marginLeft: "120px", height: "100px", width: "200px", border: "4px solid #EEF5FF", borderRadius: "30px", display: "flex", justifyContent: "center",
+        <div style = {{marginLeft: "45px", height: "100px", width: "200px", border: "4px solid #EEF5FF", borderRadius: "30px", display: "flex", justifyContent: "center",
         alignItems: "center", background: "#AAD7D9", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
         }}> 
-        <h3 style={{fontSize: "35px"}}> 포유류 </h3>
+        {/* 육식 - 늑대, 곰, 범, 고릴라 */}
+        <h3 style={{fontSize: "35px"}}> 육식 </h3> 
         </div>
 
-        <div style = {{marginRight: "120px", height: "100px", width: "200px", border: "4px solid #EEF5FF", borderRadius: "30px",
+        {/* 초식 - 기린, 낙타, 사슴, 코뿔소, 소, 토끼, 양 */}
+        <div style = {{ height: "100px", width: "200px", border: "4px solid #EEF5FF", borderRadius: "30px",
           display: "flex", justifyContent: "center", alignItems: "center", background: "#AAD7D9", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
         }}> 
-        <h3 style={{fontSize: "35px"}}> 양서류 </h3>
+        <h3 style={{fontSize: "35px"}}> 초식 </h3>
+        </div>
+        
+        {/* 잡식 - 하마, 고양이, 거북이, 악어, 쥐, 닭, 개, 돼지 */}
+        <div style = {{marginRight: "45px", height: "100px", width: "200px", border: "4px solid #EEF5FF", borderRadius: "30px",
+          display: "flex", justifyContent: "center", alignItems: "center", background: "#AAD7D9", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
+        }}> 
+        <h3 style={{fontSize: "35px"}}> 잡식 </h3>
         </div>
 
       </div>
