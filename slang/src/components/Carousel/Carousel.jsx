@@ -32,16 +32,47 @@ const SPOTLIGHT_SPEED = 4;
 
 export const Carousel = (props) => {
 
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isPopupOpen_1, setIsPopupOpen_1] = useState(false);
+  const [isPopupOpen_2, setIsPopupOpen_2] = useState(false);
+  const [isPopupOpen_3, setIsPopupOpen_3] = useState(false);
+  const [isPopupOpen_4, setIsPopupOpen_4] = useState(false);
 
+  const handleZoneClick_1 = () => {
+    setIsPopupOpen_1(true);
+  }
   
-  const handleZoneClick = () => {
-    setIsPopupOpen(true);
+  const handleZoneClick_2 = () => {
+    setIsPopupOpen_2(true);
+  }
+  
+  const handleZoneClick_3 = () => {
+    setIsPopupOpen_3(true);
+  }
+  
+  const handleZoneClick_4 = () => {
+    setIsPopupOpen_4(true);
   }
 
-  const closePopup=() => {
-    setIsPopupOpen(false);
+
+  const closePopup_1=() => {
+    setIsPopupOpen_1(false);
   };
+
+  
+  const closePopup_2=() => {
+    setIsPopupOpen_2(false);
+  };
+
+  
+  const closePopup_3=() => {
+    setIsPopupOpen_3(false);
+  };
+
+  
+  const closePopup_4=() => {
+    setIsPopupOpen_4(false);
+  };
+
 
   const {carouselRotation, currentStep} = useSpring({
     from: {
@@ -120,9 +151,9 @@ export const Carousel = (props) => {
         <CarouselModel position ={[0,-2,0]}/>
  
 
-        <group onClick={()=> handleZoneClick()} >
+        <group onClick={()=> handleZoneClick_1()} >
           <Html>
-          {isPopupOpen && <Zone1_L onClose={closePopup} />}
+          {isPopupOpen_1 && <Zone1_L onClose={closePopup_1} />}
           </Html>
        {/* PARK */}
           <>
@@ -141,9 +172,9 @@ export const Carousel = (props) => {
         </group>
 
 
-        <group onClick={()=> handleZoneClick()} >
+        <group onClick={()=> handleZoneClick_2()} >
         <Html>
-          {isPopupOpen && <Zone2_L onClose={closePopup} />}
+          {isPopupOpen_2 && <Zone2_L onClose={closePopup_2} />}
         </Html>
        {/* FOOD */}
     
@@ -172,9 +203,9 @@ export const Carousel = (props) => {
 
 
 
-          <group onClick={()=> handleZoneClick()}>
+          <group onClick={()=> handleZoneClick_3()}>
           <Html>
-          {isPopupOpen && <Zone3_L onClose={closePopup} />}
+          {isPopupOpen_3 && <Zone3_L onClose={closePopup_3} />}
         </Html>
           {/* HAUNTED */}
     
@@ -207,9 +238,9 @@ export const Carousel = (props) => {
 
 
 
-          <group onClick={()=> handleZoneClick()}>
+          <group onClick={()=> handleZoneClick_4()}>
           <Html>
-          {isPopupOpen && <Zone4_L onClose={closePopup} />}
+          {isPopupOpen_4 && <Zone4_L onClose={closePopup_4} />}
         </Html>
           {/* BEACH */}
           <>

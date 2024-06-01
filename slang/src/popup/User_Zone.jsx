@@ -535,7 +535,10 @@ export const User_Zone = ({onClose}) => {
 
                   </div>
 
-                  <div style={{display:"flex", marginLeft: "30px ",  marginTop: "10px", justifyContent: "center", alignContent: "center", padding:"10px", width: "200px", height: "65px", border: "3px solid #EEF7FF", borderRadius: "100px", background: "#F1E5D1",  boxShadow: "0 3px 6px rgba(0,0,0,0.4)"}}
+                  <div style={{display:"flex", marginLeft: "30px ",
+                    marginTop: "10px", justifyContent: "center", alignContent: "center",
+                     padding:"10px", width: "200px", height: "65px", border: "3px solid #EEF7FF", 
+                     borderRadius: "100px", background: "#F1E5D1",  boxShadow: "0 3px 6px rgba(0,0,0,0.4)"}}
                   onClick={handleRequestClick}>
                     {/*  동적으로 팔로워 할당  */}
                     <p style={{color: "#000",  fontFamily:"neurimboGothicRegular",  fontSize: "20px"}} >친구 요청</p>

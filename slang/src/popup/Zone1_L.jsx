@@ -29,9 +29,9 @@ export const Zone1_L = ({onClose}) => {
     style = {{
       position: "relative",
       background: "#C2DEDC",
-      borderRadius: "165px",
-      padding: "140px 180px",
-      animation: "dropTop .4s linear",
+      borderRadius: "170px",
+      padding: "120px 120px",
+      animation: "dropTop 0.4s linear",
       display: "flex",
       flexDirection: "column",
     }}
@@ -44,22 +44,25 @@ export const Zone1_L = ({onClose}) => {
           <AiOutlineClose onClick = {onClose} size={32}/>
         </div>
  */}
+
+
+      <div style = {{position: "absolute", top: 60, right: 110}}> 
+        <AiOutlineClose onClick = {onClose} size={30} />
+      </div>
+
       <div style = {{
         borderBottom: "2px solid gray",
-        paddingBottom: "50px",
         diplay: "flex",
-        paddingRight:"100px",
-        paddingLeft: "100px",
-        width: "100%"
+        width: "800px",
+        height: "150px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+
       }}>
-       <h2 style = {{margin: 0, marginLeft: "50px", paddingLeft: "100px", paddingRight: "100px", width: "300px", justifyContent: "center"}}>동물</h2>
+
+       <h3 style = {{ justifyContent: "center", alignItems: "center", paddingBottom: "40px", fontSize: "45px", fontWeight: 600}}>동물</h3>
         
-   
-          <button class="button--antiman button--round-l button--text-medium">
-            <i class="button__icon icon icon-plus"></i><span>      
-                  <AiOutlineClose onClick = {onClose} size={30}/>
-              </span></button>
-      
       </div>
 
       {/* Body */ }
@@ -68,11 +71,22 @@ export const Zone1_L = ({onClose}) => {
        {{marginTop: "100px",
         display: "flex",
         gap: "80px",
-        justifyContent: "center",
+        justifyContent: "space-between",
         alignItems: "center"
        }}>
-        <h3> 포유류 </h3>
-        <h3> 양서류 </h3>
+
+        <div style = {{marginLeft: "120px", height: "100px", width: "200px", border: "4px solid #EEF5FF", borderRadius: "30px", display: "flex", justifyContent: "center",
+        alignItems: "center", background: "#AAD7D9", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
+        }}> 
+        <h3 style={{fontSize: "35px"}}> 포유류 </h3>
+        </div>
+
+        <div style = {{marginRight: "120px", height: "100px", width: "200px", border: "4px solid #EEF5FF", borderRadius: "30px",
+          display: "flex", justifyContent: "center", alignItems: "center", background: "#AAD7D9", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
+        }}> 
+        <h3 style={{fontSize: "35px"}}> 양서류 </h3>
+        </div>
+
       </div>
       {/*footer*/}
 
