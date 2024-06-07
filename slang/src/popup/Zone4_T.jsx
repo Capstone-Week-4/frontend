@@ -81,13 +81,17 @@ export const Zone4_T = ({onClose}) => {
         <div style = {{marginLeft: "100px", height: "100px", width: "280px", border: "4px solid #99A799", borderRadius: "30px", display: "flex", justifyContent: "center",
         alignItems: "center", background: "#D3E4CD", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
         }}> 
-        <h3 style={{fontSize: "35px"}}> 실내 스포츠 </h3>
+                              <a href="/indoorsporttest" style={{ textDecoration: 'none', color: 'inherit' }}>
+
+        <h3 style={{fontSize: "35px",  cursor: 'pointer'}}> 실내 스포츠 </h3></a>
         </div>
 
         <div style = {{marginRight: "120px", height: "100px", width: "280px", border: "4px solid #99A799", borderRadius: "30px",
           display: "flex", justifyContent: "center", alignItems: "center", background: "#D3E4CD", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
         }}> 
-        <h3 style={{fontSize: "35px"}}> 실외 스포츠 </h3>
+                              <a href="/outdoorsporttest" style={{ textDecoration: 'none', color: 'inherit' }}>
+
+        <h3 style={{fontSize: "35px",  cursor: 'pointer'}}> 실외 스포츠 </h3> </a>
         </div>
 
       </div>

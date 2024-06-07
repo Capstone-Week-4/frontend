@@ -432,11 +432,7 @@ export const User_Zone = ({onClose}) => {
       flexDirection: "column"
     }}
     >
-      {/* Header
-         <div style ={{position: "absolute", top:70, right:85 }}>
-          <AiOutlineClose onClick = {onClose} size={32}/>
-        </div>
- */}
+      {/* Header */}
 
         <div style ={{position: "absolute", top:70, right:85 }}>
           <AiOutlineClose onClick = {onClose} size={32}/>

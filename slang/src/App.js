@@ -11,6 +11,14 @@ import Food from "./pages/Food";
 import Result from './pages/Result'
 import ConvoPage from "./pages/Convo";
 import UserContext from './UserContext'; // Import the UserContext
+import Carnivore from "./pages/Carnivore";
+import Veggie from "./pages/Veggie";
+import Omnivore from "./pages/Omnivore";
+import KoreanTest from "./pages/KoreanTest";
+import FoodNounTest from "./pages/FoodNounTest";
+import FoodVerbTest from "./pages/FoodVerbTest";
+import IndoorSportTest from "./pages/IndoorSportTest";
+import OutdoorSportTest from "./pages/OutdoorSportTest";
 
 
 
@@ -31,6 +39,15 @@ return (
   <Route path="/" element={<LoginPage />} />
   <Route path="/sports" element={<Sports />} />
   <Route path="/animals" element={<Animals />} />
+  <Route path="/carnivoretest" element={<Carnivore />} />
+  <Route path="/veggietest" element={<Veggie />} />
+  <Route path="/omnitest" element={<Omnivore />} />
+  <Route path="/koreantest" element={<KoreanTest />} />
+  <Route path="/foodnountest" element={<FoodNounTest />} />
+  <Route path="/foodverbtest" element={<FoodVerbTest />} />
+  <Route path="/indoorsporttest" element={<IndoorSportTest />} />
+  <Route path="/outdoorsporttest" element={<OutdoorSportTest />} />
+
   <Route path="/food" element={<Food />} />
   <Route path="/convo" element={<ConvoPage />} />
   <Route path="/result" element={<Result />} />
