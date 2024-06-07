@@ -77,8 +77,33 @@ export const Zone1_L = ({onClose}) => {
         justifyContent: "space-between",
         alignItems: "center"
        }}>
-        <h3> 포유류 </h3>
-        <h3> 양서류 </h3>
+
+<div style = {{marginLeft: "45px", height: "100px", width: "200px", border: "4px solid #ADC4CE", borderRadius: "30px", display: "flex", justifyContent: "center",
+        alignItems: "center", background: "#CDE8E5", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
+        }}> 
+        {/* 육식 - 늑대, 곰, 범, 고릴라 */}
+        <a href="/carnivoretest" style={{ textDecoration: 'none', color: 'inherit' }}>
+
+        <h3 style={{fontSize: "35px",  cursor: 'pointer'}}> 육식 </h3> </a>
+        </div>
+
+        {/* 초식 - 기린, 낙타, 사슴, 코뿔소, 소, 토끼, 양 */}
+        <div style = {{ height: "100px", width: "200px", border: "4px solid #ADC4CE", borderRadius: "30px",
+          display: "flex", justifyContent: "center", alignItems: "center", background: "#CDE8E5", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
+        }}> 
+              <a href="/veggietest" style={{ textDecoration: 'none', color: 'inherit' }}>
+
+        <h3 style={{fontSize: "35px",  cursor: 'pointer'}}> 초식 </h3></a>
+        </div>
+        
+        {/* 잡식 - 하마, 고양이, 거북이, 악어, 쥐, 닭, 개, 돼지 */}
+        <div style = {{marginRight: "45px", height: "100px", width: "200px", border: "4px solid #ADC4CE", borderRadius: "30px",
+          display: "flex", justifyContent: "center", alignItems: "center", background: "#CDE8E5", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
+        }}> 
+              <a href="/omnitest" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <h3 style={{fontSize: "35px",  cursor: 'pointer'}}> 잡식 </h3></a>
+        </div>
+
       </div>
       {/*footer*/}
 

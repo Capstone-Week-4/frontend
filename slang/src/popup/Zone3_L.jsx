@@ -81,13 +81,18 @@ export const Zone3_L = ({onClose}) => {
         alignItems: "center", background: "#B7C4CF", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
 
         }}> 
-        <h3 style={{fontSize: "35px"}}> 모음 </h3>
+                      <a href="/camera" style={{ textDecoration: 'none', color: 'inherit' }}>
+
+        <h3 style={{fontSize: "35px"}}> 모음 </h3></a>
         </div>
 
         <div style = {{marginRight: "120px", height: "100px", width: "200px", border: "4px solid #F9F7F7", borderRadius: "30px",
           display: "flex", justifyContent: "center", alignItems: "center", background: "#B7C4CF", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
         }}> 
+              <a href="/camera" style={{ textDecoration: 'none', color: 'inherit' }}>
+
         <h3 style={{fontSize: "35px"}}> 자음 </h3>
+        </a>
         </div>
 
       </div>

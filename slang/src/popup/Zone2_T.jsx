@@ -82,13 +82,17 @@ export const Zone2_T = ({onClose}) => {
         <div style = {{marginLeft: "120px", height: "100px", width: "200px", border: "4px solid #FFF0F5", borderRadius: "30px", display: "flex", justifyContent: "center",
         alignItems: "center", background: "#F6D6D6", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
         }}> 
-        <h3 style={{fontSize: "35px"}}> 명사 </h3>
+                      <a href="/foodnountest" style={{ textDecoration: 'none', color: 'inherit' }}>
+
+        <h3 style={{fontSize: "35px",  cursor: 'pointer'}}> 명사 </h3></a>
         </div>
 
         <div style = {{marginRight: "120px", height: "100px", width: "200px", border: "4px solid #FFF0F5", borderRadius: "30px",
           display: "flex", justifyContent: "center", alignItems: "center", background: "#F6D6D6", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
         }}> 
-        <h3 style={{fontSize: "35px"}}> 동사 </h3>
+                              <a href="/foodverbtest" style={{ textDecoration: 'none', color: 'inherit' }}>
+
+        <h3 style={{fontSize: "35px",  cursor: 'pointer'}}> 동사 </h3></a>
         </div>
 
       </div>

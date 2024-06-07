@@ -1,6 +1,6 @@
 // zone 1의 팝업 => 동물 
 
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import { AiOutlineClose} from "react-icons/ai";
 import { BsPatchPlusFill } from "react-icons/bs";
 import { BsPatchPlus } from "react-icons/bs";
@@ -15,6 +15,8 @@ import { SlActionRedo } from "react-icons/sl";
 
 
 import "../App.css";
+
+//  const url = 'http://43.203.98.168:8080/profile/{userId} '; -> 백엔드에서 특정 사용자의 정보 불러오기 post / rank 
 
 
 const FriendPopup = ({onClose}) => {
@@ -290,6 +292,7 @@ return (
 };
 
 
+// 전체 사용자 랭킹 
 
 const RankingPopup = ({onClose}) => {
   return (
@@ -357,12 +360,59 @@ const RankingPopup = ({onClose}) => {
   );
   };
 
+
 export const User_Zone = ({onClose}) => {
 
   const [isFriendPopupOpen, setIsFriendPopupOpen] = useState(false);
   const [isRequestPopupOpen, setIsRequestPopupOpen] = useState(false);
   const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
   const [isRankingPopupOpen, setIsRankingPopupOpen] = useState(false);
+  const [userRanking, setUserRanking] = useState(null);
+  const [userAnimal, setUserAnimal] = useState(null); // aniaml 맞춘 갯수 
+  const [userFood, setUserFood] = useState(null); // food 맞춘 갯수 
+  const [userSport, setUserSport] = useState(null); // sports 맞춘 갯수
+  const [userName, setUserName] = useState(null); // 유저 닉네임
+  const [userDate, setUserDate] = useState(null); // 유저 가입 시기 
+  const [userId, setUserId] = useState(null);
+
+
+
+  useEffect(() => {
+  const storedUserId = localStorage.getItem('userId');
+  if (storedUserId) {
+    setUserId(storedUserId);
+  }
+}, []);
+
+
+  useEffect(()=> {
+  if (userId) {
+    axios.get(`http://43.203.98.168:8080/profile/${userId}`)
+    .then(response => {
+      const rank = response.data.rank === -1 ? '학습을 진행하세요!': response.data.rank;
+      const food_score = response.data.food;
+      const animal_score = response.data.animal;
+      const sport_score = response.data.sports;
+      const user_name = response.data.name;
+      const join_date = response.data.date;
+
+      setUserRanking(rank);
+      setUserAnimal(animal_score);
+      setUserFood(food_score);
+      setUserSport(sport_score);
+      setUserName(user_name);
+      setUserDate(join_date);
+
+      console.log("userid :" , userId, "user rank", rank);
+    })
+    .catch(error => {
+      console.error('Error fetching user ranking:', error);
+
+    });
+
+  }
+}, [userId]);
+
 
   const handleFriendClick = () => {
       setIsFriendPopupOpen(true);
@@ -396,21 +446,19 @@ export const User_Zone = ({onClose}) => {
   } 
 
 
-
-
     return (
 
   <div 
         style = {{
           position: "fixed",
-          top:0,
-          left:0,
-          right:0,
-          bottom:0,
-          padding:"10px",
           display: "flex",
           alignItems: "center",
-          justifyContent: "center"
+          justifyContent: "center",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0
+        
 
         }}
 >
@@ -432,11 +480,7 @@ export const User_Zone = ({onClose}) => {
       flexDirection: "column"
     }}
     >
-      {/* Header
-         <div style ={{position: "absolute", top:70, right:85 }}>
-          <AiOutlineClose onClick = {onClose} size={32}/>
-        </div>
- */}
+      {/* Header */}
 
         <div style ={{position: "absolute", top:70, right:85 }}>
           <AiOutlineClose onClick = {onClose} size={32}/>
@@ -504,7 +548,7 @@ export const User_Zone = ({onClose}) => {
 
                     < div style={{display: "flex"}}>
                     {/* 동적으로 user nick name 띄우기 */}
-                    <h3 style={{fontFamily:'neurimboGothicRegular', fontSize: "33px"}}>닉네임-정지연</h3> 
+                    <h3 style={{fontFamily:'establishRetrosansOTF', fontSize: "32px", marginTop: "10px"}}>{userName}</h3> 
                     <div style={{display:"flex", marginLeft: "880px ",  marginTop: "10px", justifyContent: "center", alignContent: "center", padding:"10px", width: "215px", height: "65px", border: "3px solid #EEF7FF",
                     borderRadius: "100px", background: "#999999",  boxShadow: "0 3px 6px rgba(0,0,0,0.4)"}}
                     onClick={handleEditClick}>
@@ -512,16 +556,16 @@ export const User_Zone = ({onClose}) => {
                     </div>
                     </div>
 
-                  <div style={{display:"flex", alignItems: "center", marginTop: "-20px"}}>
+                  <div style={{display:"flex", alignItems: "center", marginTop: "-15px"}}>
                   <p style = {{ color: "#000", fontFamily:'establishRetrosansOTF'}}>@</p> 
                     
                   {/* 동적으로 user id 띄우기 */}
-                  <p style = {{marginLeft:"2px", color: "#000", fontFamily:'establishRetrosansOTF' }}>userid</p> 
+                  <p style = {{marginLeft:"2px", color: "#000", fontFamily:'establishRetrosansOTF' }}>{userId}</p> 
                   </div>
 
                   <div style={{display:"flex"}}>
                     <p style ={{color: "#000"}}>Joined </p>
-                    <p style = {{color:"#000", marginLeft: "7px", fontWeight:600}}> June 2023</p>
+                    <p style = {{color:"#000", marginLeft: "7px", fontWeight:600}}> {userDate}</p>
                     </div>
 
                   <div style={{display: "flex", alignItems: "center"}}>
@@ -596,13 +640,13 @@ export const User_Zone = ({onClose}) => {
               <div style={{display:"flex", marginTop:"30px", width: "100%", justifyContent:"space-between"}}>
 
                 <div style={{padding:"10px", width: "30%", height: "100%", border: "3px solid #EEF7FF", borderRadius: "50px", background: "#CDE8E5",boxShadow: "0 3px 6px rgba(0,0,0,0.6)", display: "flex", justifyContent: "center" }}>
-                  <h3> 13</h3>
+                  <h3> {userAnimal}</h3>
                 </div>
                 <div style={{padding:"10px",  width: "30%", height: "100%", border: "3px solid #EEF7FF", borderRadius: "50px", background: "#CDE8E5",boxShadow: "0 3px 6px rgba(0,0,0,0.6)", display: "flex", justifyContent: "center" }}>
-                  <h3> 8</h3>
+                  <h3> {userSport}</h3>
                 </div>
                 <div style={{padding:"10px", width: "30%", height: "100%", border: "3px solid #EEF7FF", borderRadius: "50px", background: "#CDE8E5",boxShadow: "0 3px 6px rgba(0,0,0,0.6)", display: "flex", justifyContent: "center" }}>
-                  <h3> 30 </h3>
+                  <h3> {userFood} </h3>
                 </div>
                 
               </div>
@@ -626,7 +670,7 @@ export const User_Zone = ({onClose}) => {
          
           <div style = {{display: "flex",  marginLeft: "300px", marginTop: "-5px", justifyContent: 'center',
            alignItems: 'center', width: "78px", height: "78px", border: "8px solid #4D869C", borderRadius: "50px" }}>
-          <h5 style={{ color: "#217346", fontWeight: 800, fontSize: "25px", marginTop: "6px", marginRight: "3px"}}> 13 </h5>
+          <h5 style={{ color: "#217346", fontWeight: 800, fontSize: "25px", marginTop: "6px", marginRight: "3px"}}> {userRanking || 'Loading... '} </h5>
           </div>
 
           <hr style ={{width: "100%", border: "2px solid #666666", marginTop: "25px"}}></hr>
