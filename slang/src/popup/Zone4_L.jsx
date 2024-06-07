@@ -1,10 +1,7 @@
 // zone 4 => 스포츠 
 
-// zone 1의 팝업 => 동물 
-
 import React, {useState} from 'react';
 import { AiOutlineClose} from "react-icons/ai";
-
 
 
 export const Zone4_L = ({onClose}) => {
@@ -30,12 +27,14 @@ export const Zone4_L = ({onClose}) => {
   <div 
     style = {{
       position: "relative",
-      background: "#C2DEDC",
+
+      background: "#ADC2A9",
       borderRadius: "170px",
       padding: "120px 120px",
       animation: "dropTop 0.4s linear",
       display: "flex",
       flexDirection: "column",
+
     }}
     >
 
@@ -77,16 +76,17 @@ export const Zone4_L = ({onClose}) => {
         alignItems: "center"
        }}>
 
-        <div style = {{marginLeft: "120px", height: "100px", width: "200px", border: "4px solid #EEF5FF", borderRadius: "30px", display: "flex", justifyContent: "center",
-        alignItems: "center", background: "#AAD7D9", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
+        <div style = {{marginLeft: "100px", height: "100px", width: "280px", border: "4px solid #99A799", borderRadius: "30px", display: "flex", justifyContent: "center",
+        alignItems: "center", background: "#D3E4CD", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
         }}> 
-        <h3 style={{fontSize: "35px"}}> 포유류 </h3>
+        <h3 style={{fontSize: "35px"}}> 실내 스포츠 </h3>
         </div>
 
-        <div style = {{marginRight: "120px", height: "100px", width: "200px", border: "4px solid #EEF5FF", borderRadius: "30px",
-          display: "flex", justifyContent: "center", alignItems: "center", background: "#AAD7D9", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
+        <div style = {{marginRight: "120px", height: "100px", width: "280px", border: "4px solid #99A799", borderRadius: "30px",
+          display: "flex", justifyContent: "center", alignItems: "center", background: "#D3E4CD", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
         }}> 
-        <h3 style={{fontSize: "35px"}}> 양서류 </h3>
+        <h3 style={{fontSize: "35px"}}> 실외 스포츠 </h3>
+
         </div>
 
       </div>

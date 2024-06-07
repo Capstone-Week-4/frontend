@@ -30,7 +30,7 @@ export const Zone3_L = ({onClose}) => {
   <div 
     style = {{
       position: "relative",
-      background: "#C2DEDC",
+      background: "#9CB4CC",
       borderRadius: "170px",
       padding: "120px 120px",
       animation: "dropTop 0.4s linear",
@@ -77,14 +77,15 @@ export const Zone3_L = ({onClose}) => {
         alignItems: "center"
        }}>
 
-        <div style = {{marginLeft: "120px", height: "100px", width: "200px", border: "4px solid #EEF5FF", borderRadius: "30px", display: "flex", justifyContent: "center",
-        alignItems: "center", background: "#AAD7D9", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
+        <div style = {{marginLeft: "120px", height: "100px", width: "200px", border: "4px solid #F9F7F7", borderRadius: "30px", display: "flex", justifyContent: "center",
+        alignItems: "center", background: "#B7C4CF", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
+
         }}> 
         <h3 style={{fontSize: "35px"}}> 모음 </h3>
         </div>
 
-        <div style = {{marginRight: "120px", height: "100px", width: "200px", border: "4px solid #EEF5FF", borderRadius: "30px",
-          display: "flex", justifyContent: "center", alignItems: "center", background: "#AAD7D9", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
+        <div style = {{marginRight: "120px", height: "100px", width: "200px", border: "4px solid #F9F7F7", borderRadius: "30px",
+          display: "flex", justifyContent: "center", alignItems: "center", background: "#B7C4CF", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
         }}> 
         <h3 style={{fontSize: "35px"}}> 자음 </h3>
         </div>

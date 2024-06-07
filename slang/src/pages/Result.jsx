@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import '../static/style.css'
 import { useNavigate, useLocation } from 'react-router-dom';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import { styled } from '@mui/material/styles';
 import ApexCharts from 'apexcharts';
+import axios from 'axios'
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
@@ -19,9 +20,35 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 }));
 
 const Result = () => {
+
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    const storedUserId = localStorage.getItem('userId');
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+  }, []);
+
   const [activeSpan, setActiveSpan] = useState(null);
+
   const handleSpanClick = (id) => {
     setActiveSpan(id);
+    switch (id) {
+      case 1:
+        navigate('/camera');
+        break;
+      case 2:
+        navigate('/animals');
+        break;
+      case 3:
+        navigate('/convo');
+        break;
+      case 4:
+        navigate('/convo');
+      default:
+        break;
+    }
   };
   const location = useLocation();
   const navigate = useNavigate();
@@ -141,63 +168,118 @@ const Result = () => {
   }, []); // Empty dependency array to ensure useEffect runs only once after mount
 
   const handleSports = () => {
-     navigate('/camera');
+    const data = {
+      userId: userId,
+      point: correctAnswer,
+      category: "sports",
+    };
+    console.log("userID: " + userId)
+    const accessToken = localStorage.getItem('accessToken');
+    const headers = {
+      // 'Authorization': `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    };
+    axios.post('http://43.203.98.168:8080/updatePoint', data, { headers })
+      .then(response => {
+        console.log('Result submitted successfully:', response.data);
+        navigate('/main');
+      })
+      .catch(error => {
+        console.error('Error submitting result:', error);
+        if (error.response && error.response.status === 401) {
+          navigate('/result');
+        }
+      });
+  };
 
-  }
+
   return (
     <div style={{display: 'grid', gridTemplateColumns: '12% 88%', height: '100vh', color: 'black'}}>
-      <div>
-        <ul >
-        <span style={{marginTop: '30px', display: 'flex', alignItems: 'center'}}><a class="active" href="#home" style={{color: 'black', textDecoration: 'none'}}>LOGO</a></span>
-          <span style={{
-              marginTop: '30px',
-              display: 'flex',
-              alignItems: 'center',
-              borderRadius: '12px',
-              padding: '10px',
-              border: '1px solid white',
-              cursor: 'pointer',
-              backgroundColor: activeSpan === 1 ? '#DDF4FF' : 'white',
-            }}
-            onClick={() => handleSpanClick(1)}><img style={{marginRight: '10px'}} src="https://d35aaqx5ub95lt.cloudfront.net/vendor/784035717e2ff1d448c0f6cc4efc89fb.svg" /><a class="active" href="#home" style={{color: 'black', textDecoration: 'none'}}>학습</a></span>
-          <span style={{
-              marginTop: '30px',
-              display: 'flex',
-              alignItems: 'center',
-              padding: '10px',
-
-              borderRadius: '12px',
-              border: '1px solid white',
-              cursor: 'pointer',
-              backgroundColor: activeSpan === 2 ? '#DDF4FF' : 'white',
-            }}
-            onClick={() => handleSpanClick(2)}><img style={{marginRight: '10px'}} src="https://d35aaqx5ub95lt.cloudfront.net/vendor/7ef36bae3f9d68fc763d3451b5167836.svg" /><a class="active" href="#home" style={{color: 'black', textDecoration: 'none'}}>퀴즈</a></span>
-          <span style={{
-              marginTop: '30px',
-              display: 'flex',
-              alignItems: 'center',
-              padding: '10px',
-
-              borderRadius: '12px',
-              border: '1px solid white',
-              cursor: 'pointer',
-              backgroundColor: activeSpan === 3 ? '#DDF4FF' : 'white',
-            }}
-            onClick={() => handleSpanClick(3)}><img style={{marginRight: '10px'}} src="https://d35aaqx5ub95lt.cloudfront.net/vendor/7159c0b5d4250a5aea4f396d53f17f0c.svg" /><a class="active" href="#home" style={{color: 'black', textDecoration: 'none'}}>연습</a></span>
-          <span style={{
-              marginTop: '30px',
-              display: 'flex',
-              alignItems: 'center',
-              padding: '10px',
-
-              borderRadius: '12px',
-              border: '1px solid white',
-              cursor: 'pointer',
-              backgroundColor: activeSpan === 4 ? '#DDF4FF' : 'white',
-            }}
-            onClick={() => handleSpanClick(4)}><img style={{marginRight: '10px'}} src="https://simg-ssl.duolingo.com/avatars/671221893/JrE_lFPsGa/medium" /><a class="active" href="#home" style={{color: 'black', textDecoration: 'none'}}>프로필</a></span>
-        </ul>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <ul style={{ listStyle: 'none', padding: 0 }}>
+        <li style={{ display: 'flex', alignItems: 'center', marginBottom: '30px' }}>
+          <a className="active" href="#home" style={{ color: 'black', textDecoration: 'none' }} onClick={() => handleSpanClick(0)}>
+            LOGO
+          </a>
+        </li>
+        <li
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            borderRadius: '12px',
+            padding: '10px',
+            border: '1px solid white',
+            cursor: 'pointer',
+            backgroundColor: activeSpan === 2 ? '#DDF4FF' : 'white',
+            marginBottom: '30px',
+          }}
+          onClick={() => handleSpanClick(1)}
+        >
+          <img style={{ marginRight: '10px' }} src="https://d35aaqx5ub95lt.cloudfront.net/vendor/784035717e2ff1d448c0f6cc4efc89fb.svg" />
+          <a className="active" href="#home" style={{ color: 'black', textDecoration: 'none' }} onClick={() => handleSpanClick(1)}>
+            학습
+          </a>
+        </li>
+        <li
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            padding: '10px',
+            borderRadius: '12px',
+            border: '1px solid white',
+            cursor: 'pointer',
+            backgroundColor: activeSpan === 3 ? '#DDF4FF' : 'white',
+            marginBottom: '30px',
+          }}
+          onClick={() => handleSpanClick(2)}
+        >
+          <img style={{ marginRight: '10px' }} src="https://d35aaqx5ub95lt.cloudfront.net/vendor/7ef36bae3f9d68fc763d3451b5167836.svg" />
+          <a className="active" href="#home" style={{ color: 'black', textDecoration: 'none' }} onClick={() => handleSpanClick(2)}>
+            퀴즈
+          </a>
+        </li>
+        <li
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            padding: '5px',
+            borderRadius: '12px',
+            border: '1px solid white',
+            cursor: 'pointer',
+            backgroundColor: activeSpan === 4 ? '#DDF4FF' : 'white',
+            marginBottom: '30px',
+          }}
+          onClick={() => handleSpanClick(3)}
+        >
+          <img style={{ marginRight: '5%' }} src="https://d35aaqx5ub95lt.cloudfront.net/vendor/7159c0b5d4250a5aea4f396d53f17f0c.svg" />
+          <a className="active" href="#home" style={{ color: 'black', textDecoration: 'none' }} onClick={() => handleSpanClick(3)}>
+            연습
+          </a>
+        </li>
+        <li
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        padding: '5px',
+        borderRadius: '12px',
+        border: '1px solid white',
+        cursor: 'pointer',
+        backgroundColor: activeSpan === 4 ? '#DDF4FF' : 'white',
+      }}
+      onClick={() => handleSpanClick(4)}
+    >
+      <div style={{ width: '50px', height: '50px', borderRadius: '50%', overflow: 'hidden', marginRight: '10px' }}>
+        <img
+          src="https://simg-ssl.duolingo.com/avatars/671221893/JrE_lFPsGa/medium"
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+        />
       </div>
+      <a className="active" href="#home" style={{ color: 'black', textDecoration: 'none' }}>
+        프로필
+      </a>
+    </li>
+      </ul>
+    </div>
 
   <div style={{backgroundColor: '#f7f8f9', marginLeft: '10px', padding: '1px', height: '100vh', border: '1px solid gray'}}>
     <div style={{ overflowY: 'auto', maxHeight: '100vh' }}>

@@ -29,7 +29,7 @@ export const Zone2_L = ({onClose}) => {
   <div 
     style = {{
       position: "relative",
-      background: "#C2DEDC",
+      background: "#C1A3A3",
       borderRadius: "170px",
       padding: "120px 120px",
       animation: "dropTop 0.4s linear",
@@ -52,7 +52,9 @@ export const Zone2_L = ({onClose}) => {
       </div>
 
       <div style = {{
-        borderBottom: "2px solid gray",
+
+        borderBottom: "2px solid #FFF0F5",
+
         diplay: "flex",
         width: "800px",
         height: "150px",
@@ -62,8 +64,9 @@ export const Zone2_L = ({onClose}) => {
 
       }}>
 
-       <h3 style = {{ justifyContent: "center", alignItems: "center", paddingBottom: "40px", fontSize: "45px", fontWeight: 600}}>음식</h3>
-        
+       <h3 style = {{ justifyContent: "center", alignItems: "center", 
+       paddingBottom: "40px", fontSize: "45px", fontWeight: 600}}>음식</h3>
+
       </div>
 
       {/* Body */ }
@@ -76,14 +79,16 @@ export const Zone2_L = ({onClose}) => {
         alignItems: "center"
        }}>
 
-        <div style = {{marginLeft: "120px", height: "100px", width: "200px", border: "4px solid #EEF5FF", borderRadius: "30px", display: "flex", justifyContent: "center",
-        alignItems: "center", background: "#AAD7D9", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
+        <div style = {{marginLeft: "120px", height: "100px", width: "200px", border: "4px solid #FFF0F5", borderRadius: "30px", display: "flex", justifyContent: "center",
+        alignItems: "center", background: "#F6D6D6", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
+
         }}> 
         <h3 style={{fontSize: "35px"}}> 명사 </h3>
         </div>
 
-        <div style = {{marginRight: "120px", height: "100px", width: "200px", border: "4px solid #EEF5FF", borderRadius: "30px",
-          display: "flex", justifyContent: "center", alignItems: "center", background: "#AAD7D9", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
+        <div style = {{marginRight: "120px", height: "100px", width: "200px", border: "4px solid #FFF0F5", borderRadius: "30px",
+          display: "flex", justifyContent: "center", alignItems: "center", background: "#F6D6D6", boxShadow: "0 3px 6px rgba(0,0,0,0.4)"
+
         }}> 
         <h3 style={{fontSize: "35px"}}> 동사 </h3>
         </div>

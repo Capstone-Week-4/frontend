@@ -1,4 +1,5 @@
 import '../App.css';
+import React, { useState , useContext} from 'react';
 import { ScrollControls, Scroll ,Environment, Float, Sparkles, PositionalAudio} from '@react-three/drei';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -15,12 +16,15 @@ import sound_2 from '../sounds/sound_2.mp3'
 import sound_3 from '../sounds/sound_3.mp3'
 import logo from '../flower_logo4.png'
 import { useNavigate } from 'react-router-dom';
+import UserContext from '../UserContext';
 
 function LoadingPage() {
 
+  const { userId } = useContext(UserContext);
 
   const navigate = useNavigate();
-  
+  console.log("userID: " + userId)
+
   const goingpage = () => {
     setTimeout(() => {
       navigate("/going");
