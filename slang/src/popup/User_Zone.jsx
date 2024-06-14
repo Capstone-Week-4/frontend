@@ -20,6 +20,19 @@ import "../App.css";
 
 
 const FriendPopup = ({onClose}) => {
+  const [friendData, setfriendData] = useState();
+  const [userId, setUserId] = useState();
+
+  
+
+  useEffect(() => {
+    const storedUserId = localStorage.getItem('userId');
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+  }, []);
+  
+  
   return (
     <div
       style ={{position: "fixed", top: 0 , left: 0, right: 0, bottom: 0,
@@ -27,9 +40,9 @@ const FriendPopup = ({onClose}) => {
        zIndex: 800}}>
 
         <div style = {{
-          position: "relative", background: "#DBB5B5", padding: "40px 50px",  marginBottom: "5px", 
+          position: "relative", background: "#DBB5B5", padding: "40px 50px",  marginBottom: "10px", 
           animation: "dropTop 0.4s linear",
-          width: "700px", height: "980px", overflowT: "scroll", borderRadius: "50px"}}>
+          width: "700px", height: "1000px", overflowT: "scroll", borderRadius: "50px"}}>
 
           <div style= {{position: "absolute", top: 35, right: 35}}>
             <AiOutlineClose onClick={onClose} size ={25}/>
@@ -91,9 +104,9 @@ const RequestPopup = ({onClose}) => {
         {isFollowPopupOpen && <FollowPopup onClose={handleFollowPopupClose}/>}
         
         <div style = {{
-          position: "relative", background: "#DBB5B5", padding: "40px 50px",  marginBottom: "5px", 
+          position: "relative", background: "#DBB5B5", padding: "40px 50px",  marginBottom: "10px", 
           animation: "dropTop 0.2s linear",
-          width: "700px", height: "980px", overflowT: "scroll", borderRadius: "50px"}}>
+          width: "700px", height: "1000px", overflowT: "scroll", borderRadius: "50px"}}>
 
           <div style= {{position: "absolute", top: 35, right: 35}}>
             <AiOutlineClose onClick={onClose} size ={25}/>
@@ -166,9 +179,9 @@ return (
    zIndex: 800}}>
 
     <div style = {{
-      position: "relative", background: "#A9B388", padding: "40px 50px",  marginBottom: "5px", 
+      position: "relative", background: "#A9B388", padding: "40px 50px",  marginBottom: "10px", 
       animation: "dropTop 0.4s linear",
-      width: "700px", height: "980px", overflowT: "scroll", borderRadius: "50px"}}>
+      width: "700px", height: "1000px", overflowT: "scroll", borderRadius: "50px"}}>
 
       <div style= {{position: "absolute", top: 35, right: 35}}>
         <AiOutlineClose onClick={onClose} size ={25}/>
@@ -190,6 +203,30 @@ return (
 const FollowPopup= ({onClose})=> {
 
   const inputRef = useRef();
+  const [users, setUsers] = useState([]); // users 엔드 포인트에서 전체 data를 리스트로 가져오기 
+  const [randomUsers, setRandomUsers] = useState([]); // 그 중 random으로 4개 가져오기 
+  const [currentUserId, setCurrentUserId] = useState();
+
+
+  useEffect(() => {
+    const storedUserId = localStorage.getItem('userId');
+    if (storedUserId) {
+      setCurrentUserId(storedUserId);
+
+    axios.get('http://43.203.98.168:8080/users')
+    .then(response => {
+      const filteredUsers = response.data.filter(user => user.userId !== storedUserId);
+      setUsers(filteredUsers);
+      const shuffledUsers = filteredUsers.sort(()=> 0.5 - Math.random());
+      setRandomUsers(shuffledUsers.slice(0,5));
+
+    })
+    .catch (error => {
+      console.error('Error fetching users:', error);
+    });
+    }
+  }, []);
+
 
   const onSearch = () => {
     const  searchUser = inputRef.current.value;
@@ -226,9 +263,9 @@ return (
    zIndex: 800}}>
 
     <div style = {{
-      position: "relative", background: "#96B6C5", padding: "40px 50px",  marginBottom: "5px", marginRight: "120px",
+      position: "relative", background: "#96B6C5", padding: "40px 50px",  marginBottom: "10px", marginRight: "130px",
       animation: "dropTop 0.5s linear",
-      width: "800px", height: "980px", overflowT: "scroll", borderRadius: "50px"}}>
+      width: "800px", height: "1000px", overflowT: "scroll", borderRadius: "50px"}}>
 
       <div style= {{position: "absolute", top: 35, right: 35}}>
         <AiOutlineClose onClick={onClose} size ={25}/>
@@ -254,38 +291,20 @@ return (
 
 <SlActionRedo onClick={onSearch} id='search-Btn'
  size={30} style={{marginTop: "15px"}}/>
-
         </div>
-
-         
-          <div style = {{borderRadius: "30px", background: "#AC7D88",
-           padding: "10px", width: "550px", height: "100px", marginTop: "20px",
-            border: "3px solid #EEF7FF", display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-
-            <h5 style ={{color:"#EDE4E0", fontSize: "23px", marginLeft: "100px"}}> 뉴진스 </h5>
-            <AiTwotonePlusSquare size = {30} style ={{marginRight: "25px"}} />
-          </div>
-
-          <div style = {{borderRadius: "30px", background: "#AC7D88", 
-          padding: "10px", width: "550px", height: "100px", marginTop: "20px", 
-          border: "3px solid #EEF7FF", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <h5 style={{color: "#EDE4E0",  fontSize: "23px", marginLeft: "100px"}}> 에스파 </h5>
-            <AiTwotonePlusSquare size = {30} style ={{marginRight: "25px"}} />
-
-          </div>
-
-          <div style = {{borderRadius: "30px", background: "#AC7D88", padding: "10px",
-           width: "550px", height: "100px", marginTop: "20px", border: "3px solid #EEF7FF", 
-           display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-            <h5 style={{color: "#EDE4E0",  fontSize: "23px", marginLeft: "100px"}}> 르세라핌 </h5>
-            <AiTwotonePlusSquare size = {30} style ={{marginRight: "25px"}} />
-
-          </div>
-
-          </div>
-    
-
+        {randomUsers.map((user) => (
+           <div key={user.userId} style={{ borderRadius: "30px", background: "#AC7D88", padding: "10px", width: "550px", height: "100px", marginTop: "20px",
+            border: "3px solid #EEF7FF", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <h5 style={{ color: "#EDE4E0", fontSize: "23px", marginLeft: "100px" }}>{user.userId}</h5>
+            <AiTwotonePlusSquare size={30} style={{ marginRight: "25px" }} />
+            </div>
       
+        ))}
+
+
+
+
+          </div>
     </div>
   </div>
 );
@@ -295,71 +314,44 @@ return (
 // 전체 사용자 랭킹 
 
 const RankingPopup = ({onClose}) => {
+  const [rankingData, setRankingData] = useState([]);
+
+  useEffect(() => {
+
+    axios.get('http://43.203.98.168:8080/rank')
+    .then(response => {
+      setRankingData(response.data);
+    })
+    .catch(error => {
+      console.error('Error fetching ranking data:', error);
+    });
+  }, []);
+
+
   return (
     <div
-    style ={{position: "fixed", top: 0 , left: 0, right: 0, bottom: 0,
-    padding: "30px", display: "flex", alignItems: "center", justifyContent: "right",
-     zIndex: 800}}>
-  
-      <div style = {{
-        position: "relative", background: "#96B6C5", padding: "40px 120px",  marginBottom: "5px", marginRight: "10px",
-        animation: "dropTop 0.5s linear",
-        width: "800px", height: "980px", overflowT: "scroll", borderRadius: "50px"}}>
-  
-        <div style= {{position: "absolute", top: 35, right: 35}}>
-          <AiOutlineClose onClick={onClose} size ={25}/>
-  
-          {/* 내가 아직 친구가 아닌 사용자들 추천 */}
-          </div>
-          <h3 style={{textAlign: "center", fontSize:"45px", fontFamily: "neurimboGothicRegular",
-            marginTop: "10px", marginBottom: "100px", padding: "30px"
-          }}>전체 사용자 랭킹</h3>
-  
-          <hr style={{border: "3px solid #666666", width: "100%", marginBottom: "20px"}}></hr>
-     
-       <div style={{alignItems: "center", alignContent: "center"}}>
-  
-            <div style = {{borderRadius: "30px", background: "#AC7D88",
-             padding: "10px", width: "550px", height: "100px", marginTop: "20px",
-              border: "3px solid #EEF7FF", display: "flex", alignItems: "center"}}>
-              <div style = {{width: "55px", height: "55px", border: "3px solid #fff", borderRadius: "50px", marginLeft: "20px", display:"flex", justifyContent: "center", alignItems: "center"}}>
-                <h5 style ={{display:"flex", fontSize: "25px",fontWeight: 700, justifyContent: "center", alignItems: "center", marginTop: "5px"}}>1</h5>
+      style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, padding: "30px", display: "flex", alignItems: "center", justifyContent: "right", zIndex: 800 }}
+    >
+      <div style={{ position: "relative", background: "#96B6C5", padding: "40px 120px", marginBottom: "15px", marginRight: "10px", animation: "dropTop 0.5s linear", width: "800px", height: "1000px", overflowT: "scroll", borderRadius: "50px" }}>
+        <div style={{ position: "absolute", top: 35, right: 35 }}>
+          <AiOutlineClose onClick={onClose} size={25} />
+        </div>
+        <h3 style={{ textAlign: "center", fontSize: "45px", fontFamily: "neurimboGothicRegular", marginTop: "10px", marginBottom: "100px", padding: "30px" }}>전체 사용자 랭킹</h3>
+        <hr style={{ border: "3px solid #666666", width: "100%", marginBottom: "20px" }}></hr>
+        <div style={{ alignItems: "center", alignContent: "center" }}>
+          {rankingData.map((user, index) => (
+            <div key={user.userId} style={{ borderRadius: "30px", background: "#AC7D88", padding: "10px", width: "550px", height: "100px", marginTop: "20px", border: "3px solid #EEF7FF", display: "flex", alignItems: "center" }}>
+              <div style={{ width: "55px", height: "55px", border: "3px solid #fff", borderRadius: "50px", marginLeft: "20px", display: "flex", justifyContent: "center", alignItems: "center" }}>
+                <h5 style={{ display: "flex", fontSize: "25px", fontWeight: 700, justifyContent: "center", alignItems: "center", marginTop: "5px" }}>{index + 1}</h5>
               </div>
-              <h5 style ={{color:"#EDE4E0", fontSize: "23px", marginLeft: "50px"}}> 에스파 </h5>
-
+              <h5 style={{ color: "#EDE4E0", fontSize: "24px", fontFamily: "establishRetrosansOTF",  marginLeft: "30px", marginTop: "10px"}}>{user.userId}</h5>
             </div>
-  
-            <div style = {{borderRadius: "30px", background: "#AC7D88",
-             padding: "10px", width: "550px", height: "100px", marginTop: "20px",
-              border: "3px solid #EEF7FF", display: "flex", alignItems: "center"}}>
-              <div style = {{width: "55px", height: "55px", border: "3px solid #fff", borderRadius: "50px", marginLeft: "20px", display:"flex", justifyContent: "center", alignItems: "center"}}>
-                <h5 style ={{display:"flex", fontSize: "25px",fontWeight: 700, justifyContent: "center", alignItems: "center", marginTop: "5px"}}>2</h5>
-              </div>
-              <h5 style ={{color:"#EDE4E0", fontSize: "23px", marginLeft: "50px"}}> 뉴진스 </h5>
-
-            </div>
-  
-        
-          
-            <div style = {{borderRadius: "30px", background: "#AC7D88",
-             padding: "10px", width: "550px", height: "100px", marginTop: "20px",
-              border: "3px solid #EEF7FF", display: "flex", alignItems: "center"}}>
-              <div style = {{width: "55px", height: "55px", border: "3px solid #fff", borderRadius: "50px", marginLeft: "20px", display:"flex", justifyContent: "center", alignItems: "center"}}>
-                <h5 style ={{display:"flex", fontSize: "25px",fontWeight: 700, justifyContent: "center", alignItems: "center", marginTop: "5px"}}>3</h5>
-              </div>
-              <h5 style ={{color:"#EDE4E0", fontSize: "23px", marginLeft: "50px"}}> 르세라핌 </h5>
-
-            </div>
-  
-            </div>
-  
-            </div>
-          
+          ))}
+        </div>
       </div>
-
+    </div>
   );
-  };
-
+};
 
 export const User_Zone = ({onClose}) => {
 
