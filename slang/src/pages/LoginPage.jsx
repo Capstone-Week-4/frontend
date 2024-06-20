@@ -15,10 +15,15 @@ import logo from '../flower_logo4.png'
 import { useNavigate } from 'react-router-dom';
 import '../static/login.css'
 import { jwtDecode } from 'jwt-decode';
+import { useEffect } from 'react';
 import UserContext from '../UserContext';
 
 function LoginPage() {
 
+  useEffect(()=> {
+    localStorage.clear();
+  } , [])
+  
     const [userId, setUserId] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');

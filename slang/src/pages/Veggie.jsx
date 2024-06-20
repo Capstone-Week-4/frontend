@@ -101,11 +101,14 @@ const Veggie = () => {
   }, [prediction, currentImageIndex, imageUrls]);
 
   const handleSports = () => {
+    if(currentImageIndex == imageUrls.length - 1){
+
       const data = {
         userId: userId,
         point: correctAnswer,
         category: 'animal',
       };
+      
       console.log("userID: " + userId);
       const accessToken = localStorage.getItem('accessToken');
       const headers = {
@@ -122,7 +125,16 @@ const Veggie = () => {
             navigate('/result', { state: { correctAnswer, category: 'animal' } });
           }
         });
+      }
+      else {
+        setCountdown(5)
+        setCorrectAnswer((correctAnswer+1)%imageUrls.length);
+        setCurrentImageIndex((currentImageIndex + 1) % imageUrls.length);
+        setProgressValue(progressValue + (100 / (imageUrls.length - 1)));
+        setConfirmButtonColor('#3c403c');
+      }
   };
+
   const handleAnimals = () => {
     // navigate('/animals');if this
     if(currentImageIndex == imageUrls.length - 1){
@@ -137,6 +149,7 @@ const Veggie = () => {
 
 
   }
+
   const handleFood = () => {
     navigate('/food');
 

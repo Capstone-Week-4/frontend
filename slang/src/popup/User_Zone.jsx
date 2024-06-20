@@ -607,8 +607,9 @@ export const User_Zone = ({onClose}) => {
                     <h3 style={{fontFamily:'establishRetrosansOTF', fontSize: "32px", marginTop: "10px"}}>{userName}</h3> 
                     <div style={{display:"flex", marginLeft: "880px ",  marginTop: "10px", justifyContent: "center", alignContent: "center", padding:"10px", width: "215px", height: "65px", border: "3px solid #EEF7FF",
                     borderRadius: "100px", background: "#999999",  boxShadow: "0 3px 6px rgba(0,0,0,0.4)"}}
-                    onClick={handleEditClick}>
-                    <p style={{marginLeft: "10px", color:"#fff",fontFamily:"neurimboGothicRegular" ,  fontSize: "20px"}}> Edit Profile</p>
+                    >
+                    <a href = "/" style = {{textDecoration: 'none', color: 'inherit'}}>
+                    <p style={{marginLeft: "10px", color:"#fff",fontFamily:"neurimboGothicRegular" ,  fontSize: "20px"}}> 로그아웃</p></a>
                     </div>
                     </div>
 
