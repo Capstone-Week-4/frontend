@@ -3,6 +3,7 @@ import '../static/style.css'
 import { useNavigate } from 'react-router-dom';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
 import { styled } from '@mui/material/styles';
+import axios from 'axios'
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
@@ -27,6 +28,14 @@ const Veggie = () => {
   const [correctAnswer, setCorrectAnswer] = useState(0);
   const [activeSpan, setActiveSpan] = useState(null);
 
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    const storedUserId = localStorage.getItem('userId');
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+  }, []);
   const handleSpanClick = (id) => {
     setActiveSpan(id);
     switch (id) {
@@ -82,44 +91,42 @@ const Veggie = () => {
   }, []);
 
   useEffect(() => {
-    // Check if the prediction matches the current image filename (excluding the file extension)
-    setCurrentImageFilename(imageUrls[currentImageIndex].split('.')[0])
-    console.log(currentImageFilename)
-    console.log(prediction)
-    if (prediction == currentImageFilename) {
-      console.log("Set to green")
+    setCurrentImageFilename(imageUrls[currentImageIndex].split('.')[0]);
+    if (prediction === 'None!') {
+      setPrediction('');
+    } else if (prediction === currentImageFilename) {
       setConfirmButtonColor('#00cc00');
-      setPrediction(currentImageFilename)
-
-    } 
+      setPrediction(currentImageFilename);
+    }
   }, [prediction, currentImageIndex, imageUrls]);
 
   const handleSports = () => {
-    // navigate('/sports');
-    if(currentImageIndex == imageUrls.length - 1){
-          navigate('/result' ,{ state: { correctAnswer } });
-    }
-    else {
-      setCurrentImageIndex((currentImageIndex + 1));
-      setProgressValue(progressValue + (100 / (imageUrls.length - 1)));
-      setConfirmButtonColor('#3c403c');
-      if(confirmButtonColor == '#00cc00'){
-        setCorrectAnswer(correctAnswer + 1);
-      }
-      setCountdown(5)
-
-  
-      const imageContainerElement = document.getElementById('image-container');
-      if (imageContainerElement) {
-        imageContainerElement.style.backgroundImage = `url(${process.env.PUBLIC_URL}/${imageUrls[currentImageIndex]})`;
-      }
-    }
-   
-  }
+      const data = {
+        userId: userId,
+        point: correctAnswer,
+        category: 'animal',
+      };
+      console.log("userID: " + userId);
+      const accessToken = localStorage.getItem('accessToken');
+      const headers = {
+        'Content-Type': 'application/json',
+      };
+      axios.post('http://43.203.98.168:8080/updatePoint', data, { headers })
+        .then(response => {
+          console.log('Result submitted successfully:', response.data);
+          navigate('/result', { state: { correctAnswer, category: 'animal' } });
+        })
+        .catch(error => {
+          console.error('Error submitting result:', error);
+          if (error.response && error.response.status === 401) {
+            navigate('/result', { state: { correctAnswer, category: 'animal' } });
+          }
+        });
+  };
   const handleAnimals = () => {
-    // navigate('/animals');
+    // navigate('/animals');if this
     if(currentImageIndex == imageUrls.length - 1){
-      navigate('/result',  { state: { correctAnswer } });
+      navigate('/result', { state: { correctAnswer, category: 'animal' } });
     }
     else {
       setCountdown(5)
@@ -142,7 +149,7 @@ const Veggie = () => {
       <ul style={{ listStyle: 'none', padding: 0 }}>
         <li style={{ display: 'flex', alignItems: 'center', marginBottom: '30px' }}>
           <a className="active" href="#home" style={{ color: 'black', textDecoration: 'none' }} onClick={() => handleSpanClick(0)}>
-            LOGO
+            {/* LOGO */}
           </a>
         </li>
         <li

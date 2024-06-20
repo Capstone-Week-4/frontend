@@ -18,7 +18,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   },
 }));
 
-const CameraPage = () => {
+const CameraPageOther = () => {
   const [prediction, setPrediction] = useState('');
   const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -57,12 +57,11 @@ const CameraPage = () => {
 
 
         const data = await response.text();
-        console.log(data)
         setPrediction(data);
         setInitialPrediction(false);
 
       } catch (error) {
-        setPrediction(' ');
+        setPrediction('동작 없음');
       }
     };
 
@@ -73,15 +72,15 @@ const CameraPage = () => {
     };
   }, []);
 
-useEffect(() => {
-  setCurrentImageFilename(imageUrls[currentImageIndex].split('.')[0]);
-  if (prediction === 'None!') {
-    setPrediction('');
-  } else if (prediction === currentImageFilename) {
-    setConfirmButtonColor('#00cc00');
-    setPrediction(currentImageFilename);
-  }
-}, [prediction, currentImageIndex, imageUrls]);
+  useEffect(() => {
+    setCurrentImageFilename(imageUrls[currentImageIndex].split('.')[0]);
+    if (prediction === 'None!') {
+      setPrediction('');
+    } else if (prediction === currentImageFilename) {
+      setConfirmButtonColor('#00cc00');
+      setPrediction(currentImageFilename);
+    }
+  }, [prediction, currentImageIndex, imageUrls]);
 
   const handleSports = () => {
     if (currentImageIndex === imageUrls.length - 1) {
@@ -232,4 +231,4 @@ useEffect(() => {
   );
 };
 
-export default CameraPage;
+export default CameraPageOther;

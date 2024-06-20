@@ -186,7 +186,7 @@ const ConvoSports = () => {
   <ul style={{ listStyle: 'none', padding: 0 }}>
     <li style={{ display: 'flex', alignItems: 'center', marginBottom: '30px' }}>
       <a className="active" href="#home" style={{ color: 'black', textDecoration: 'none' }}>
-        LOGO
+        {/* LOGO */}
       </a>
     </li>
     <li

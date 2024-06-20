@@ -19,6 +19,7 @@ import FoodNounTest from "./pages/FoodNounTest";
 import FoodVerbTest from "./pages/FoodVerbTest";
 import IndoorSportTest from "./pages/IndoorSportTest";
 import OutdoorSportTest from "./pages/OutdoorSportTest";
+import CameraPageOther from "./pages/CameraPage_other";
 
 
 
@@ -36,6 +37,7 @@ return (
   <Route path="/going" element={<GoingPage isSwitching={isSwitching} setIsSwitching={setIsSwitching} />} />
   <Route path="/main" element={<MainPage/>} />
   <Route path="/camera" element={<CameraPage />} />
+  <Route path="/cameraOther" element={<CameraPageOther />} />
   <Route path="/" element={<LoginPage />} />
   <Route path="/sports" element={<Sports />} />
   <Route path="/animals" element={<Animals />} />

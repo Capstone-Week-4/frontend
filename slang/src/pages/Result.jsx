@@ -6,18 +6,18 @@ import { styled } from '@mui/material/styles';
 import ApexCharts from 'apexcharts';
 import axios from 'axios'
 
-const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
-  height: 10,
-  borderRadius: 5,
-  // background: 'linear-gradient(to right, #FFD700, #FFC200, #FFB000)',
-    [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
-  },
-  [`& .${linearProgressClasses.bar}`]: {
-    borderRadius: 5,
-    backgroundColor: theme.palette.mode === 'light' ? 'gold' : '#308fe8',
-  },
-}));
+// const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+//   height: 10,
+//   borderRadius: 5,
+//   // background: 'linear-gradient(to right, #FFD700, #FFC200, #FFB000)',
+//     [`&.${linearProgressClasses.colorPrimary}`]: {
+//     backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+//   },
+//   [`& .${linearProgressClasses.bar}`]: {
+//     borderRadius: 5,
+//     backgroundColor: theme.palette.mode === 'light' ? 'gold' : '#308fe8',
+//   },
+// }));
 
 const Result = () => {
 
@@ -54,7 +54,7 @@ const Result = () => {
   const navigate = useNavigate();
   const [progressValue, setProgressValue] = useState(50);
 
-  const { correctAnswer } = location.state;
+  const { correctAnswer, category } = location.state;
   const [confirmButtonColor, setConfirmButtonColor] = useState('#00cc00');
 
 
@@ -62,6 +62,7 @@ const Result = () => {
 
   // Use the correctAnswer data in your Result component
   console.log('Correct Answers:', correctAnswer);
+  console.log('Category:', category)
   const [chartOptions, setChartOptions] = useState({
     chart: {
       height: 380,
@@ -155,41 +156,84 @@ const Result = () => {
     ,
     colors:['#00cc00']
   };
-
   useEffect(() => {
-    const chartElement = document.getElementById('week');
-    const chart = new ApexCharts(chartElement, options);
-    chart.render();
-
-    // Clean up function to destroy the chart when the component unmounts
-    return () => {
-      chart.destroy();
+    const fetchData = async () => {
+      try {
+        const response = await axios.post('http://43.203.98.168:8080/updatePoint', {
+          userId: userId,
+          point: correctAnswer,
+          category: category,
+        });
+  
+        const today = new Date();
+        const pastWeek = [];
+        for (let i = 6; i >= 0; i--) {
+          const date = new Date(today);
+          date.setDate(today.getDate() - i);
+          pastWeek.push(date.toISOString().slice(0, 10));
+        }
+  
+        const filteredData = response.data.filter((item) => pastWeek.includes(item.date));
+  
+        const pointData = pastWeek.map((date) => {
+          const matchingItems = filteredData.filter((item) => item.date === date);
+          const totalPoints = matchingItems.reduce((sum, item) => sum + item.point, 0);
+          return totalPoints;
+        });
+  
+        const options = {
+          series: [
+            {
+              data: pointData,
+            },
+          ],
+          chart: {
+            type: 'bar',
+            height: 350,
+          },
+          plotOptions: {
+            bar: {
+              borderRadius: 4,
+              borderRadiusApplication: 'end',
+              horizontal: false,
+            },
+          },
+          dataLabels: {
+            enabled: false,
+          },
+          xaxis: {
+            categories: pastWeek,
+          },
+          colors: ['#00cc00'],
+        };
+  
+        const chartElement = document.getElementById('week');
+        const chart = new ApexCharts(chartElement, options);
+        chart.render();
+  
+        return () => {
+          chart.destroy();
+        };
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
     };
-  }, []); // Empty dependency array to ensure useEffect runs only once after mount
+  
+    fetchData();
+  }, [userId]);
+  // useEffect(() => {
+  //   const chartElement = document.getElementById('week');
+  //   const chart = new ApexCharts(chartElement, options);
+  //   chart.render();
+
+  //   // Clean up function to destroy the chart when the component unmounts
+  //   return () => {
+  //     chart.destroy();
+  //   };
+  // }, []); // Empty dependency array to ensure useEffect runs only once after mount
 
   const handleSports = () => {
-    const data = {
-      userId: userId,
-      point: correctAnswer,
-      category: "sports",
-    };
-    console.log("userID: " + userId)
-    const accessToken = localStorage.getItem('accessToken');
-    const headers = {
-      // 'Authorization': `Bearer ${accessToken}`,
-      'Content-Type': 'application/json',
-    };
-    axios.post('http://43.203.98.168:8080/updatePoint', data, { headers })
-      .then(response => {
-        console.log('Result submitted successfully:', response.data);
-        navigate('/main');
-      })
-      .catch(error => {
-        console.error('Error submitting result:', error);
-        if (error.response && error.response.status === 401) {
-          navigate('/result');
-        }
-      });
+    navigate('/main');
   };
 
 
@@ -199,7 +243,7 @@ const Result = () => {
       <ul style={{ listStyle: 'none', padding: 0 }}>
         <li style={{ display: 'flex', alignItems: 'center', marginBottom: '30px' }}>
           <a className="active" href="#home" style={{ color: 'black', textDecoration: 'none' }} onClick={() => handleSpanClick(0)}>
-            LOGO
+            {/* LOGO */}
           </a>
         </li>
         <li
@@ -287,8 +331,8 @@ const Result = () => {
           {/* <p style={{position: 'relative', marginTop: '50px',color:'black', textAlign: 'center' }}>손으로 해당 이미지를 따라해주세요.</p> */}
           <div id="container" style={{ display: 'grid', gridTemplateColumns: '5fr 5fr', gridTemplateRows: 'repeat(3, 1fr)', height: '100vh', width: '80%', columnGap: '100px', marginLeft: '100px', marginTop: '3%', rowGap: '40px'}}>
           <div style={{gridColumn: '1 / span 2', }}>
-          <b style={{marginLeft: '10%', paddingBottom: '20px', color: '#ec9a00', fontWeight: 'bold'}}>GOLD 111</b>
-          <BorderLinearProgress variant="determinate" value={progressValue} style={{ boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',marginTop: '80px', width: '80%', margin: 'auto', height:' 40px'}}/>
+          {/* <b style={{marginLeft: '10%', paddingBottom: '20px', color: '#ec9a00', fontWeight: 'bold'}}>GOLD 111</b> */}
+          {/* <BorderLinearProgress variant="determinate" value={progressValue} style={{ boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',marginTop: '80px', width: '80%', margin: 'auto', height:' 40px'}}/> */}
 
           </div>
 

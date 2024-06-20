@@ -82,22 +82,19 @@ const IndoorSportTest = () => {
   }, []);
 
   useEffect(() => {
-    // Check if the prediction matches the current image filename (excluding the file extension)
-    setCurrentImageFilename(imageUrls[currentImageIndex].split('.')[0])
-    console.log(currentImageFilename)
-    console.log(prediction)
-    if (prediction == currentImageFilename) {
-      console.log("Set to green")
+    setCurrentImageFilename(imageUrls[currentImageIndex].split('.')[0]);
+    if (prediction === 'None!') {
+      setPrediction('');
+    } else if (prediction === currentImageFilename) {
       setConfirmButtonColor('#00cc00');
-      setPrediction(currentImageFilename)
-
-    } 
+      setPrediction(currentImageFilename);
+    }
   }, [prediction, currentImageIndex, imageUrls]);
 
   const handleSports = () => {
     // navigate('/sports');
     if(currentImageIndex == imageUrls.length - 1){
-          navigate('/result' ,{ state: { correctAnswer } });
+      navigate('/result', { state: { correctAnswer, category: 'sports' } });
     }
     else {
       setCurrentImageIndex((currentImageIndex + 1));
@@ -142,7 +139,7 @@ const IndoorSportTest = () => {
       <ul style={{ listStyle: 'none', padding: 0 }}>
         <li style={{ display: 'flex', alignItems: 'center', marginBottom: '30px' }}>
           <a className="active" href="#home" style={{ color: 'black', textDecoration: 'none' }} onClick={() => handleSpanClick(0)}>
-            LOGO
+            {/* LOGO */}
           </a>
         </li>
         <li
