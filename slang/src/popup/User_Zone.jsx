@@ -12,11 +12,11 @@ import { SlArrowRightCircle } from "react-icons/sl";
 import axios from 'axios'; // axios 임포트
 import { SlMagnifierAdd } from "react-icons/sl";
 import { SlActionRedo } from "react-icons/sl";
-
+import { BiChevronRightCircle } from "react-icons/bi";
+import { useNavigate, Route, Routes, BrowserRouter as Router } from 'react-router-dom';
+import LoginPage from '../pages/LoginPage';
 
 import "../App.css";
-
-//  const url = 'http://43.203.98.168:8080/profile/{userId} '; -> 백엔드에서 특정 사용자의 정보 불러오기 post / rank 
 
 
 const FriendPopup = ({onClose}) => {
@@ -216,29 +216,32 @@ const RequestPopup = ({onClose}) => {
 
 const EditPopup = ({onClose}) => {
 
+  const navigate = useNavigate();
+
+  const onGoToLoginpage = () => {
+    localStorage.removeItem('userId');
+    navigate('/');
+  }
 return (
 
   <div
-  style ={{position: "fixed", top: 0 , left: 0, right: 0, bottom: 0,
-  padding: "30px", display: "flex", alignItems: "center", justifyContent: "center", width: "900px",
+  style ={{position: "fixed", display: "flex", alignItems: "center", justifyContent: "center",
    zIndex: 800}}>
 
     <div style = {{
-      position: "relative", background: "#A9B388", padding: "40px 50px",  marginBottom: "10px", 
-      animation: "dropTop 0.4s linear",
-      width: "700px", height: "1000px", overflowT: "scroll", borderRadius: "50px"}}>
+      position: "relative", background: "#A9B388", animation: "dropTop 0.4s linear", 
+      display: "flex", justifyContent: "center", alignItems: "center",
+    paddingLeft: "150px", paddingTop: "80px", paddingBottom: "80px", overflowT: "scroll", borderRadius: "50px"}} >
 
       <div style= {{position: "absolute", top: 35, right: 35}}>
         <AiOutlineClose onClick={onClose} size ={25}/>
         {/* 팝업 내용 */}
         </div>
-        <h3 style={{textAlign: "center", fontSize:"45px", fontFamily: "neurimboGothicRegular",
-          marginTop: "10px", marginBottom: "100px", padding: "30px"
-        }}>프로필 수정</h3>
+        <h3 style={{fontSize:"35px", fontFamily: "neurimboGothicRegular", width: "220px", 
+        }}>로그아웃 하기</h3> 
+
    
-     <div style={{alignItems: "center", alignContent: "center"}}>
-          </div>
-      
+        <BiChevronRightCircle onClick ={onGoToLoginpage} size = {30} style = {{marginRight: "130px", marginTop: "11px"}}/>
     </div>
   </div> 
 
@@ -504,6 +507,7 @@ export const User_Zone = ({onClose}) => {
 
     return (
 
+      <Router>
   <div 
         style = {{
           position: "fixed",
@@ -608,7 +612,7 @@ export const User_Zone = ({onClose}) => {
                     <div style={{display:"flex", marginLeft: "880px ",  marginTop: "10px", justifyContent: "center", alignContent: "center", padding:"10px", width: "215px", height: "65px", border: "3px solid #EEF7FF",
                     borderRadius: "100px", background: "#999999",  boxShadow: "0 3px 6px rgba(0,0,0,0.4)"}}
                     onClick={handleEditClick}>
-                    <p style={{marginLeft: "10px", color:"#fff",fontFamily:"neurimboGothicRegular" ,  fontSize: "20px"}}> Edit Profile</p>
+                    <p style={{marginLeft: "10px", color:"#fff",fontFamily:"neurimboGothicRegular" ,  fontSize: "20px"}}> Logout</p>
                     </div>
                     </div>
 
@@ -740,6 +744,10 @@ export const User_Zone = ({onClose}) => {
 
       </div>
     </div>
+    <Routes>
+        <Route path="/" element={< LoginPage />} />
+      </Routes>
 
+    </Router>
     );
 };
