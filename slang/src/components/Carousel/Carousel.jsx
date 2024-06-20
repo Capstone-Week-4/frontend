@@ -27,7 +27,7 @@ import "./styles.css";
 // Learning 페이지를 라우팅 하기 위한 회전목마 컴포넌트 
 
 
-const STEP_DURATION = 2000;
+const STEP_DURATION = 800;
 const SPOTLIGHT_SPEED = 4;
 
 export const Carousel = (props) => {

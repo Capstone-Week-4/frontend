@@ -17,7 +17,7 @@ import { useRef } from 'react';
 import { useFrame } from "@react-three/fiber";
 import { Vector3 } from "three";
 
-const STEP_DURATION = 2000;
+const STEP_DURATION = 800;
 const SPOTLIGHT_SPEED = 4;
 
 export const Carousel3 = (props) => {

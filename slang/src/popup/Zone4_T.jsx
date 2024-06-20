@@ -18,7 +18,6 @@ export const Zone4_T = ({onClose}) => {
           left:0,
           right:0,
           bottom:0,
-          padding:"10px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center"
@@ -64,7 +63,9 @@ export const Zone4_T = ({onClose}) => {
 
       }}>
 
-       <h3 style = {{ justifyContent: "center", alignItems: "center", paddingBottom: "40px", fontSize: "45px", fontWeight: 600}}>스포츠</h3>
+       <h3 style = {{ justifyContent: "center", 
+        alignItems: "center", paddingBottom: "40px", 
+        marginLeft: "50px", fontSize: "45px", fontWeight: 600}}>스포츠</h3>
         
       </div>
 

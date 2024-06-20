@@ -107,7 +107,6 @@ export const Experience = () => {
         </group>
 
         <group rotation-y={-Math.PI / 4} onClick={handleOnclick_3}>   
-
         <Carousel3 />
         </group>
 

@@ -18,7 +18,6 @@ export const Zone2_T = ({onClose}) => {
           left:0,
           right:0,
           bottom:0,
-          padding:"10px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center"

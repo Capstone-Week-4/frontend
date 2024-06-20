@@ -20,18 +20,30 @@ import "../App.css";
 
 
 const FriendPopup = ({onClose}) => {
-  const [friendData, setfriendData] = useState();
+  const [friendsList, setFriendsList] = useState([]);
   const [userId, setUserId] = useState();
-
   
+
 
   useEffect(() => {
     const storedUserId = localStorage.getItem('userId');
+
     if (storedUserId) {
-      setUserId(storedUserId);
+
+      axios.get(`http://43.203.98.168:8080/friends/${storedUserId}`)
+      .then(response => {
+        setFriendsList(response.data); // 나와 친구인 사용자들 나열 
+
+      })
+      .catch(error=> {
+        console.error('Error fetching freind requests:', error);
+        
+      })
     }
+
   }, []);
   
+
   
   return (
     <div
@@ -52,30 +64,19 @@ const FriendPopup = ({onClose}) => {
               marginTop: "10px", marginBottom: "100px", padding: "30px"
             }}>나의 친구 목록</h3>
        
-         <div style={{alignItems: "center", alignContent: "center"}}>
-
-              <div style = {{borderRadius: "30px", background: "#AC7D88",
-               padding: "10px", width: "550px", height: "100px", marginTop: "20px",
-                border: "3px solid #EEF7FF", display: "flex", justifyContent: "center", alignItems: "center"}}>
-
-                <h5 style ={{color:"#EDE4E0", fontSize: "23px"}}> 전윤혁 </h5>
-              </div>
-
-              <div style = {{borderRadius: "30px", background: "#AC7D88", 
-              padding: "10px", width: "550px", height: "100px", marginTop: "20px", 
-              border: "3px solid #EEF7FF", display: "flex", justifyContent: "center", alignItems: "center" }}>
-                <h5 style={{color: "#EDE4E0",  fontSize: "23px"}}> 박진석 </h5>
-              </div>
-
-              <div style = {{borderRadius: "30px", background: "#AC7D88", padding: "10px",
-               width: "550px", height: "100px", marginTop: "20px", border: "3px solid #EEF7FF", 
-               display: "flex", justifyContent: "center", alignItems: "center"}}>
-                <h5 style={{color: "#EDE4E0",  fontSize: "23px"}}> 천예원 </h5>
-              </div>
-
-              </div>
-        
-
+       
+       <div style={{ alignItems: "center", alignContent: "center" }}>
+          {friendsList.map(friend => (
+            <div key={friend.friendId} style={{
+              borderRadius: "30px", background: "#AC7D88",
+              padding: "10px", width: "550px", height: "100px", marginTop: "20px",
+              border: "3px solid #EEF7FF", display: "flex", justifyContent: "center", alignItems: "center"
+            }}>
+              <h5 style={{ color: "#EDE4E0", fontSize: "23px" }}>{friend.friendId}</h5>
+            </div>
+          ))}
+        </div>
+      
           
         </div>
       </div>
@@ -86,6 +87,59 @@ const FriendPopup = ({onClose}) => {
 const RequestPopup = ({onClose}) => {
 
   const [isFollowPopupOpen, setIsFollowPopupOpen] = useState(false);
+  const [friendRequests, setFriendRequests] = useState([]);
+  const [currentUserId, setCurrentUserId] = useState('');
+
+  useEffect(()=> {
+    const storedUserId = localStorage.getItem('userId');
+    if (storedUserId) {
+      setCurrentUserId (storedUserId);
+
+      axios.get(`http://43.203.98.168:8080/friend/requests/received/${storedUserId}`)
+      .then(response => {
+        setFriendRequests(response.data); // 나한테 친구 요청 한 사용자들 나열 
+
+      })
+      .catch(error=> {
+        console.error('Error fetching freind requests:', error);
+        
+      })
+    }
+  }, []);
+  
+
+  const onAccept = (senderId) => {
+    const storedUserId = localStorage.getItem('userId');
+
+    axios.post('http://43.203.98.168:8080/friend/accept', {
+      senderId: senderId,
+      receiverId: storedUserId
+    }).then (reponse => {
+      console.log('Friend request accepted successfullt:', reponse);
+
+     setFriendRequests(prevRequests => prevRequests.filter(request => request.senderId !== senderId));      
+    })
+    .catch(error => {
+      console.error('Error accepting friend request: ', error);
+
+    });
+  };
+
+  const onReject = (senderId) =>  {
+    const storedUserId = localStorage.getItem('userId');
+
+    axios.post('http://43.203.98.168:8080/friend/decline', {
+      senderId: senderId,
+      receiverId: storedUserId
+    })
+    .then(response => {
+      console.log('Frend request declicne successfly: ', response);
+      setFriendRequests(prevRequests => prevRequests.filter(request => request.senderId !== senderId));
+    })
+    .catch(error => {
+      console.error('Error declining friend request: ', error);
+    });
+  };
 
 
   const handleFollowClick=() => {
@@ -94,6 +148,7 @@ const RequestPopup = ({onClose}) => {
   const handleFollowPopupClose=()=> {
     setIsFollowPopupOpen(false);
   }
+
 
   return (
     <div
@@ -135,32 +190,22 @@ const RequestPopup = ({onClose}) => {
 
           {/* 동적으로 친구 요청 된 사용자 추가하기  */}
 
-              <div style = {{borderRadius: "30px", background: "#AC7D88",
-               padding: "10px", width: "600px", height: "100px", marginTop: "20px",
-                border: "3px solid #EEF7FF", display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+          {friendRequests.map(request => (
+            <div key={request.senderId} style={{
+              borderRadius: '30px', background: '#AC7D88',
+              padding: '10px', width: '600px', height: '100px', marginTop: '20px',
+              border: '3px solid #EEF7FF', display: 'flex', justifyContent: 'space-between', alignItems: 'center'
+            }}>
+              <h5 style={{ marginLeft: '90px', color: '#EDE4E0', fontSize: '23px' }}>{request.senderId}</h5>
+              <div style={{ marginRight: '20px' }}>
+              
+                <BiMessageSquareCheck onClick = {()=> onAccept(request.senderId)} style={{ marginBottom: '8px' }} size={28} />  {/* 수락 버튼 */}
+                <BiMessageSquareX onClick = {()=> onReject(request.senderId)} style={{ marginLeft: '5px', marginBottom: '8px' }} size={28} />  {/* 거절 버튼 */}
 
-                <h5 style ={{marginLeft: "90px", color:"#EDE4E0", fontSize: "23px"}}> 킹고 </h5>
-                <div style = {{marginRight: "20px"}}>
-                <BiMessageSquareCheck style={{marginBottom: "8px"}} size={28}/>
-                <BiMessageSquareX style={{marginLeft: "5px", marginBottom: "8px"}}size={28} />
-                </div>
-              </div>
-
-                          
-          {/* 동적으로 친구 요청 된 사용자 추가하기  */}
-
-          <div style = {{borderRadius: "30px", background: "#AC7D88",
-               padding: "10px", width: "600px", height: "100px", marginTop: "20px",
-                border: "3px solid #EEF7FF", display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-
-                <h5 style ={{marginLeft: "90px", color:"#EDE4E0", fontSize: "23px"}}> SKKU </h5>
-
-                <div style={{marginRight:"20px"}}>
-                <BiMessageSquareCheck style={{marginBottom: "8px"}} size={28}/>
-                <BiMessageSquareX style={{marginLeft: "5px", marginBottom: "8px"}}size={28} />
-                </div>
 
               </div>
+            </div>
+          ))}
 
               </div>
         </div>
@@ -195,7 +240,7 @@ return (
           </div>
       
     </div>
-  </div>
+  </div> 
 
 );
 };
@@ -205,17 +250,18 @@ const FollowPopup= ({onClose})=> {
   const inputRef = useRef();
   const [users, setUsers] = useState([]); // users 엔드 포인트에서 전체 data를 리스트로 가져오기 
   const [randomUsers, setRandomUsers] = useState([]); // 그 중 random으로 4개 가져오기 
+  const [searchResult, setSearchResult] = useState(); // 검색한 사용자 
   const [currentUserId, setCurrentUserId] = useState();
-
+  const [requestUser, setRequestUser] = useState();
 
   useEffect(() => {
     const storedUserId = localStorage.getItem('userId');
     if (storedUserId) {
-      setCurrentUserId(storedUserId);
+    setCurrentUserId(storedUserId);
 
     axios.get('http://43.203.98.168:8080/users')
     .then(response => {
-      const filteredUsers = response.data.filter(user => user.userId !== storedUserId);
+      const filteredUsers = response.data.filter(user => user.userId !== currentUserId);
       setUsers(filteredUsers);
       const shuffledUsers = filteredUsers.sort(()=> 0.5 - Math.random());
       setRandomUsers(shuffledUsers.slice(0,5));
@@ -228,31 +274,43 @@ const FollowPopup= ({onClose})=> {
   }, []);
 
 
-  const onSearch = () => {
-    const  searchUser = inputRef.current.value;
-     // ref를 이용해 검색어를 가져온다
-    if(searchUser){
-        axios.get(`http://localhost:3000/main?query=${searchUser}`)
-            .then((response) => {
-                // 검색 결과에 따라 페이지를 전환합니다.
-                if (response.data.length > 0) {
-                    // 검색 결과가 있으면 검색 결과 페이지로 이동합니다.
-                    //window.location.href = `/search?query=${searchUser}`;
-                    alert(`${searchUser}가 검색되었습니다.`);
-                } else {
-                    // 검색 결과가 없으면 검색 결과가 없는 페이지로 이동합니다.
-                    //window.location.href = '/no-result';
-                    alert('검색결과가 없습니다');
-                }
-            })
-            .catch((e) => {
-                // 오류가 발생한 경우에는 오류 페이지로 이동합니다.
-               alert('페이지 오류');
-            });
+  useEffect(() => {
+
+    if(requestUser && currentUserId) {
+      axios.post('http://43.203.98.168:8080/friend/request', {
+        senderId: currentUserId,
+        receiverId: requestUser
+      })
+      .then(response=> {
+        console.log('Friend request sent successfully:' , response);
+      })
+      .catch(error => {
+        console.error('Error request User', error);
+      });
     }
+    
+  }, [requestUser, currentUserId]);
+
+
+  const onSearch = () => {
+    const  searchUser = inputRef.current.value.trim();
+     // ref를 이용해 검색어를 가져온다
+    if (searchUser){
+
+      const foundUser = users.find(user => user.userId === searchUser);
+      setSearchResult(foundUser ? foundUser : 'Not Found User!');  
+
+   }
     inputRef.current.value = ''; 
   //검색 완료 후엔 다시 value값을 공백으로 설정. 
   };
+
+  const onRequest = (userId) => {
+
+    setRequestUser(userId); //requestUser const 가 setting 된다. 
+
+
+  }
   
   
 return (
@@ -289,27 +347,33 @@ return (
         />
 
 
-<SlActionRedo onClick={onSearch} id='search-Btn'
- size={30} style={{marginTop: "15px"}}/>
+        <SlActionRedo onClick={onSearch} id='search-Btn'
+        size={30} style={{marginTop: "15px"}}/>
         </div>
-        {randomUsers.map((user) => (
-           <div key={user.userId} style={{ borderRadius: "30px", background: "#AC7D88", padding: "10px", width: "550px", height: "100px", marginTop: "20px",
-            border: "3px solid #EEF7FF", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <h5 style={{ color: "#EDE4E0", fontSize: "23px", marginLeft: "100px" }}>{user.userId}</h5>
-            <AiTwotonePlusSquare size={30} style={{ marginRight: "25px" }} />
+
+        {searchResult === 'Not Found User!' ? (
+          <div style = {{alignItems: "center", justifyContent: "center", display: "flex"}}>
+            <h5 style={{ color: "#666666", fontWeight: 700,  fontSize: "28px", marginTop: "50px"}}>검색 결과가 없습니다</h5>
             </div>
-      
-        ))}
-
-
-
-
-          </div>
+          )
+          : searchResult ? (
+            <div key={searchResult.userId} style={{ borderRadius: "30px", background: "#AC7D88", padding: "10px", width: "550px", height: "100px", marginTop: "20px", border: "3px solid #EEF7FF", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <h5 style={{ color: "#EDE4E0", fontSize: "23px", marginLeft: "100px" }}>{searchResult.userId}</h5>
+              <AiTwotonePlusSquare onClick = {()=> onRequest(searchResult.userId)} size={30} style={{ marginRight: "25px" }} />
+            </div>
+          ) : (
+            randomUsers.map((user) => (
+              <div key={user.userId} style={{ borderRadius: "30px", background: "#AC7D88", padding: "10px", width: "550px", height: "100px", marginTop: "20px", border: "3px solid #EEF7FF", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <h5 style={{ color: "#EDE4E0", fontSize: "23px", marginLeft: "100px" }}>{user.userId}</h5>
+                <AiTwotonePlusSquare onClick = {()=> onRequest(user.userId)} size={30} style={{ marginRight: "25px" }} />
+              </div>
+            ))
+          )}
+     </div>
+      </div>
     </div>
-  </div>
-);
+  );
 };
-
 
 // 전체 사용자 랭킹 
 

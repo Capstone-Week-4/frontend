@@ -7,12 +7,8 @@ import { useNavigate } from 'react-router-dom';
 
 
 export const Zone1_L = ({onClose}) => {
-  // const navigate = useNavigate();
-  // const handleNavigate = () => {
-  //   setTimeout(() => {
-  //     navigate("/animals");
-  //   }, 1800);
-  // };
+
+
     return (
 <div 
         style = {{
@@ -21,7 +17,6 @@ export const Zone1_L = ({onClose}) => {
           left:0,
           right:0,
           bottom:0,
-          padding:"10px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center"
@@ -34,12 +29,15 @@ export const Zone1_L = ({onClose}) => {
   <div 
     style = {{
       position: "relative",
-      background: "#C2DEDC",
-      borderRadius: "165px",
-      padding: "140px 180px",
-      animation: "dropTop .4s linear",
+      background: "#7AB2B2",
+      borderRadius: "170px",
+      padding: "120px 120px",
+      animation: "dropTop 0.4s linear",
       display: "flex",
       flexDirection: "column",
+      justifyContent: "center",
+   
+
     }}
     >
 
@@ -50,23 +48,26 @@ export const Zone1_L = ({onClose}) => {
           <AiOutlineClose onClick = {onClose} size={32}/>
         </div>
  */}
-      <div style = {{
-        borderBottom: "2px solid gray",
-        paddingBottom: "50px",
-        diplay: "flex",
-        paddingRight:"100px",
-        paddingLeft: "100px",
-        width: "100%"
-      }}>
-       <h2 style = {{margin: 0, marginLeft: "50px", paddingLeft: "100px", paddingRight: "100px", width: "300px", justifyContent: "center"}}>동물</h2>
-        
-   
-          <button class="button--antiman button--round-l button--text-medium">
-            <i class="button__icon icon icon-plus"></i><span>      
-                  <AiOutlineClose onClick = {onClose} size={30}/>
-              </span></button>
-      
+
+ 
+<div style = {{position: "absolute", top: 60, right: 110}}> 
+        <AiOutlineClose onClick = {onClose} size={30} />
       </div>
+
+      <div style = {{
+        borderBottom: "2px solid #fff",
+        diplay: "flex",
+        width: "1000px",
+        height: "150px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+
+      }}>
+
+<h3 style = {{ justifyContent: "center", alignItems: "center", paddingBottom: "40px", fontSize: "45px", fontWeight: 600}}>동물</h3>
+        
+        </div>
 
       {/* Body */ }
 
@@ -115,11 +116,3 @@ export const Zone1_L = ({onClose}) => {
 
     );
 };
-
-{/* 
-      <a href="/animals" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <h3 style={{ cursor: 'pointer' }}>포유류</h3>
-          </a>        <h3> 양서류 </h3>
-      </div>
-      {/*footer*/}
- 
