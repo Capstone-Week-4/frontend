@@ -62,14 +62,16 @@ export const Experience = () => {
 // -33, 8, -33
 // <group position={[40, -15, -10]}>
 
-  const handleOnclick_3=() => {
+  const handleOnclick_3=() => { // 이거가 대화 팝업창
     setPosition({ x:-70, y:1, z:40})  
   }
 
   const handleOnclick_4=() => {
     setPosition({ x:-78, y: 20, z:-42}) 
-  
+    
   }
+
+
 
   return (
     <>

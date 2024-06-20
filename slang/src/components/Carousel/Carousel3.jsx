@@ -10,17 +10,43 @@ import { Witch } from "../Haunted/Witch";
 import { FerrisWheel } from "../Park/FerrisWheel";
 import { Podium } from "../Park/Podium";
 import { ShipLight } from "../Park/ShipLight";
-import { Box, Cylinder, Float } from '@react-three/drei';
+import { Html, Float } from '@react-three/drei';
 import { useSpring, animated } from "@react-spring/three";
 import { CarouselModel3 } from "./CarouselModel3";
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useFrame } from "@react-three/fiber";
 import { Vector3 } from "three";
+import { Conv_Zone } from "../../popup/Conv_Zone";
+
+// 대화 Carousel 
 
 const STEP_DURATION = 800;
 const SPOTLIGHT_SPEED = 4;
 
 export const Carousel3 = (props) => {
+
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isCameraMoved, setIsCameraMoved] = useState(false);
+  const [position, setPosition] = useState();
+
+  const handleConvClick = () => {
+
+    if(!isCameraMoved) {
+      setIsCameraMoved(true);
+      setPosition ({x:-70, y:1, z:40});
+    }
+
+    else {
+      setIsPopupOpen(true);
+      setIsCameraMoved(false);
+    }
+  }
+
+  
+  const closePopup=() => {
+    setIsPopupOpen(false);
+ }
+
 
   const {carouselRotation, currentStep} = useSpring({
     from: {
@@ -83,8 +109,14 @@ export const Carousel3 = (props) => {
     spotLightRef.current.target.updateMatrixWorld();
   });
 
+
   return (
-    <>
+    <group onClick={()=> handleConvClick()}>
+
+        <Html>
+        {isPopupOpen && <Conv_Zone onClose={closePopup} />}
+        </Html>
+
       <spotLight
         ref={spotLightRef}
         penumbra={0.4}
@@ -169,7 +201,7 @@ export const Carousel3 = (props) => {
       </animated.group >
       </group>
 
-    </>
+    </group>
     
   );
 };
