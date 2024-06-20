@@ -1,4 +1,4 @@
-import React, { useEffect, useState , useRef} from 'react';
+import React, { useEffect, useState } from 'react';
 import '../static/style.css'
 import { useNavigate } from 'react-router-dom';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
@@ -21,15 +21,10 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   },
 }));
 
-const ConvoPage = () => {
-  const predictionsListRef = useRef(null);
-
-
+const ConvoFood = () => {
   const [prediction, setPrediction] = useState('');
   const [predictionsList, setPredictionsList] = useState([]);
   const [responseData, setResponseData] = useState('');
-  const [filteredPredictionsList, setFilteredPredictionsList] = useState([]);
-
 
 
   const navigate = useNavigate();
@@ -38,11 +33,7 @@ const ConvoPage = () => {
   const [progressValue, setProgressValue] = useState(0);
   const [confirmButtonColor, setConfirmButtonColor] = useState('#00cc00');
   const [currentImageFilename, setCurrentImageFilename] = useState()
-  useEffect(() => {
-    if (predictionsListRef.current) {
-      predictionsListRef.current.scrollLeft = predictionsListRef.current.scrollWidth;
-    }
-  }, [filteredPredictionsList]);
+
   useEffect(() => {
     let previousPrediction = null;
     let intervalId = null;
@@ -59,20 +50,10 @@ const ConvoPage = () => {
             consecutiveMatches++;
             if (consecutiveMatches === 2) {
               // If the prediction remains the same for 3 seconds, add it to the list
-              // if (predictionsList.length === 0) {
-              //   setPredictionsList(prevList => [...prevList, data]);
+              if (predictionsList.length === 0) {
+                setPredictionsList(prevList => [...prevList, data]);
                 
-              // }
-              if (!predictionsList.includes(data)) {
-                setPredictionsList(prevList => {
-                  const updatedList = [...prevList, data];
-                  const filteredList = [...new Set(updatedList)];
-                  setFilteredPredictionsList(filteredList);
-                  return updatedList;
-                });
               }
-
-              
               consecutiveMatches = 0; // Reset consecutiveMatches
             }
           } else {
@@ -187,12 +168,10 @@ const ConvoPage = () => {
     }
   };
   const handleDeleteLastPrediction = () => {
-    setFilteredPredictionsList(filteredPredictionsList.slice(0, -1));
     setPredictionsList(predictionsList.slice(0, -1));
   };
 
   const handleClearPredictions = () => {
-    setFilteredPredictionsList([]);
     setPredictionsList([]);
   };
   const handleFood = () => {
@@ -318,26 +297,23 @@ const ConvoPage = () => {
              }}>
               <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                 <p id="answer_p" style={{ color: 'black', marginTop: '3%' }}>단어: </p>
-                <div
-                        style={{ overflowX: 'auto', flexGrow: 1, padding: '10px 0' }}
-                        ref={predictionsListRef}
-                      >
-                        <ul id="predictions_list" style={{ display: 'flex', padding: 0, margin: 0, listStyleType: 'none', color: 'black' }}>
-                          {filteredPredictionsList.map((item, index) => (
-                            <li key={index} style={{
-                              margin: '0 3%',
-                              color: 'black',
-                              border: '1px solid #ddd',
-                              borderRadius: '12px',
-                              padding: '10px',
-                              backgroundColor: 'white',
-                              flex: '0 0 auto'
-                            }}>
-                              {item}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                <div style={{ overflowX: 'auto', flexGrow: 1, padding: '10px 0' }}>
+                  <ul id="predictions_list" style={{ display: 'flex', padding: 0, margin: 0, listStyleType: 'none', color: 'black' }}>
+                    {predictionsList.map((item, index) => (
+                      <li key={index} style={{
+                        margin: '0 3%',
+                        color: 'black',
+                        border: '1px solid #ddd',
+                        borderRadius: '12px',
+                        padding: '10px',
+                        backgroundColor: 'white',
+                        flex: '0 0 auto'
+                      }}>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
                 <button style={{
                   boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
                   width: '100px',
@@ -375,4 +351,4 @@ const ConvoPage = () => {
   
 };
 
-export default ConvoPage;
+export default ConvoFood;

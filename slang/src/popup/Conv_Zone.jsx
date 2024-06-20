@@ -82,7 +82,8 @@ export const Conv_Zone = ({onClose}) => {
         alignItems: "center", background: "#A7C5EB", boxShadow: "0 3px 6px rgba(0,0,0,0.4)", marginRight: "20px"
 
         }}> 
-        <h3 style={{fontSize: "35px"}}> 대화 시작하기 </h3>
+                              <a href="/convo" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <h3 style={{fontSize: "35px"}}> 대화 시작하기 </h3></a>
 
         </div>
 

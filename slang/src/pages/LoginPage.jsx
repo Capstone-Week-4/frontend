@@ -116,17 +116,22 @@ function LoginPage() {
   
 
   const handleSignup = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     sendSignupInfo(userId, username, password)
       .then(response => {
-        // Handle successful login response
+        // Handle successful signup response
         console.log('Sign up successful:', response);
-        // Redirect to another page or update UI accordingly
+        // Display a popup box
+        alert('Registration successful!');
+        // Clear the input fields
+        setUserId('');
+        setUsername('');
+        setPassword('');
       })
       .catch(error => {
-        // Handle login error
+        // Handle signup error
         console.error('Sign up failed:', error);
-        // Update UI to show login error message
+        // Display an error message or handle the error as needed
       });
   };
   

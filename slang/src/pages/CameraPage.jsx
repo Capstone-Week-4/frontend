@@ -192,7 +192,7 @@ const CameraPage = () => {
     </li>
       </ul>
     </div>
-      <div style={{ backgroundColor: '#f7f8f9', marginLeft: '10px', padding: '1px', height: '100vh', border: '1px solid #ddd' }}>
+      <div style={{ backgroundColor: '#DDF4FF', marginLeft: '10px', padding: '1px', height: '100vh', border: '1px solid #ddd' }}>
         <div style={{ overflowY: 'auto', maxHeight: '100vh' }}>
           <BorderLinearProgress variant="determinate" value={progressValue} style={{ boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', marginTop: '5%', width: '50%', marginLeft: '25%' }} />
 
