@@ -26,15 +26,17 @@
 ![LoginPage](![image](https://github.com/Capstone-Week-4/frontend/assets/68769481/674c62f2-400f-4a46-80a8-821264777261))
 
 
+https://github.com/Capstone-Week-4/frontend/assets/68769481/571dfa3a-aad6-4aa1-b2e9-d884876fe9b8
+
+
+
 ### Features
 
 - Register and Login Features using JWT Authentication
 
 ### 1. Landing Page
 ![image](https://github.com/Capstone-Week-4/frontend/assets/68769481/2acd09d8-e9c9-4436-82c1-3cd18936a2c2)
-
-[![Watch the video](https://raw.githubusercontent.com/jjpark1/Capstone-Week-4/frontend/blob/main/landingpage.mp4)]
-[![Watch the video]([(https://github.com/Capstone-Week-4/frontend/assets/68769481/2acd09d8-e9c9-4436-82c1-3cd18936a2c2))]
+[![Watch the video]([(https://github.com/Capstone-Week-4/frontend/assets/68769481/571dfa3a-aad6-4aa1-b2e9-d884876fe9b8))]
 
 ### Features
 
