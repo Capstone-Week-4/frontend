@@ -30,7 +30,8 @@
 
 ### 2. Landing Page
 ![image](https://github.com/Capstone-Week-4/frontend/assets/68769481/2acd09d8-e9c9-4436-82c1-3cd18936a2c2)
-[![Watch the video]([(https://github.com/Capstone-Week-4/frontend/assets/68769481/571dfa3a-aad6-4aa1-b2e9-d884876fe9b8))]
+![Watch the video]([(https://github.com/Capstone-Week-4/frontend/assets/68769481/c324e360-9b0a-402e-9dcc-18e32964052f))
+
 
 ### Features
 
