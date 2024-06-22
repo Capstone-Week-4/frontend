@@ -31,9 +31,10 @@
 - Register and Login Features using JWT Authentication
 
 ### 1. Landing Page
+![image](https://github.com/Capstone-Week-4/frontend/assets/68769481/2acd09d8-e9c9-4436-82c1-3cd18936a2c2)
 
 [![Watch the video](https://raw.githubusercontent.com/jjpark1/Capstone-Week-4/frontend/blob/main/landingpage.mp4)]
-
+[![Watch the video]([(https://github.com/Capstone-Week-4/frontend/assets/68769481/2acd09d8-e9c9-4436-82c1-3cd18936a2c2))]
 
 ### Features
 
