@@ -32,7 +32,7 @@
 
 ### 1. Landing Page
 
-[![Watch the video](https://raw.githubusercontent.com/jjpark1/Capstone-Week-4/frontend/blob/main/landingpage.mp4)
+[![Watch the video](https://raw.githubusercontent.com/jjpark1/Capstone-Week-4/landingpage.mp4)
 
 
 ### Features
