@@ -25,7 +25,7 @@ https://github.com/airoca/Slang-Backend
 ## b. Developer Environment
 
 - Language : Javascript, HTML, CSS
-- Framework : React, Threejs
+- Framework : React, Threejs, React-Three-Fiber (R3F) 
 - IDE : Visual Studio Code
 
 ---
